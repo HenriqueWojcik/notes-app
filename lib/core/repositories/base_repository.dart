@@ -1,12 +1,14 @@
 import 'package:dartz/dartz.dart';
 
 class BaseRepository {
-  Future<Either> doAsync(Function() function) async {
+  Future<Either<T, Exception>> doAsync<T>(
+    Function() function,
+  ) async {
     try {
       final value = await function();
 
       return Left(value);
-    } catch (e) {
+    } on Exception catch (e) {
       return Right(e);
     }
   }

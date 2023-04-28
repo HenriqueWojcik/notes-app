@@ -4,6 +4,10 @@ import 'core/data/communication_impl.dart';
 import 'core/data/communication_inferface.dart';
 import 'features/home_page/data/datasources/home_datasource_impl.dart';
 import 'features/home_page/data/datasources/home_datasource_interface.dart';
+import 'features/home_page/data/repositories/home_repository_interface.dart';
+import 'features/home_page/domain/repositories/home_repository_impl.dart';
+import 'features/home_page/domain/usecases/get_notes_usecase.dart';
+import 'features/home_page/presentation/bloc/home_controller.dart';
 
 GetIt get getIt => GetIt.I;
 
@@ -28,9 +32,17 @@ class Injectors {
     );
   }
 
-  static void injectRepositories() {}
+  static void injectRepositories() {
+    getIt.registerFactory<HomeRepositoryInterface>(
+      () => HomeRepositoryImpl(datasource: getIt()),
+    );
+  }
 
-  static void injectUsecases() {}
+  static void injectUsecases() {
+    getIt.registerFactory(() => GetNotesUsecase(repository: getIt()));
+  }
 
-  static void injectControllers() {}
+  static void injectControllers() {
+    getIt.registerFactory(() => HomeController(getNotes: getIt()));
+  }
 }
