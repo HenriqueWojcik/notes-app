@@ -1,12 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import '../entities/request.dart';
 import 'communication_inferface.dart';
 
 class CommunicationImpl implements CommunicationInterface {
   final firebase = FirebaseFirestore.instance;
 
   @override
-  Future get() {
+  Future get(
+    Request? request,
+  ) {
     // TODO: implement get
     throw UnimplementedError();
   }

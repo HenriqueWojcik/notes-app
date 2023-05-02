@@ -8,7 +8,7 @@ class HomeDatasourceImpl implements HomeDatasourceInterface {
   HomeDatasourceImpl({required this.communication});
 
   @override
-  Future<List<NoteModel>> getNotes() {
-    throw UnimplementedError();
+  Future<List<NoteModel>> getNotes() async {
+    throw Exception();
   }
 }
