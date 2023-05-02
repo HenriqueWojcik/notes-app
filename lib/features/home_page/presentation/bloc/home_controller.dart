@@ -13,4 +13,8 @@ class HomeController {
   Future<void> init() async {
     notes.update(getNotes.call());
   }
+
+  void dispose() {
+    notes.dispose();
+  }
 }
