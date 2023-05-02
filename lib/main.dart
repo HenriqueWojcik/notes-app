@@ -1,6 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
+import 'core/enums/env.dart';
+import 'features/home_page/presentation/pages/home_page.dart';
 import 'injectors.dart';
 
 void main() async {
@@ -20,17 +22,14 @@ class _MainAppState extends State<MainApp> {
   @override
   void initState() {
     super.initState();
-    Injectors.inject();
+
+    Injectors.inject(Env.mock);
   }
 
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
-      ),
+      home: HomePage(),
     );
   }
 }
