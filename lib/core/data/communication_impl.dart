@@ -1,23 +1,34 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../entities/request.dart';
+import '../print/print.dart';
 import 'communication_inferface.dart';
 
 class CommunicationImpl implements CommunicationInterface {
-  final firebase = FirebaseFirestore.instance;
+  FirebaseFirestore get firebase => FirebaseFirestore.instance;
 
   @override
-  Future get(
-    Request? request,
-  ) {
-    // TODO: implement get
-    throw UnimplementedError();
+  Future<List<Map<String, dynamic>>> get(
+    Request request,
+  ) async {
+    final value = await firebase.collection(request.collection).get();
+
+    return value.docs.map((e) => e.data()).toList();
   }
 
   @override
-  Future post() {
-    // TODO: implement post
-    throw UnimplementedError();
+  Future<Map<String, dynamic>> post(Request request) async {
+    Map<String, dynamic>? data = request.data;
+
+    if (data == null) {
+      throw Exception();
+    }
+
+    final value = await firebase.collection(request.collection).add(data);
+
+    debugPrint(value);
+
+    return {};
   }
 
   @override
