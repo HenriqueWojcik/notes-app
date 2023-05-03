@@ -14,4 +14,13 @@ class NoteMappper {
   static List<Note> toEntityList(List<NoteModel> noteModels) {
     return noteModels.map((e) => toEntity(e)).toList();
   }
+
+  static NoteModel toModel(Note note) {
+    return NoteModel(
+      title: note.title,
+      body: note.body,
+      editedAt: note.editedAt,
+      pinned: note.pinned,
+    );
+  }
 }
