@@ -1,0 +1,10 @@
+import '../../../home_page/data/models/note_model.dart';
+import 'new_note_datasource_interface.dart';
+
+class NewNoteDatasourceMock implements NewNoteDatasourceInterface {
+  @override
+  Future<void> createNote(NoteModel noteModel) {
+    // TODO: implement createNote
+    throw UnimplementedError();
+  }
+}
