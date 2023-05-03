@@ -23,7 +23,7 @@ class _MainAppState extends State<MainApp> {
   void initState() {
     super.initState();
 
-    Injectors.inject(Env.mock);
+    Injectors.inject(Env.prod);
   }
 
   @override
