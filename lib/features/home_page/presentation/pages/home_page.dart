@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/widgets/note_app_bar.dart';
 import '../../../../injectors.dart';
-import '../bloc/home_controller.dart';
+import '../../../new_note/presentation/pages/new_note_page.dart';
+import '../../domain/entities/note.dart';
+import '../controller/home_controller.dart';
 import '../widgets/home_body.dart';
 import '../widgets/home_floating_button.dart';
 
@@ -24,9 +27,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        centerTitle: true,
+      appBar: NoteAppBar(
         title: const Text('Flutter Notes App'),
       ),
       floatingActionButton: HomeFloatingButton(
@@ -36,7 +37,16 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  void _onClickAddNote() {}
+  void _onClickAddNote() async {
+    await showModalBottomSheet(
+      isScrollControlled: true,
+      useSafeArea: true,
+      context: context,
+      builder: (_) {
+        return const NewNotePage();
+      },
+    );
+  }
 
   @override
   void dispose() {
