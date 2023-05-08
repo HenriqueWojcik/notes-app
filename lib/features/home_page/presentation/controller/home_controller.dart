@@ -17,7 +17,13 @@ class HomeController {
   HomeView get _homeViewState => homeView.data ?? HomeView.grid;
 
   Future<void> init() async {
-    notes.update(getNotes());
+    notes.update(getNotes);
+  }
+
+  void update({bool? refresh = false}) {
+    if (refresh != null && refresh) {
+      init();
+    }
   }
 
   void changeHomeViewState() {

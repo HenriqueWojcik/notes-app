@@ -47,7 +47,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _onClickAddNote() async {
-    await showModalBottomSheet(
+    bool? result = await showModalBottomSheet(
       isScrollControlled: true,
       useSafeArea: true,
       context: context,
@@ -55,6 +55,8 @@ class _HomePageState extends State<HomePage> {
         return const NewNotePage();
       },
     );
+
+    _controller.update(refresh: result);
   }
 
   void _onClickDrawerIcon() {}
