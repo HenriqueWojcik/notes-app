@@ -1,0 +1,4 @@
+enum HomeView {
+  grid,
+  list,
+}
