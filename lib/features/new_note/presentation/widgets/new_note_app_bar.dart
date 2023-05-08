@@ -9,15 +9,19 @@ class NewNoteAppBar extends AppBar {
     super.centerTitle = true,
     super.elevation = .5,
     super.backgroundColor = Colors.white,
-    super.leading = const Icon(
-      Icons.chevron_left_outlined,
-      color: Colors.black87,
-    ),
     required NewNoteController controller,
+    required Function() onClickBack,
     required Function() onClickPinned,
     required Function() onClickDelete,
     required Function() onClickDone,
   }) : super(
+          leading: IconButton(
+            onPressed: onClickBack,
+            icon: const Icon(
+              Icons.chevron_left_outlined,
+              color: Colors.black87,
+            ),
+          ),
           actions: [
             AppStateBuilder(
               state: controller.noteState,

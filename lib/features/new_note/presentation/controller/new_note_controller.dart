@@ -15,8 +15,17 @@ class NewNoteController {
 
   final Note note = Note();
 
-  Future<void> createNewNote() async {
-    createNoteState.update(createNote(note));
+  Future<bool> createNewNote() async {
+    bool? value;
+
+    await createNoteState.update(() async {
+      final result = await createNote(note);
+      value = result.isLeft();
+
+      return result;
+    });
+
+    return value ?? false;
   }
 
   void setTitle(String title) {
