@@ -5,8 +5,12 @@ class AppState<T> extends ChangeNotifier {
   Exception? _error;
   bool loading = false;
 
+  AppState();
+
   T? get data => _data;
   Exception? get error => _error;
+
+  AppState.init(this._data);
 
   set value(T value) {
     _error = null;
