@@ -3,10 +3,10 @@ import 'package:dartz/dartz.dart';
 import '../../../home_page/domain/entities/note.dart';
 import '../../data/repositories/new_note_repository_interface.dart';
 
-class CreateNote {
+class CreateNoteUseCase {
   final NewNoteRepositoryInterface repository;
 
-  CreateNote({
+  CreateNoteUseCase({
     required this.repository,
   });
 

@@ -4,17 +4,17 @@ part 'note_model.g.dart';
 
 @JsonSerializable()
 class NoteModel {
-  String title;
-  String body;
-  String editedAt;
-  bool pinned;
+  String? title;
+  String? body;
+  String? editedAt;
+  bool? pinned;
   bool sync;
 
   NoteModel({
-    required this.title,
-    required this.body,
-    required this.editedAt,
-    required this.pinned,
+    this.title,
+    this.body,
+    this.editedAt,
+    this.pinned,
     this.sync = false,
   });
 

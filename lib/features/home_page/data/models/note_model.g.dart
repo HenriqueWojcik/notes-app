@@ -7,10 +7,10 @@ part of 'note_model.dart';
 // **************************************************************************
 
 NoteModel _$NoteModelFromJson(Map<String, dynamic> json) => NoteModel(
-      title: json['title'] as String,
-      body: json['body'] as String,
-      editedAt: json['editedAt'] as String,
-      pinned: json['pinned'] as bool,
+      title: json['title'] as String?,
+      body: json['body'] as String?,
+      editedAt: json['editedAt'] as String?,
+      pinned: json['pinned'] as bool?,
       sync: json['sync'] as bool? ?? false,
     );
 

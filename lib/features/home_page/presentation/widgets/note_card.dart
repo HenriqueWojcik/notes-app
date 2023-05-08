@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 
 import '../../domain/entities/note.dart';
 
@@ -17,8 +15,8 @@ class NoteCard extends StatelessWidget {
     return Card(
       child: Column(
         children: [
-          Text(note.title),
-          Text(note.body),
+          Text(note.title ?? ''),
+          Text(note.body ?? ''),
         ],
       ),
     );

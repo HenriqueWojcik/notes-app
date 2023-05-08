@@ -1,20 +1,40 @@
 import 'package:flutter/material.dart';
 
-class NewNoteBody extends StatefulWidget {
-  const NewNoteBody({super.key});
+class NewNoteBody extends StatelessWidget {
+  final Function(String title) onChangeTitle;
+  final Function(String body) onChangeBody;
 
-  @override
-  State<NewNoteBody> createState() => _NewNoteBodyState();
-}
+  const NewNoteBody({
+    super.key,
+    required this.onChangeTitle,
+    required this.onChangeBody,
+  });
 
-class _NewNoteBodyState extends State<NewNoteBody> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        TextFormField(),
-        TextFormField(),
-      ],
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(16, 10, 16, 0),
+      child: Column(
+        children: [
+          TextFormField(
+            onChanged: onChangeTitle,
+            decoration: const InputDecoration(
+              border: InputBorder.none,
+              hintText: 'Título',
+              hintStyle: TextStyle(
+                fontSize: 20,
+              ),
+            ),
+          ),
+          TextFormField(
+            onChanged: onChangeBody,
+            decoration: const InputDecoration(
+              border: InputBorder.none,
+              hintText: 'Anotação',
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
