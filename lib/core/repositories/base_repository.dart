@@ -2,12 +2,14 @@ import 'package:dartz/dartz.dart';
 
 import '../print/print.dart';
 
+typedef Task<T> = Future<T> Function();
+
 class BaseRepository {
   Future<Either<T, Exception>> doAsync<T>(
-    Function() function,
+    Task<T> task,
   ) async {
     try {
-      final value = await function();
+      final value = await task();
 
       return Left(value);
     } on Exception catch (e, stack) {
