@@ -1,3 +1,4 @@
+import '../../../../core/enums/home_view.dart';
 import '../../../../core/state/app_state.dart';
 import '../../../../core/state/app_state_extension.dart';
 import '../../domain/entities/note.dart';
@@ -11,12 +12,21 @@ class HomeController {
   });
 
   final notes = AppState<List<Note>>();
+  final homeView = AppState<HomeView>.init(HomeView.grid);
+
+  HomeView get _homeViewState => homeView.data ?? HomeView.grid;
 
   Future<void> init() async {
     notes.update(getNotes());
   }
 
+  void changeHomeViewState() {
+    homeView.value =
+        _homeViewState == HomeView.grid ? HomeView.list : HomeView.grid;
+  }
+
   void dispose() {
     notes.dispose();
+    homeView.dispose();
   }
 }

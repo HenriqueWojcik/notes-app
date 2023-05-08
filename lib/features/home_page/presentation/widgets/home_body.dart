@@ -5,30 +5,16 @@ import '../../../../core/widgets/empty_placeholder.dart';
 import '../controller/home_controller.dart';
 import 'note_card.dart';
 
-class HomeBody extends StatefulWidget {
+class HomeBody extends StatelessWidget {
+  const HomeBody({super.key, required this.controller});
+
   final HomeController controller;
-
-  const HomeBody({
-    Key? key,
-    required this.controller,
-  }) : super(key: key);
-
-  @override
-  State<HomeBody> createState() => _HomeBodyState();
-}
-
-class _HomeBodyState extends State<HomeBody> {
-  HomeController get controller => widget.controller;
 
   @override
   Widget build(BuildContext context) {
     return AppStateBuilder(
       state: controller.notes,
       builder: (_, state) {
-        if (state.loading) {
-          return const CircularProgressIndicator();
-        }
-
         final notes = state.data;
 
         if (notes == null || notes.isEmpty) {
@@ -38,6 +24,7 @@ class _HomeBodyState extends State<HomeBody> {
         }
 
         return ListView.builder(
+          padding: const EdgeInsets.all(5),
           itemCount: notes.length,
           itemBuilder: (_, idx) {
             return NoteCard(note: notes[idx]);

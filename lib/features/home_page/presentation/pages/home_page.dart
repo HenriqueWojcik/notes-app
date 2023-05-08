@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/widgets/note_app_bar.dart';
 import '../../../../injectors.dart';
 import '../../../new_note/presentation/pages/new_note_page.dart';
-import '../../domain/entities/note.dart';
 import '../controller/home_controller.dart';
+import '../widgets/home_app_bar.dart';
 import '../widgets/home_body.dart';
 import '../widgets/home_floating_button.dart';
 
@@ -27,13 +26,23 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: NoteAppBar(
-        title: const Text('Flutter Notes App'),
-      ),
       floatingActionButton: HomeFloatingButton(
         onClick: _onClickAddNote,
       ),
-      body: HomeBody(controller: _controller),
+      body: SafeArea(
+        child: Column(
+          children: [
+            HomeAppBar(
+              controller: _controller,
+              onClickDrawerIcon: _onClickDrawerIcon,
+              onClickHomeViewIcon: _onClickHomeViewIcon,
+            ),
+            Expanded(
+              child: HomeBody(controller: _controller),
+            ),
+          ],
+        ),
+      ),
     );
   }
 
@@ -47,6 +56,10 @@ class _HomePageState extends State<HomePage> {
       },
     );
   }
+
+  void _onClickDrawerIcon() {}
+
+  void _onClickHomeViewIcon() => _controller.changeHomeViewState();
 
   @override
   void dispose() {
