@@ -13,8 +13,12 @@ class NewNoteRepositoryImpl extends BaseRepository
   NewNoteRepositoryImpl({required this.datasource});
 
   @override
-  Future<Either<void, Exception>> createNote(Note note) {
+  Future<Either<void, Exception>> createNote(Note? note) {
     return doAsync(() async {
+      if (note == null) {
+        throw Exception('Note is null');
+      }
+
       await datasource.createNote(NoteMappper.toModel(note));
     });
   }

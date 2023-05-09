@@ -3,13 +3,19 @@ import 'package:flutter/material.dart';
 import '../../../../core/enums/home_view.dart';
 import '../../../../core/state/app_state_builder.dart';
 import '../../../../core/widgets/empty_placeholder.dart';
+import '../../domain/entities/note.dart';
 import '../controller/home_controller.dart';
 import 'note_card.dart';
 
 class HomeBody extends StatelessWidget {
-  const HomeBody({super.key, required this.controller});
-
   final HomeController controller;
+  final Function(Note note) onClickNoteCard;
+
+  const HomeBody({
+    Key? key,
+    required this.controller,
+    required this.onClickNoteCard,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +42,10 @@ class HomeBody extends StatelessWidget {
               padding: const EdgeInsets.all(5),
               itemCount: notes.length,
               itemBuilder: (_, idx) {
-                return NoteCard(note: notes[idx]);
+                return NoteCard(
+                  note: notes[idx],
+                  onClickNoteCard: onClickNoteCard,
+                );
               },
             );
           },

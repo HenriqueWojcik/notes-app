@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../injectors.dart';
 import '../../../new_note/presentation/pages/new_note_page.dart';
+import '../../domain/entities/note.dart';
 import '../controller/home_controller.dart';
 import '../widgets/home_app_bar.dart';
 import '../widgets/home_body.dart';
@@ -38,7 +39,10 @@ class _HomePageState extends State<HomePage> {
               onClickHomeViewIcon: _onClickHomeViewIcon,
             ),
             Expanded(
-              child: HomeBody(controller: _controller),
+              child: HomeBody(
+                controller: _controller,
+                onClickNoteCard: _onClickNoteCard,
+              ),
             ),
           ],
         ),
@@ -47,21 +51,31 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _onClickAddNote() async {
-    bool? result = await showModalBottomSheet(
-      isScrollControlled: true,
-      useSafeArea: true,
-      context: context,
-      builder: (_) {
-        return const NewNotePage();
-      },
-    );
+    bool? result = await _openNewNotePage();
 
     _controller.update(refresh: result);
+  }
+
+  void _onClickNoteCard(Note note) async {
+    bool? result = await _openNewNotePage(note: note);
   }
 
   void _onClickDrawerIcon() {}
 
   void _onClickHomeViewIcon() => _controller.changeHomeViewState();
+
+  Future<bool?> _openNewNotePage({Note? note}) async {
+    bool? result = await showModalBottomSheet(
+      isScrollControlled: true,
+      useSafeArea: true,
+      context: context,
+      builder: (_) {
+        return NewNotePage(note: note);
+      },
+    );
+
+    return result;
+  }
 
   @override
   void dispose() {

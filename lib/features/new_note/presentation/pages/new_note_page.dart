@@ -22,6 +22,12 @@ class _NewNotePageState extends State<NewNotePage> {
   final NewNoteController _controller = getIt<NewNoteController>();
 
   @override
+  void initState() {
+    super.initState();
+    _controller.init(widget.note);
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: NewNoteAppBar(
@@ -32,6 +38,7 @@ class _NewNotePageState extends State<NewNotePage> {
         onClickDone: _onClickDone,
       ),
       body: NewNoteBody(
+        controller: _controller,
         onChangeTitle: _onChangedTitle,
         onChangeBody: _onChangeBody,
       ),

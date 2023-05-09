@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 import '../../../../core/state/app_state.dart';
 import '../../../../core/state/app_state_extension.dart';
 import '../../../home_page/domain/entities/note.dart';
@@ -11,9 +13,22 @@ class NewNoteController {
   });
 
   final createNoteState = AppState<void>();
-  final noteState = AppState<Note>();
+  final noteState = AppState<Note?>();
 
-  final Note note = Note();
+  Note? note;
+
+  final TextEditingController titleController = TextEditingController();
+  final TextEditingController bodyController = TextEditingController();
+
+  void init(Note? n) {
+    if (n != null) {
+      note = n;
+      titleController.text = n.title ?? '';
+      bodyController.text = n.body ?? '';
+    } else {
+      note = Note();
+    }
+  }
 
   Future<bool> createNewNote() async {
     bool? value;
@@ -30,30 +45,33 @@ class NewNoteController {
 
   void setTitle(String title) {
     editedAt();
-    note.title = title;
+    note?.title = title;
     _update();
   }
 
   void setBody(String body) {
     editedAt();
-    note.body = body;
+    note?.body = body;
     _update();
   }
 
   void setPinned() {
     editedAt();
-    bool? pinned = note.pinned;
+    bool? pinned = note?.pinned;
 
-    note.pinned = pinned == null || pinned ? false : true;
+    note?.pinned = pinned == null || pinned ? false : true;
     _update();
   }
 
-  void editedAt() => note.editedAt = DateTime.now().toString();
+  void editedAt() => note?.editedAt = DateTime.now().toString();
 
   void _update() => noteState.value = note;
 
   void dispose() {
     createNoteState.dispose();
     noteState.dispose();
+
+    titleController.dispose();
+    bodyController.dispose();
   }
 }
