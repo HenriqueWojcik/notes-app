@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get_it/get_it.dart';
 
 import 'core/data/communication_impl.dart';
@@ -26,7 +27,7 @@ class Injectors {
 
   static void injectSingletons() {
     getIt.registerLazySingleton<CommunicationInterface>(
-      () => CommunicationImpl(),
+      () => CommunicationImpl(firebase: FirebaseFirestore.instance),
     );
   }
 }

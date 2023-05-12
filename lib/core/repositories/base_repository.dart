@@ -4,7 +4,7 @@ import '../print/print.dart';
 
 typedef Task<T> = Future<T> Function();
 
-class BaseRepository {
+abstract class BaseRepository {
   Future<Either<T, Exception>> doAsync<T>(
     Task<T> task,
   ) async {

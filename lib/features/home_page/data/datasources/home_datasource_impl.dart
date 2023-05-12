@@ -10,9 +10,9 @@ class HomeDatasourceImpl implements HomeDatasourceInterface {
 
   @override
   Future<List<NoteModel>> getNotes() async {
-    final value = await communication.get(
-      Request(collection: 'notes'),
-    );
+    const request = Request(collection: 'notes');
+
+    final value = await communication.get(request);
 
     return value.map((e) => NoteModel.fromJson(e)).toList();
   }

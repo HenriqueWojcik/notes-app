@@ -5,7 +5,9 @@ import '../print/print.dart';
 import 'communication_inferface.dart';
 
 class CommunicationImpl implements CommunicationInterface {
-  FirebaseFirestore get firebase => FirebaseFirestore.instance;
+  final FirebaseFirestore firebase;
+
+  CommunicationImpl({required this.firebase});
 
   @override
   Future<List<Map<String, dynamic>>> get(
