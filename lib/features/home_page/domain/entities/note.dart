@@ -1,4 +1,5 @@
 class Note {
+  String? id;
   String? title;
   String? body;
   String? editedAt;
@@ -6,6 +7,7 @@ class Note {
   bool sync;
 
   Note({
+    this.id,
     this.title,
     this.body,
     this.editedAt,

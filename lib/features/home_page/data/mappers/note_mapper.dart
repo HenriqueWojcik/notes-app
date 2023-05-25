@@ -4,6 +4,7 @@ import '../models/note_model.dart';
 class NoteMappper {
   static Note toEntity(NoteModel noteModel) {
     return Note(
+      id: noteModel.id,
       title: noteModel.title,
       body: noteModel.body,
       editedAt: noteModel.editedAt,
@@ -17,6 +18,7 @@ class NoteMappper {
 
   static NoteModel toModel(Note note) {
     return NoteModel(
+      id: note.id,
       title: note.title,
       body: note.body,
       editedAt: note.editedAt,

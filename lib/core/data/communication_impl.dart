@@ -15,7 +15,13 @@ class CommunicationImpl implements CommunicationInterface {
   ) async {
     final value = await firebase.collection(request.collection).get();
 
-    return value.docs.map((e) => e.data()).toList();
+    return value.docs.map((e) {
+      final data = e.data();
+
+      data['id'] = e.id;
+
+      return data;
+    }).toList();
   }
 
   @override
@@ -30,7 +36,7 @@ class CommunicationImpl implements CommunicationInterface {
 
     debugPrint(value);
 
-    return {};
+    return {'id': value.id};
   }
 
   @override

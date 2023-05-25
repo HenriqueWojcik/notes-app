@@ -4,6 +4,7 @@ part 'note_model.g.dart';
 
 @JsonSerializable()
 class NoteModel {
+  String? id;
   String? title;
   String? body;
   String? editedAt;
@@ -11,6 +12,7 @@ class NoteModel {
   bool sync;
 
   NoteModel({
+    this.id,
     this.title,
     this.body,
     this.editedAt,

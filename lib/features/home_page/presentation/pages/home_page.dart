@@ -58,6 +58,8 @@ class _HomePageState extends State<HomePage> {
 
   void _onClickNoteCard(Note note) async {
     bool? result = await _openNewNotePage(note: note);
+
+    _controller.update(refresh: result);
   }
 
   void _onClickDrawerIcon() {}
