@@ -4,12 +4,15 @@ import '../../../../core/state/app_state.dart';
 import '../../../../core/state/app_state_extension.dart';
 import '../../../home_page/domain/entities/note.dart';
 import '../../domain/usecases/create_note_usecase.dart';
+import '../../domain/usecases/edit_note_usecase.dart';
 
 class NewNoteController {
   final CreateNoteUseCase createNote;
+  final EditNoteUsecase editNote;
 
   NewNoteController({
     required this.createNote,
+    required this.editNote,
   });
 
   final createNoteState = AppState<void>();
@@ -33,12 +36,21 @@ class NewNoteController {
   Future<bool> createNewNote() async {
     bool? value;
 
-    await createNoteState.update(() async {
-      final result = await createNote(note);
-      value = result.isLeft();
+    if (note?.id == null) {
+      await createNoteState.update(() async {
+        final result = await createNote(note);
+        value = result.isLeft();
 
-      return result;
-    });
+        return result;
+      });
+    } else {
+      await createNoteState.update(() async {
+        final result = await editNote(note);
+        value = result.isLeft();
+
+        return result;
+      });
+    }
 
     return value ?? false;
   }

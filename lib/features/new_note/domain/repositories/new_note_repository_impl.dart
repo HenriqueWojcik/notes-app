@@ -22,4 +22,15 @@ class NewNoteRepositoryImpl extends BaseRepository
       await datasource.createNote(NoteMappper.toModel(note));
     });
   }
+
+  @override
+  Future<Either<void, Exception>> editNote(Note? note) {
+    return doAsync(() async {
+      if (note == null) {
+        throw Exception('Note is null');
+      }
+
+      await datasource.editNote(NoteMappper.toModel(note));
+    });
+  }
 }

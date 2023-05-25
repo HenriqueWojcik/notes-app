@@ -10,11 +10,23 @@ class NewNoteDatasourceImpl implements NewNoteDatasourceInterface {
 
   @override
   Future<void> createNote(NoteModel noteModel) async {
-    final value = await communication.post(
-      Request(
-        collection: 'notes',
-        data: noteModel.toJson(),
-      ),
+    final request = Request(
+      collection: 'notes',
+      data: noteModel.toJson(),
     );
+
+    final value = await communication.post(request);
+
+    if (value.containsKey('id')) {
+      return;
+    }
+
+    throw Exception('Erro ao criar nota');
+  }
+
+  @override
+  Future<void> editNote(NoteModel noteModel) {
+    // TODO: implement editNote
+    throw UnimplementedError();
   }
 }
