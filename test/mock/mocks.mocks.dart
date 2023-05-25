@@ -13,6 +13,10 @@ import 'package:firebase_core/firebase_core.dart' as _i2;
 import 'package:flutter_notes_app/core/data/communication_inferface.dart'
     as _i7;
 import 'package:flutter_notes_app/core/entities/request.dart' as _i8;
+import 'package:flutter_notes_app/features/home_page/data/datasources/home_datasource_interface.dart'
+    as _i9;
+import 'package:flutter_notes_app/features/home_page/data/models/note_model.dart'
+    as _i10;
 import 'package:mockito/mockito.dart' as _i1;
 
 // ignore_for_file: type=lint
@@ -1112,4 +1116,23 @@ class MockRequest extends _i1.Mock implements _i8.Request {
         Invocation.getter(#props),
         returnValue: <Object?>[],
       ) as List<Object?>);
+}
+
+/// A class which mocks [HomeDatasourceInterface].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockHomeDatasourceInterface extends _i1.Mock
+    implements _i9.HomeDatasourceInterface {
+  MockHomeDatasourceInterface() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i5.Future<List<_i10.NoteModel>> getNotes() => (super.noSuchMethod(
+        Invocation.method(
+          #getNotes,
+          [],
+        ),
+        returnValue: _i5.Future<List<_i10.NoteModel>>.value(<_i10.NoteModel>[]),
+      ) as _i5.Future<List<_i10.NoteModel>>);
 }
