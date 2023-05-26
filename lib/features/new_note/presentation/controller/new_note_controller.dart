@@ -4,15 +4,18 @@ import '../../../../core/state/app_state.dart';
 import '../../../../core/state/app_state_extension.dart';
 import '../../../home_page/domain/entities/note.dart';
 import '../../domain/usecases/create_note_usecase.dart';
+import '../../domain/usecases/delete_note_usecase.dart';
 import '../../domain/usecases/edit_note_usecase.dart';
 
 class NewNoteController {
   final CreateNoteUseCase createNote;
   final EditNoteUsecase editNote;
+  final DeleteNoteUseCase deleteNoteUseCase;
 
   NewNoteController({
     required this.createNote,
     required this.editNote,
+    required this.deleteNoteUseCase,
   });
 
   final createNoteState = AppState<void>();
@@ -78,6 +81,19 @@ class NewNoteController {
   void editedAt() => note?.editedAt = DateTime.now().toString();
 
   void _update() => noteState.value = note;
+
+  Future<bool> deleteNote() async {
+    bool? value;
+
+    await createNoteState.update(() async {
+      final result = await deleteNoteUseCase.call(note);
+      value = result.isLeft();
+
+      return result;
+    });
+
+    return value ?? false;
+  }
 
   void dispose() {
     createNoteState.dispose();

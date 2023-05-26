@@ -1081,21 +1081,23 @@ class MockCommunicationInterface extends _i1.Mock
             _i5.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
       ) as _i5.Future<Map<String, dynamic>>);
   @override
-  _i5.Future<dynamic> put() => (super.noSuchMethod(
+  _i5.Future<Map<String, dynamic>> put(_i8.Request? request) =>
+      (super.noSuchMethod(
         Invocation.method(
           #put,
-          [],
+          [request],
         ),
-        returnValue: _i5.Future<dynamic>.value(),
-      ) as _i5.Future<dynamic>);
+        returnValue:
+            _i5.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
+      ) as _i5.Future<Map<String, dynamic>>);
   @override
-  _i5.Future<dynamic> delete() => (super.noSuchMethod(
+  _i5.Future<bool> delete(_i8.Request? request) => (super.noSuchMethod(
         Invocation.method(
           #delete,
-          [],
+          [request],
         ),
-        returnValue: _i5.Future<dynamic>.value(),
-      ) as _i5.Future<dynamic>);
+        returnValue: _i5.Future<bool>.value(false),
+      ) as _i5.Future<bool>);
 }
 
 /// A class which mocks [Request].

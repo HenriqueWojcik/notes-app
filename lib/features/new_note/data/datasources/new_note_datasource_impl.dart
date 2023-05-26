@@ -25,8 +25,22 @@ class NewNoteDatasourceImpl implements NewNoteDatasourceInterface {
   }
 
   @override
-  Future<void> editNote(NoteModel noteModel) {
-    // TODO: implement editNote
-    throw UnimplementedError();
+  Future<void> editNote(NoteModel noteModel) async {
+    final request = Request(
+      collection: 'notes',
+      data: noteModel.toJson(),
+    );
+
+    await communication.put(request);
+  }
+
+  @override
+  Future<void> deleteNote(NoteModel noteModel) async {
+    final request = Request(
+      collection: 'notes',
+      data: noteModel.toJson(),
+    );
+
+    await communication.delete(request);
   }
 }

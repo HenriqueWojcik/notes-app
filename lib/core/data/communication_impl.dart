@@ -40,14 +40,47 @@ class CommunicationImpl implements CommunicationInterface {
   }
 
   @override
-  Future put() {
-    // TODO: implement put
-    throw UnimplementedError();
+  Future<Map<String, dynamic>> put(Request request) async {
+    Map<String, dynamic>? data = request.data;
+
+    if (data == null) {
+      throw Exception();
+    }
+
+    if (!data.containsKey('id')) {
+      throw Exception();
+    }
+
+    final String id = data['id'];
+
+    final result = await firebase
+        .collection(request.collection)
+        .doc(id)
+        .update(data)
+        .then((value) => {'id': id});
+
+    return result;
   }
 
   @override
-  Future delete() {
-    // TODO: implement delete
-    throw UnimplementedError();
+  Future<bool> delete(Request request) {
+    Map<String, dynamic>? data = request.data;
+
+    if (data == null) {
+      throw Exception();
+    }
+
+    if (!data.containsKey('id')) {
+      throw Exception();
+    }
+
+    final String id = data['id'];
+
+    return firebase
+        .collection(request.collection)
+        .doc(id)
+        .delete()
+        .then((_) => true)
+        .catchError((_) => false);
   }
 }

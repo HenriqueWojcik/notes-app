@@ -13,4 +13,10 @@ class NewNoteDatasourceMock implements NewNoteDatasourceInterface {
     // TODO: implement editNote
     throw UnimplementedError();
   }
+
+  @override
+  Future<void> deleteNote(NoteModel noteModel) {
+    // TODO: implement deleteNote
+    throw UnimplementedError();
+  }
 }

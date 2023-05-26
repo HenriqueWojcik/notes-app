@@ -53,7 +53,7 @@ class _NewNotePageState extends State<NewNotePage> {
 
   void _onClickPinned() => _controller.setPinned();
 
-  void _onClickDelete() {}
+  void _onClickDelete() => _controller.deleteNote();
 
   Future<void> _onClickDone() async {
     final result = await _controller.createNewNote();

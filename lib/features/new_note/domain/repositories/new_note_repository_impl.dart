@@ -33,4 +33,15 @@ class NewNoteRepositoryImpl extends BaseRepository
       await datasource.editNote(NoteMappper.toModel(note));
     });
   }
+
+  @override
+  Future<Either<void, Exception>> deleteNote(Note? note) async {
+    return doAsync(() async {
+      if (note == null) {
+        throw Exception('Note is null');
+      }
+
+      await datasource.deleteNote(NoteMappper.toModel(note));
+    });
+  }
 }

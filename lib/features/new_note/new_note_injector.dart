@@ -6,6 +6,7 @@ import 'data/datasources/new_note_datasource_mock.dart';
 import 'data/repositories/new_note_repository_interface.dart';
 import 'domain/repositories/new_note_repository_impl.dart';
 import 'domain/usecases/create_note_usecase.dart';
+import 'domain/usecases/delete_note_usecase.dart';
 import 'domain/usecases/edit_note_usecase.dart';
 import 'presentation/controller/new_note_controller.dart';
 
@@ -35,13 +36,18 @@ class NewNoteInjector extends FeatureInjector {
   void injectUsecases() {
     getIt
       ..registerFactory(() => CreateNoteUseCase(repository: getIt()))
-      ..registerFactory(() => EditNoteUsecase(repository: getIt()));
+      ..registerFactory(() => EditNoteUsecase(repository: getIt()))
+      ..registerFactory(() => DeleteNoteUseCase(repository: getIt()));
   }
 
   @override
   void injectControllers() {
     getIt.registerFactory(
-      () => NewNoteController(createNote: getIt(), editNote: getIt()),
+      () => NewNoteController(
+        createNote: getIt(),
+        editNote: getIt(),
+        deleteNoteUseCase: getIt(),
+      ),
     );
   }
 }
