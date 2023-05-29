@@ -5,8 +5,8 @@ class NoteMappper {
   static Note toEntity(NoteModel noteModel) {
     return Note(
       id: noteModel.id,
-      title: noteModel.title,
-      body: noteModel.body,
+      title: noteModel.title ?? '',
+      body: noteModel.body ?? '',
       editedAt: noteModel.editedAt,
       pinned: noteModel.pinned,
     );

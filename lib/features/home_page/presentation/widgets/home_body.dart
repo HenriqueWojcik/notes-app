@@ -55,12 +55,14 @@ class HomeBody extends StatelessWidget {
                       onClickNoteCard: onClickNoteCard,
                     ),
                   ],
-                  const GridViewTitle(title: 'Outros'),
-                  HomeGridView(
-                    notes: notesNotPinned,
-                    homeView: homeViewValue,
-                    onClickNoteCard: onClickNoteCard,
-                  ),
+                  if (notesNotPinned.isNotEmpty) ...[
+                    const GridViewTitle(title: 'Outros'),
+                    HomeGridView(
+                      notes: notesNotPinned,
+                      homeView: homeViewValue,
+                      onClickNoteCard: onClickNoteCard,
+                    ),
+                  ]
                 ],
               ),
             );

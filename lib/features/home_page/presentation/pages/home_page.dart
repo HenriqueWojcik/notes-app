@@ -37,6 +37,7 @@ class _HomePageState extends State<HomePage> {
               controller: _controller,
               onClickDrawerIcon: _onClickDrawerIcon,
               onClickHomeViewIcon: _onClickHomeViewIcon,
+              onSearchNotes: _onSearchNotes,
             ),
             Expanded(
               child: HomeBody(
@@ -49,6 +50,8 @@ class _HomePageState extends State<HomePage> {
       ),
     );
   }
+
+  void _onSearchNotes(String value) => _controller.onSearchNotes(value);
 
   void _onClickAddNote() async {
     bool? result = await _openNewNotePage();

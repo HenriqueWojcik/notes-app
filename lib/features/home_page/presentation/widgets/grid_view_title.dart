@@ -14,7 +14,7 @@ class GridViewTitle extends StatelessWidget {
       padding: const EdgeInsets.only(left: 16),
       child: Text(
         title,
-        style: const TextStyle(fontSize: 12, color: Colors.black54),
+        style: const TextStyle(fontSize: 12, color: Colors.black38),
       ),
     );
   }

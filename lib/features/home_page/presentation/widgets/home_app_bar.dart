@@ -6,12 +6,14 @@ import '../controller/home_controller.dart';
 
 class HomeAppBar extends StatelessWidget {
   final HomeController controller;
+  final Function(String value) onSearchNotes;
   final Function() onClickDrawerIcon;
   final Function() onClickHomeViewIcon;
 
   const HomeAppBar({
     Key? key,
     required this.controller,
+    required this.onSearchNotes,
     required this.onClickDrawerIcon,
     required this.onClickHomeViewIcon,
   }) : super(key: key);
@@ -32,6 +34,7 @@ class HomeAppBar extends StatelessWidget {
                 border: InputBorder.none,
                 hintText: 'Pesquisar suas notas',
               ),
+              onChanged: onSearchNotes,
             ),
           ),
           AppStateBuilder(

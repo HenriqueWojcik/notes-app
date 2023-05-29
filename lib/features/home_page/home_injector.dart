@@ -6,6 +6,7 @@ import 'data/datasources/home_datasource_mock.dart';
 import 'data/repositories/home_repository_interface.dart';
 import 'domain/repositories/home_repository_impl.dart';
 import 'domain/usecases/get_notes_usecase.dart';
+import 'domain/usecases/search_notes_usecase.dart';
 import 'presentation/controller/home_controller.dart';
 
 class HomeInjector extends FeatureInjector {
@@ -32,13 +33,15 @@ class HomeInjector extends FeatureInjector {
 
   @override
   void injectUsecases() {
-    getIt.registerFactory(() => GetNotesUsecase(repository: getIt()));
+    getIt
+      ..registerFactory(() => GetNotesUsecase(repository: getIt()))
+      ..registerFactory(() => SearchNotesUsecase());
   }
 
   @override
   void injectControllers() {
     getIt.registerFactory(
-      () => HomeController(getNotes: getIt()),
+      () => HomeController(getNotes: getIt(), searchNotes: getIt()),
     );
   }
 }

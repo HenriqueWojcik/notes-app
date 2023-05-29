@@ -31,10 +31,13 @@ class NewNoteController {
   void init(Note? n) {
     if (n != null) {
       note = n;
-      titleController.text = n.title ?? '';
-      bodyController.text = n.body ?? '';
+      titleController.text = n.title;
+      bodyController.text = n.body;
     } else {
-      note = Note();
+      note = Note(
+        title: '',
+        body: '',
+      );
     }
   }
 
