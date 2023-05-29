@@ -15,7 +15,7 @@ class NewNoteDatasourceMock implements NewNoteDatasourceInterface {
   }
 
   @override
-  Future<void> deleteNote(NoteModel noteModel) {
+  Future<bool> deleteNote(NoteModel noteModel) {
     // TODO: implement deleteNote
     throw UnimplementedError();
   }

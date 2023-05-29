@@ -26,6 +26,8 @@ class NewNoteController {
   final TextEditingController titleController = TextEditingController();
   final TextEditingController bodyController = TextEditingController();
 
+  bool get isEditingNote => note?.id != null;
+
   void init(Note? n) {
     if (n != null) {
       note = n;

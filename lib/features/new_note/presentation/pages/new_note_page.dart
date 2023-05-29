@@ -32,7 +32,7 @@ class _NewNotePageState extends State<NewNotePage> {
     return Scaffold(
       appBar: NewNoteAppBar(
         controller: _controller,
-        onClickBack: _onCLickBack,
+        onClickBack: _onClickBack,
         onClickPinned: _onClickPinned,
         onClickDelete: _onClickDelete,
         onClickDone: _onClickDone,
@@ -49,11 +49,17 @@ class _NewNotePageState extends State<NewNotePage> {
 
   void _onChangeBody(String body) => _controller.setBody(body);
 
-  void _onCLickBack() => Navigator.of(context).pop();
+  void _onClickBack() => Navigator.of(context).pop();
 
   void _onClickPinned() => _controller.setPinned();
 
-  void _onClickDelete() => _controller.deleteNote();
+  Future<void> _onClickDelete() async {
+    await _controller.deleteNote();
+
+    if (mounted) {
+      Navigator.of(context).pop(true);
+    }
+  }
 
   Future<void> _onClickDone() async {
     final result = await _controller.createNewNote();

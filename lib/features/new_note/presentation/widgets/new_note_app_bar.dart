@@ -38,13 +38,15 @@ class NewNoteAppBar extends AppBar {
                 );
               },
             ),
-            IconButton(
-              onPressed: onClickDelete,
-              icon: const Icon(
-                Icons.delete_outline_rounded,
-                color: Colors.black87,
-              ),
-            ),
+            controller.isEditingNote
+                ? IconButton(
+                    onPressed: onClickDelete,
+                    icon: const Icon(
+                      Icons.delete_outline_rounded,
+                      color: Colors.black87,
+                    ),
+                  )
+                : const SizedBox(),
             IconButton(
               onPressed: onClickDone,
               icon: const Icon(

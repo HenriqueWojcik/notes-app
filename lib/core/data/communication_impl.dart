@@ -81,6 +81,6 @@ class CommunicationImpl implements CommunicationInterface {
         .doc(id)
         .delete()
         .then((_) => true)
-        .catchError((_) => false);
+        .catchError((_) => throw (Exception()));
   }
 }

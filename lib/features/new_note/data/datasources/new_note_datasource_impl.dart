@@ -35,12 +35,14 @@ class NewNoteDatasourceImpl implements NewNoteDatasourceInterface {
   }
 
   @override
-  Future<void> deleteNote(NoteModel noteModel) async {
+  Future<bool> deleteNote(NoteModel noteModel) async {
     final request = Request(
       collection: 'notes',
       data: noteModel.toJson(),
     );
 
-    await communication.delete(request);
+    final value = await communication.delete(request);
+
+    return value;
   }
 }
