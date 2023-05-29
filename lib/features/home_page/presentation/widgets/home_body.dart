@@ -5,7 +5,8 @@ import '../../../../core/state/app_state_builder.dart';
 import '../../../../core/widgets/empty_placeholder.dart';
 import '../../domain/entities/note.dart';
 import '../controller/home_controller.dart';
-import 'note_card.dart';
+import 'grid_view_title.dart';
+import 'home_grid_view.dart';
 
 class HomeBody extends StatelessWidget {
   final HomeController controller;
@@ -33,20 +34,35 @@ class HomeBody extends StatelessWidget {
         return AppStateBuilder(
           state: controller.homeView,
           builder: (_, howeView) {
-            return GridView.builder(
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: howeView.data == HomeView.grid ? 2 : 1,
-                crossAxisSpacing: 5.0,
-                mainAxisSpacing: 5.0,
+            final notesPinned =
+                notes.where((note) => note.pinned == true).toList();
+
+            final notesNotPinned = notes
+                .where((note) => note.pinned == false || note.pinned == null)
+                .toList();
+
+            final homeViewValue = howeView.data ?? HomeView.grid;
+
+            return SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  if (notesPinned.isNotEmpty) ...[
+                    const GridViewTitle(title: 'Fixados'),
+                    HomeGridView(
+                      notes: notesPinned,
+                      homeView: homeViewValue,
+                      onClickNoteCard: onClickNoteCard,
+                    ),
+                  ],
+                  const GridViewTitle(title: 'Outros'),
+                  HomeGridView(
+                    notes: notesNotPinned,
+                    homeView: homeViewValue,
+                    onClickNoteCard: onClickNoteCard,
+                  ),
+                ],
               ),
-              padding: const EdgeInsets.all(5),
-              itemCount: notes.length,
-              itemBuilder: (_, idx) {
-                return NoteCard(
-                  note: notes[idx],
-                  onClickNoteCard: onClickNoteCard,
-                );
-              },
             );
           },
         );
