@@ -13,7 +13,7 @@ class NewNoteRepositoryImpl extends BaseRepository
   NewNoteRepositoryImpl({required this.datasource});
 
   @override
-  Future<Either<void, Exception>> createNote(Note? note) {
+  Future<Either<Exception, void>> createNote(Note? note) {
     return doAsync(() async {
       if (note == null) {
         throw Exception('Note is null');
@@ -24,7 +24,7 @@ class NewNoteRepositoryImpl extends BaseRepository
   }
 
   @override
-  Future<Either<void, Exception>> editNote(Note? note) {
+  Future<Either<Exception, void>> editNote(Note? note) {
     return doAsync(() async {
       if (note == null) {
         throw Exception('Note is null');
@@ -35,7 +35,7 @@ class NewNoteRepositoryImpl extends BaseRepository
   }
 
   @override
-  Future<Either<void, Exception>> deleteNote(Note? note) async {
+  Future<Either<Exception, void>> deleteNote(Note? note) async {
     return doAsync(() async {
       if (note == null) {
         throw Exception('Note is null');

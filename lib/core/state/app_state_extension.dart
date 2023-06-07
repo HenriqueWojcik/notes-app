@@ -4,11 +4,11 @@ import '../repositories/base_repository.dart';
 import 'app_state.dart';
 
 extension AppStateExtension<T> on AppState {
-  Future<void> update(Task<Either<T, Exception>> task) async {
+  Future<void> update(Task<Either<Exception, T>> task) async {
     onLoad();
 
-    Either<T, Exception> result = await task();
+    Either<Exception, T> result = await task();
 
-    result.fold((l) => value = l, (r) => fail = r);
+    result.fold((l) => fail = l, (r) => value = r);
   }
 }

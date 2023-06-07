@@ -5,17 +5,17 @@ import '../print/print.dart';
 typedef Task<T> = Future<T> Function();
 
 abstract class BaseRepository {
-  Future<Either<T, Exception>> doAsync<T>(
+  Future<Either<Exception, T>> doAsync<T>(
     Task<T> task,
   ) async {
     try {
       final value = await task();
 
-      return Left(value);
+      return Right(value);
     } on Exception catch (e, stack) {
       debugPrint('>>>>>>>>> Exception $e');
       debugPrint('>>>>>>>>> StackTrace $stack');
-      return Right(e);
+      return Left(e);
     }
   }
 }

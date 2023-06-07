@@ -14,7 +14,7 @@ class HomeRepositoryImpl extends BaseRepository
   HomeRepositoryImpl({required this.datasource});
 
   @override
-  Future<Either<List<Note>, Exception>> getNotes() {
+  Future<Either<Exception, List<Note>>> getNotes() {
     return doAsync<List<Note>>(() async {
       final data = await datasource.getNotes();
 

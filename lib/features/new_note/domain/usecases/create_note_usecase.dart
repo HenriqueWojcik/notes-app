@@ -10,6 +10,6 @@ class CreateNoteUseCase {
     required this.repository,
   });
 
-  Future<Either<void, Exception>> call(Note? note) =>
+  Future<Either<Exception, void>> call(Note? note) =>
       repository.createNote(note);
 }

@@ -8,5 +8,5 @@ class GetNotesUsecase {
 
   GetNotesUsecase({required this.repository});
 
-  Future<Either<List<Note>, Exception>> call() => repository.getNotes();
+  Future<Either<Exception, List<Note>>> call() => repository.getNotes();
 }

@@ -23,7 +23,7 @@ void main() {
     final result = await sut.getNotes();
 
     late List<Note> list;
-    result.fold((l) => list = l, (r) => null);
+    result.fold((l) => null, (r) => list = r);
 
     expect(result.isLeft(), true);
     expect(list.length, 1);

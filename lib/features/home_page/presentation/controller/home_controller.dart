@@ -26,7 +26,7 @@ class HomeController {
     notes.update(() async {
       final value = await getNotes();
 
-      _notes = value.asLeft();
+      _notes = value.asRight();
 
       return value;
     });

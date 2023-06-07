@@ -14,4 +14,29 @@ class FirebaseHelper {
   static Future<void> init() async {
     await Firebase.initializeApp();
   }
+
+  Future<User> loginWithGoogle() async {
+    final googleUser = await googleSignIn.signIn();
+
+    if (googleUser == null) {
+      throw Exception('Google sign in failed');
+    }
+
+    final googleAuth = await googleUser.authentication;
+
+    final credential = GoogleAuthProvider.credential(
+      accessToken: googleAuth.accessToken,
+      idToken: googleAuth.idToken,
+    );
+
+    final userCredential = await firebaseAuth.signInWithCredential(credential);
+
+    final user = userCredential.user;
+
+    if (user == null) {
+      throw Exception('Firebase sign in failed');
+    }
+
+    return user;
+  }
 }

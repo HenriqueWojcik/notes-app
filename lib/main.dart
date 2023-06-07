@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'core/enums/env.dart';
-import 'features/home_page/presentation/pages/home_page.dart';
+import 'features/login/presentation/pages/login_page.dart';
 import 'firebase_helper.dart';
 import 'injectors.dart';
 
@@ -48,7 +48,7 @@ class _MainAppState extends State<MainApp> {
       theme: ThemeData(
           // fontFamily: GoogleFonts.poppins().fontFamily,
           ),
-      home: const HomePage(),
+      home: const LoginPage(),
     );
   }
 }

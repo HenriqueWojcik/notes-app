@@ -5,6 +5,8 @@ import 'data/datasources/login_datasource_interface.dart';
 import 'data/datasources/login_datasource_mock.dart';
 import 'data/repositories/login_repository_impl.dart';
 import 'domain/repositories/login_repository_interface.dart';
+import 'domain/usecases/login_with_google_usecase.dart';
+import 'presentation/controller/login_controller.dart';
 
 class LoginInjector extends FeatureInjector {
   @override
@@ -30,11 +32,11 @@ class LoginInjector extends FeatureInjector {
 
   @override
   void injectUsecases() {
-    // TODO: implement injectUsecases
+    getIt.registerFactory(() => LoginWithGoogleUseCase(repository: getIt()));
   }
 
   @override
   void injectControllers() {
-    // TODO: implement injectControllers
+    getIt.registerFactory(() => LoginController(loginWithGoogle: getIt()));
   }
 }

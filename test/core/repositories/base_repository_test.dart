@@ -16,7 +16,7 @@ void main() {
 
     final result = await sut.doAsync<int>(() async => 1);
 
-    result.fold((l) => value = l, (r) => error = r);
+    result.fold((l) => error = l, (r) => value = r);
 
     expect(result.isLeft(), true);
     expect(value, 1);
@@ -33,7 +33,7 @@ void main() {
 
       final result = await sut.doAsync<int>(() async => throw exception);
 
-      result.fold((l) => value = l, (r) => error = r);
+      result.fold((l) => error = l, (r) => value = r);
 
       expect(result.isRight(), true);
       expect(value, null);

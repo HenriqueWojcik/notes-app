@@ -12,7 +12,8 @@ class LoginRepositoryImpl extends BaseRepository
 
   @override
   Future<Either<Exception, void>> loginWithGoogle() {
-    // TODO: implement loginWithGoogle
-    throw UnimplementedError();
+    return doAsync(
+      () async => await datasource.loginWithGoogle(),
+    );
   }
 }

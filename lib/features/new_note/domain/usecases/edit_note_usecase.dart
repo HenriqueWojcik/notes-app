@@ -10,5 +10,5 @@ class EditNoteUsecase {
     required this.repository,
   });
 
-  Future<Either<void, Exception>> call(Note? note) => repository.editNote(note);
+  Future<Either<Exception, void>> call(Note? note) => repository.editNote(note);
 }

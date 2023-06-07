@@ -11,8 +11,7 @@ class LoginDatasourceImpl implements LoginDatasourceInterface {
   });
 
   @override
-  Future<User> loginWithGoogle() {
-    // TODO: implement loginWithGoogle
-    throw UnimplementedError();
+  Future<User> loginWithGoogle() async {
+    return await firebaseHelper.loginWithGoogle();
   }
 }

@@ -8,7 +8,7 @@ class DeleteNoteUseCase {
 
   DeleteNoteUseCase({required this.repository});
 
-  Future<Either<void, Exception>> call(Note? note) async {
+  Future<Either<Exception, void>> call(Note? note) async {
     return await repository.deleteNote(note);
   }
 }
