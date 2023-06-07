@@ -26,7 +26,7 @@ class NoteCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                note.title ?? '',
+                note.title,
                 style: const TextStyle(
                   fontWeight: FontWeight.w700,
                   fontSize: 20,
@@ -34,7 +34,7 @@ class NoteCard extends StatelessWidget {
               ),
               const SizedBox(height: 8),
               Text(
-                note.body ?? '',
+                note.body,
                 style: const TextStyle(
                   fontWeight: FontWeight.w400,
                   color: Colors.black54,

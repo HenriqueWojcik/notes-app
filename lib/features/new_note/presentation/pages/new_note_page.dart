@@ -11,7 +11,7 @@ class NewNotePage extends StatefulWidget {
 
   const NewNotePage({
     super.key,
-    this.note,
+    required this.note,
   });
 
   @override
