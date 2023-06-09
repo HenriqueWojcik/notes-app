@@ -42,4 +42,8 @@ class Injectors {
       ),
     );
   }
+
+  static void registerUser(User user) {
+    getIt.registerLazySingleton<User>(() => user);
+  }
 }

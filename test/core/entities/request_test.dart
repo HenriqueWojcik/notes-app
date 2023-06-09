@@ -5,7 +5,8 @@ import '../../samples/entities/request_sample.dart';
 
 void main() {
   test('construct a Request corretly', () async {
-    const request = Request(collection: 'collection', data: {'key': 'value'});
+    const request =
+        Request(collection: 'collection', parameters: {'key': 'value'});
     final sample = RequestSample.sample;
 
     expect(request, sample);

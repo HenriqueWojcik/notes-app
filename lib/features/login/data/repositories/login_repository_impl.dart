@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 
 import '../../../../core/repositories/base_repository.dart';
+import '../../../../injectors.dart';
 import '../../domain/repositories/login_repository_interface.dart';
 import '../datasources/login_datasource_interface.dart';
 
@@ -12,8 +13,10 @@ class LoginRepositoryImpl extends BaseRepository
 
   @override
   Future<Either<Exception, void>> loginWithGoogle() {
-    return doAsync(
-      () async => await datasource.loginWithGoogle(),
-    );
+    return doAsync(() async {
+      final user = await datasource.loginWithGoogle();
+
+      Injectors.registerUser(user);
+    });
   }
 }

@@ -13,6 +13,7 @@ NoteModel _$NoteModelFromJson(Map<String, dynamic> json) => NoteModel(
       editedAt: json['editedAt'] as String?,
       pinned: json['pinned'] as bool?,
       sync: json['sync'] as bool? ?? false,
+      userId: json['userId'] as String?,
     );
 
 Map<String, dynamic> _$NoteModelToJson(NoteModel instance) => <String, dynamic>{
@@ -22,4 +23,5 @@ Map<String, dynamic> _$NoteModelToJson(NoteModel instance) => <String, dynamic>{
       'editedAt': instance.editedAt,
       'pinned': instance.pinned,
       'sync': instance.sync,
+      'userId': instance.userId,
     };

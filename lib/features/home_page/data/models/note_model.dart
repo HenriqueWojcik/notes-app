@@ -10,6 +10,7 @@ class NoteModel {
   String? editedAt;
   bool? pinned;
   bool sync;
+  String? userId;
 
   NoteModel({
     this.id,
@@ -18,6 +19,7 @@ class NoteModel {
     this.editedAt,
     this.pinned,
     this.sync = false,
+    this.userId,
   });
 
   factory NoteModel.fromJson(Map<String, dynamic> json) =>

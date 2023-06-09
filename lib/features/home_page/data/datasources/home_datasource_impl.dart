@@ -1,5 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
+
 import '../../../../core/data/communication_inferface.dart';
 import '../../../../core/entities/request.dart';
+import '../../../../injectors.dart';
 import '../models/note_model.dart';
 import 'home_datasource_interface.dart';
 
@@ -8,9 +11,14 @@ class HomeDatasourceImpl implements HomeDatasourceInterface {
 
   HomeDatasourceImpl({required this.communication});
 
+  User get user => getIt();
+
   @override
   Future<List<NoteModel>> getNotes() async {
-    const request = Request(collection: 'notes');
+    final request = Request(
+      collection: 'notes',
+      parameters: {'userId': user.uid},
+    );
 
     final value = await communication.get(request);
 

@@ -13,7 +13,19 @@ class CommunicationImpl implements CommunicationInterface {
   Future<List<Map<String, dynamic>>> get(
     Request request,
   ) async {
-    final value = await firebase.collection(request.collection).get();
+    final collection = firebase.collection(request.collection);
+
+    final parameters = request.parameters;
+
+    QuerySnapshot<Map<String, dynamic>> value;
+
+    if (parameters != null) {
+      value = await collection
+          .where(parameters.keys.first, isEqualTo: parameters.values.first)
+          .get();
+    } else {
+      value = await collection.get();
+    }
 
     return value.docs.map((e) {
       final data = e.data();
@@ -26,7 +38,7 @@ class CommunicationImpl implements CommunicationInterface {
 
   @override
   Future<Map<String, dynamic>> post(Request request) async {
-    Map<String, dynamic>? data = request.data;
+    Map<String, dynamic>? data = request.parameters;
 
     if (data == null) {
       throw Exception();
@@ -41,7 +53,7 @@ class CommunicationImpl implements CommunicationInterface {
 
   @override
   Future<Map<String, dynamic>> put(Request request) async {
-    Map<String, dynamic>? data = request.data;
+    Map<String, dynamic>? data = request.parameters;
 
     if (data == null) {
       throw Exception();
@@ -64,7 +76,7 @@ class CommunicationImpl implements CommunicationInterface {
 
   @override
   Future<bool> delete(Request request) {
-    Map<String, dynamic>? data = request.data;
+    Map<String, dynamic>? data = request.parameters;
 
     if (data == null) {
       throw Exception();

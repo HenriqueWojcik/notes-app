@@ -5,6 +5,7 @@ class Note {
   String? editedAt;
   bool? pinned;
   bool sync;
+  String? userId;
 
   Note({
     this.id,
@@ -13,5 +14,6 @@ class Note {
     this.editedAt,
     this.pinned,
     this.sync = false,
+    this.userId,
   });
 }

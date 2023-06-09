@@ -2,13 +2,13 @@ import 'package:equatable/equatable.dart';
 
 class Request extends Equatable {
   final String collection;
-  final Map<String, dynamic>? data;
+  final Map<String, dynamic>? parameters;
 
   const Request({
     required this.collection,
-    this.data,
+    this.parameters,
   });
 
   @override
-  List<Object?> get props => [collection, data];
+  List<Object?> get props => [collection, parameters];
 }

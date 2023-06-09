@@ -9,6 +9,8 @@ class NoteMappper {
       body: noteModel.body ?? '',
       editedAt: noteModel.editedAt,
       pinned: noteModel.pinned,
+      userId: noteModel.userId,
+      sync: noteModel.sync,
     );
   }
 
@@ -23,6 +25,8 @@ class NoteMappper {
       body: note.body,
       editedAt: note.editedAt,
       pinned: note.pinned,
+      userId: note.userId,
+      sync: note.sync,
     );
   }
 }
