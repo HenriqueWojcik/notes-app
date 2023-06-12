@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import 'core/enums/env.dart';
+import 'core/routes/routes.dart';
+import 'features/home_page/presentation/pages/home_page.dart';
 import 'features/login/presentation/pages/login_page.dart';
 import 'firebase_helper.dart';
 import 'injectors.dart';
@@ -29,26 +32,27 @@ class _MainAppState extends State<MainApp> {
 
   @override
   Widget build(BuildContext context) {
-    // return MaterialApp.router(
-    //   routerConfig: GoRouter(
-    //     routes: [
-    //       GoRoute(
-    //         path: '/',
-    //         builder: (_, __) => const HomePage(),
-    //       ),
-    //       GoRoute(
-    //         path: 'notes',
-    //         builder: (context, state) => const NewNotePage(),
-    //       )
-    //     ],
-    //   ),
-    // );
-
-    return MaterialApp(
+    return MaterialApp.router(
       theme: ThemeData(
-          // fontFamily: GoogleFonts.poppins().fontFamily,
+        fontFamily: 'Poppins',
+      ),
+      routerConfig: GoRouter(
+        initialLocation: Routes.login,
+        routes: [
+          GoRoute(
+            path: Routes.home,
+            builder: (_, __) => const HomePage(),
           ),
-      home: const LoginPage(),
+          GoRoute(
+            path: Routes.login,
+            builder: (_, __) => const LoginPage(),
+          ),
+          // GoRoute(
+          //   path: 'notes',
+          //   builder: (context, state) => const NewNotePage(),
+          // )
+        ],
+      ),
     );
   }
 }

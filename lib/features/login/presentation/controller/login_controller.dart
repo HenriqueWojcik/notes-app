@@ -1,3 +1,5 @@
+import '../../../../core/state/app_state_extension.dart';
+import '../../../../core/state/scaffold_app_state.dart';
 import '../../domain/usecases/login_with_google_usecase.dart';
 
 class LoginController {
@@ -7,7 +9,13 @@ class LoginController {
     required this.loginWithGoogle,
   });
 
+  final scaffoldState = ScaffoldAppState(onSuccessMessage: 'Login success');
+
   Future<void> login() async {
-    await loginWithGoogle();
+    scaffoldState.update(loginWithGoogle);
+  }
+
+  void dispose() {
+    scaffoldState.dispose();
   }
 }

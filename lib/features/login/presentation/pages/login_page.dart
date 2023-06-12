@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../../../core/routes/routes.dart';
+import '../../../../core/state/scaffold_app_state_builder.dart';
 import '../../../../injectors.dart';
-import '../../../home_page/presentation/pages/home_page.dart';
 import '../controller/login_controller.dart';
 
 class LoginPage extends StatefulWidget {
@@ -16,7 +18,9 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return ScaffoldAppStateBuilder(
+      onSuccess: _onSuccess,
+      state: controller.scaffoldState,
       body: Center(
         child: ElevatedButton(
           onPressed: _onClickLogin,
@@ -28,11 +32,7 @@ class _LoginPageState extends State<LoginPage> {
 
   Future<void> _onClickLogin() async {
     await controller.login();
-
-    if (mounted) {
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (_) => const HomePage()),
-      );
-    }
   }
+
+  void _onSuccess() => context.go(Routes.home);
 }

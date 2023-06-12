@@ -12,6 +12,10 @@ class AppState<T> extends ChangeNotifier {
 
   AppState.init(this._data);
 
+  bool get hasData => !hasError && !loading;
+
+  bool get hasError => _error != null;
+
   set value(T value) {
     _error = null;
     loading = false;
