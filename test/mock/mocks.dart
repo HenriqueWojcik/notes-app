@@ -1,7 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_notes_app/core/data/communication_inferface.dart';
 import 'package:flutter_notes_app/core/entities/request.dart';
 import 'package:flutter_notes_app/features/home_page/data/datasources/home_datasource_interface.dart';
+import 'package:flutter_notes_app/features/home_page/data/repositories/home_repository_interface.dart';
+import 'package:flutter_notes_app/features/login/data/datasources/login_datasource_interface.dart';
+import 'package:flutter_notes_app/features/login/domain/repositories/login_repository_interface.dart';
+import 'package:flutter_notes_app/firebase_helper.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:mockito/annotations.dart';
 
 // Firebase
@@ -11,20 +17,38 @@ import 'package:mockito/annotations.dart';
   DocumentReference,
   DocumentSnapshot,
   QuerySnapshot,
+  FirebaseHelper,
+])
+
+// Authentication
+@GenerateMocks([
+  FirebaseAuth,
+  GoogleSignIn,
+])
+
+// Google
+@GenerateMocks([
+  GoogleSignInAuthentication,
+  GoogleSignInAccount,
+  UserCredential,
 ])
 
 // Datasources
 @GenerateMocks([
   CommunicationInterface,
+  HomeDatasourceInterface,
+  LoginDatasourceInterface,
 ])
 
 // Entities
 @GenerateMocks([
   Request,
+  User,
 ])
 
-// Datasources
+// Repositories
 @GenerateMocks([
-  HomeDatasourceInterface,
+  LoginRepositoryInterface,
+  HomeRepositoryInterface,
 ])
 void main() {}
