@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/i18n/i18n.dart';
 import '../../../../core/state/app_state.dart';
 import '../../../../core/state/app_state_extension.dart';
+import '../../../../core/state/scaffold_app_state.dart';
 import '../../../home_page/domain/entities/note.dart';
 import '../../domain/usecases/create_note_usecase.dart';
 import '../../domain/usecases/delete_note_usecase.dart';
@@ -18,8 +20,10 @@ class NewNoteController {
     required this.deleteNoteUseCase,
   });
 
-  final createNoteState = AppState<void>();
   final noteState = AppState<Note?>();
+
+  final scaffoldState =
+      ScaffoldAppState(onSuccessMessage: I18n.strings.noteCreatedWithSuccess);
 
   Note? note;
 
@@ -33,6 +37,7 @@ class NewNoteController {
       note = n;
       titleController.text = n.title;
       bodyController.text = n.body;
+      scaffoldState.onSuccessMessage = I18n.strings.noteEditedWithSuccess;
     } else {
       note = Note(
         title: '',
@@ -45,14 +50,15 @@ class NewNoteController {
     bool? value;
 
     if (note?.id == null) {
-      await createNoteState.update(() async {
+      await scaffoldState.update(() async {
         final result = await createNote(note);
         value = result.isLeft();
 
         return result;
       });
     } else {
-      await createNoteState.update(() async {
+      scaffoldState.onSuccessMessage = I18n.strings.noteEditedWithSuccess;
+      await scaffoldState.update(() async {
         final result = await editNote(note);
         value = result.isLeft();
 
@@ -90,7 +96,8 @@ class NewNoteController {
   Future<bool> deleteNote() async {
     bool? value;
 
-    await createNoteState.update(() async {
+    scaffoldState.onSuccessMessage = I18n.strings.noteRemovedWithSuccess;
+    await scaffoldState.update(() async {
       final result = await deleteNoteUseCase.call(note);
       value = result.isLeft();
 
@@ -101,8 +108,9 @@ class NewNoteController {
   }
 
   void dispose() {
-    createNoteState.dispose();
     noteState.dispose();
+
+    scaffoldState.dispose();
 
     titleController.dispose();
     bodyController.dispose();

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../../../core/state/scaffold_app_state_builder.dart';
 import '../../../../injectors.dart';
 import '../../../home_page/domain/entities/note.dart';
 import '../controller/new_note_controller.dart';
@@ -29,7 +31,9 @@ class _NewNotePageState extends State<NewNotePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return ScaffoldAppStateBuilder(
+      state: _controller.scaffoldState,
+      onSuccess: _onSuccess,
       appBar: NewNoteAppBar(
         controller: _controller,
         onClickBack: _onClickBack,
@@ -55,18 +59,14 @@ class _NewNotePageState extends State<NewNotePage> {
 
   Future<void> _onClickDelete() async {
     await _controller.deleteNote();
-
-    if (mounted) {
-      Navigator.of(context).pop(true);
-    }
   }
 
   Future<void> _onClickDone() async {
-    final result = await _controller.createNewNote();
+    await _controller.createNewNote();
+  }
 
-    if (mounted) {
-      Navigator.of(context).pop(result);
-    }
+  Future<void> _onSuccess() async {
+    context.pop(true);
   }
 
   @override

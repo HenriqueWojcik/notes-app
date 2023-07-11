@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/enums/home_view.dart';
+import '../../../../core/i18n/i18n.dart';
 import '../../../../core/state/app_state_builder.dart';
 import '../../../../injectors.dart';
 import '../controller/home_controller.dart';
@@ -36,9 +37,9 @@ class HomeAppBar extends StatelessWidget {
           ),
           Expanded(
             child: TextFormField(
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 border: InputBorder.none,
-                hintText: 'Pesquisar suas notas',
+                hintText: I18n.strings.searchNotes,
               ),
               onChanged: onSearchNotes,
             ),
@@ -58,6 +59,7 @@ class HomeAppBar extends StatelessWidget {
           if (photoUrl != null) ...[
             CircleAvatar(
               backgroundImage: NetworkImage(photoUrl!),
+              maxRadius: 15,
             ),
             const SizedBox(
               width: 10,

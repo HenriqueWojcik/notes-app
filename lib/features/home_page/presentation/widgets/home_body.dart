@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/enums/home_view.dart';
+import '../../../../core/i18n/i18n.dart';
 import '../../../../core/state/app_state_builder.dart';
 import '../../../../core/widgets/empty_placeholder.dart';
 import '../../domain/entities/note.dart';
@@ -26,8 +27,8 @@ class HomeBody extends StatelessWidget {
         final notes = state.data;
 
         if (notes == null || notes.isEmpty) {
-          return const EmptyPlaceholder(
-            message: 'no one notes find',
+          return EmptyPlaceholder(
+            message: I18n.strings.noNotesFound,
           );
         }
 
@@ -48,7 +49,7 @@ class HomeBody extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   if (notesPinned.isNotEmpty) ...[
-                    const GridViewTitle(title: 'Fixados'),
+                    GridViewTitle(title: I18n.strings.pinned),
                     HomeGridView(
                       notes: notesPinned,
                       homeView: homeViewValue,
@@ -56,7 +57,7 @@ class HomeBody extends StatelessWidget {
                     ),
                   ],
                   if (notesNotPinned.isNotEmpty) ...[
-                    const GridViewTitle(title: 'Outros'),
+                    GridViewTitle(title: I18n.strings.others),
                     HomeGridView(
                       notes: notesNotPinned,
                       homeView: homeViewValue,

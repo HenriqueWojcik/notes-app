@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/i18n/i18n.dart';
 import '../controller/new_note_controller.dart';
 
 class NewNoteBody extends StatelessWidget {
@@ -23,10 +24,10 @@ class NewNoteBody extends StatelessWidget {
           TextFormField(
             controller: controller.titleController,
             onChanged: onChangeTitle,
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
               border: InputBorder.none,
-              hintText: 'Título',
-              hintStyle: TextStyle(
+              hintText: I18n.strings.title,
+              hintStyle: const TextStyle(
                 fontSize: 20,
               ),
             ),
@@ -34,9 +35,9 @@ class NewNoteBody extends StatelessWidget {
           TextFormField(
             controller: controller.bodyController,
             onChanged: onChangeBody,
-            decoration: const InputDecoration(
+            decoration: InputDecoration(
               border: InputBorder.none,
-              hintText: 'Anotação',
+              hintText: I18n.strings.body,
             ),
           ),
         ],

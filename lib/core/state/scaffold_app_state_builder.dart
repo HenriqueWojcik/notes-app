@@ -5,9 +5,9 @@ import '../widgets/snack_bar/loading_icon.dart';
 import '../widgets/snack_bar/success_icon.dart';
 import 'scaffold_app_state.dart';
 
-class ScaffoldAppStateBuilder extends StatefulWidget {
+class ScaffoldAppStateBuilder<T> extends StatefulWidget {
   final ScaffoldAppState state;
-  final Function() onSuccess;
+  final Function onSuccess;
   final Function? onError;
 
   final Widget body;

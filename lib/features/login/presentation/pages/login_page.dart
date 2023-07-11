@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../../core/i18n/i18n.dart';
 import '../../../../core/routes/routes.dart';
 import '../../../../core/state/scaffold_app_state_builder.dart';
 import '../../../../injectors.dart';
@@ -21,11 +22,21 @@ class _LoginPageState extends State<LoginPage> {
     return ScaffoldAppStateBuilder(
       onSuccess: _onSuccess,
       state: controller.scaffoldState,
-      body: Center(
-        child: ElevatedButton(
-          onPressed: _onClickLogin,
-          child: const Text('Login'),
-        ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            I18n.strings.appName,
+            style: const TextStyle(fontSize: 30),
+          ),
+          const SizedBox(height: 15),
+          Center(
+            child: ElevatedButton(
+              onPressed: _onClickLogin,
+              child: Text(I18n.strings.loginWithGoogle),
+            ),
+          ),
+        ],
       ),
     );
   }

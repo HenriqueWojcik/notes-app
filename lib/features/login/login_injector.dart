@@ -32,7 +32,7 @@ class LoginInjector extends FeatureInjector {
 
   @override
   void injectUsecases() {
-    getIt.registerFactory(() => LoginWithGoogleUseCase(repository: getIt()));
+    getIt.registerFactory(() => LoginWithGoogleUsecase(repository: getIt()));
   }
 
   @override
