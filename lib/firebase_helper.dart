@@ -2,6 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
+import 'injectors.dart';
+
 class FirebaseHelper {
   final FirebaseAuth firebaseAuth;
   final GoogleSignIn googleSignIn;
@@ -38,5 +40,17 @@ class FirebaseHelper {
     }
 
     return user;
+  }
+
+  bool isAuthenticate() {
+    final User? user = firebaseAuth.currentUser;
+
+    if (user == null) {
+      return false;
+    }
+
+    Injectors.registerUser(user);
+
+    return true;
   }
 }

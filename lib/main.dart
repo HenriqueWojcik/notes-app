@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intl/intl.dart';
 
 import 'core/enums/env.dart';
+import 'core/i18n/i18n.dart';
 import 'core/routes/routes.dart';
 import 'features/home_page/presentation/pages/home_page.dart';
 import 'features/login/presentation/pages/login_page.dart';
@@ -26,8 +28,15 @@ class _MainAppState extends State<MainApp> {
   @override
   void initState() {
     super.initState();
+  }
 
+  Future<void> _init() async {
     Injectors.inject(Env.prod);
+    I18n.load(
+      Intl.getCurrentLocale(),
+    );
+    await FirebaseHelper.init();
+    await Future.delayed(const Duration(seconds: 1));
   }
 
   @override
@@ -36,8 +45,23 @@ class _MainAppState extends State<MainApp> {
       theme: ThemeData(
         fontFamily: 'Poppins',
       ),
+      builder: (_, __) {
+        return FutureBuilder(
+          future: _init(),
+          builder: (_, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return const Center(child: CircularProgressIndicator());
+            }
+
+            if (getIt<FirebaseHelper>().isAuthenticate()) {
+              return const HomePage();
+            } else {
+              return const LoginPage();
+            }
+          },
+        );
+      },
       routerConfig: GoRouter(
-        initialLocation: Routes.login,
         routes: [
           GoRoute(
             path: Routes.home,

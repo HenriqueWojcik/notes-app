@@ -31,19 +31,23 @@ class Injectors {
   }
 
   static void injectSingletons() {
-    getIt.registerLazySingleton<CommunicationInterface>(
-      () => CommunicationImpl(firebase: FirebaseFirestore.instance),
-    );
-
     getIt.registerLazySingleton(
       () => FirebaseHelper(
         firebaseAuth: FirebaseAuth.instance,
         googleSignIn: GoogleSignIn(),
       ),
     );
+
+    getIt.registerLazySingleton<CommunicationInterface>(
+      () => CommunicationImpl(firebase: FirebaseFirestore.instance),
+    );
   }
 
   static void registerUser(User user) {
+    if (getIt.isRegistered<User>()) {
+      return;
+    }
+
     getIt.registerLazySingleton<User>(() => user);
   }
 }
