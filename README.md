@@ -1,3 +1,8 @@
-# flutter_notes_app
+ - Login
 
-A new Flutter project.
+ - Functions por usuario
+
+ - Functions por id nota
+
+ 
+flutter pub run build_runner build --delete-conflicting-outputs
