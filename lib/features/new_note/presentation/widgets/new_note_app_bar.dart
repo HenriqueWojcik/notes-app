@@ -27,26 +27,30 @@ class NewNoteAppBar extends AppBar {
               state: controller.noteState,
               builder: (_, state) {
                 bool? pinned = state.data?.pinned;
-                return IconButton(
-                  onPressed: onClickPinned,
-                  icon: Icon(
-                    pinned == null || pinned == false
-                        ? Icons.push_pin_outlined
-                        : Icons.push_pin_rounded,
-                    color: Colors.black87,
-                  ),
+                return Row(
+                  children: [
+                    IconButton(
+                      onPressed: onClickPinned,
+                      icon: Icon(
+                        pinned == null || pinned == false
+                            ? Icons.push_pin_outlined
+                            : Icons.push_pin_rounded,
+                        color: Colors.black87,
+                      ),
+                    ),
+                    controller.isEditingNote
+                        ? IconButton(
+                            onPressed: onClickDelete,
+                            icon: const Icon(
+                              Icons.delete_outline_rounded,
+                              color: Colors.black87,
+                            ),
+                          )
+                        : const SizedBox(),
+                  ],
                 );
               },
             ),
-            controller.isEditingNote
-                ? IconButton(
-                    onPressed: onClickDelete,
-                    icon: const Icon(
-                      Icons.delete_outline_rounded,
-                      color: Colors.black87,
-                    ),
-                  )
-                : const SizedBox(),
             IconButton(
               onPressed: onClickDone,
               icon: const Icon(

@@ -99,7 +99,7 @@ class NewNoteController {
     editedAt();
     bool? pinned = note?.pinned;
 
-    note?.pinned = pinned == null || pinned ? false : true;
+    note?.pinned = pinned == null ? true : !pinned;
     _update();
   }
 
