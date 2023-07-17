@@ -45,19 +45,18 @@ class NewNoteController {
     }
 
     noteState.update(() async {
-      return getNoteById(noteId);
-    });
+      final result = await getNoteById(noteId);
 
-    getNoteById(noteId).then((result) {
-      result.fold(
-        (failure) => scaffoldState.onErrorMessage = failure.toString(),
-        (note) {
-          this.note = note;
-          titleController.text = note.title;
-          bodyController.text = note.body;
-          scaffoldState.onSuccessMessage = I18n.strings.noteEditedWithSuccess;
-        },
-      );
+      result
+          .fold((failure) => scaffoldState.onErrorMessage = failure.toString(),
+              (value) {
+        note = value;
+        titleController.text = value.title;
+        bodyController.text = value.body;
+        scaffoldState.onSuccessMessage = I18n.strings.noteEditedWithSuccess;
+      });
+
+      return result;
     });
   }
 
