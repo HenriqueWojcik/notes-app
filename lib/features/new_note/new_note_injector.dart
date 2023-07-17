@@ -8,6 +8,7 @@ import 'data/repositories/new_note_repository_impl.dart';
 import 'domain/usecases/create_note_usecase.dart';
 import 'domain/usecases/delete_note_usecase.dart';
 import 'domain/usecases/edit_note_usecase.dart';
+import 'domain/usecases/get_note_by_id.dart';
 import 'presentation/controller/new_note_controller.dart';
 
 class NewNoteInjector extends FeatureInjector {
@@ -35,6 +36,7 @@ class NewNoteInjector extends FeatureInjector {
   @override
   void injectUsecases() {
     getIt
+      ..registerFactory(() => GetNoteById(repository: getIt()))
       ..registerFactory(() => CreateNoteUseCase(repository: getIt()))
       ..registerFactory(() => EditNoteUsecase(repository: getIt()))
       ..registerFactory(() => DeleteNoteUseCase(repository: getIt()));
@@ -44,6 +46,7 @@ class NewNoteInjector extends FeatureInjector {
   void injectControllers() {
     getIt.registerFactory(
       () => NewNoteController(
+        getNoteById: getIt(),
         createNote: getIt(),
         editNote: getIt(),
         deleteNoteUseCase: getIt(),

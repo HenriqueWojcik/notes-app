@@ -3,17 +3,16 @@ import 'package:go_router/go_router.dart';
 
 import '../../../../core/state/scaffold_app_state_builder.dart';
 import '../../../../injectors.dart';
-import '../../../home_page/domain/entities/note.dart';
 import '../controller/new_note_controller.dart';
 import '../widgets/new_note_app_bar.dart';
 import '../widgets/new_note_body.dart';
 
 class NewNotePage extends StatefulWidget {
-  final Note? note;
+  final String? noteId;
 
   const NewNotePage({
     super.key,
-    required this.note,
+    required this.noteId,
   });
 
   @override
@@ -26,7 +25,8 @@ class _NewNotePageState extends State<NewNotePage> {
   @override
   void initState() {
     super.initState();
-    _controller.init(widget.note);
+
+    _controller.init(widget.noteId);
   }
 
   @override

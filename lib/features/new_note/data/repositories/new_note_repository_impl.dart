@@ -14,6 +14,15 @@ class NewNoteRepositoryImpl extends BaseRepository
   NewNoteRepositoryImpl({required this.datasource});
 
   @override
+  Future<Either<Exception, Note>> getNoteById(String id) {
+    return doAsync(() async {
+      final note = await datasource.getNoteById(id);
+
+      return NoteMappper.toEntity(note);
+    });
+  }
+
+  @override
   Future<Either<Exception, void>> createNote(Note? note) {
     return doAsync(() async {
       if (note == null) {

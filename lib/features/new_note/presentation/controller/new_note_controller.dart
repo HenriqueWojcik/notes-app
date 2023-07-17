@@ -8,13 +8,16 @@ import '../../../home_page/domain/entities/note.dart';
 import '../../domain/usecases/create_note_usecase.dart';
 import '../../domain/usecases/delete_note_usecase.dart';
 import '../../domain/usecases/edit_note_usecase.dart';
+import '../../domain/usecases/get_note_by_id.dart';
 
 class NewNoteController {
+  final GetNoteById getNoteById;
   final CreateNoteUseCase createNote;
   final EditNoteUsecase editNote;
   final DeleteNoteUseCase deleteNoteUseCase;
 
   NewNoteController({
+    required this.getNoteById,
     required this.createNote,
     required this.editNote,
     required this.deleteNoteUseCase,
@@ -32,18 +35,30 @@ class NewNoteController {
 
   bool get isEditingNote => note?.id != null;
 
-  void init(Note? n) {
-    if (n != null) {
-      note = n;
-      titleController.text = n.title;
-      bodyController.text = n.body;
-      scaffoldState.onSuccessMessage = I18n.strings.noteEditedWithSuccess;
-    } else {
+  void init(String? noteId) {
+    if (noteId == null) {
       note = Note(
         title: '',
         body: '',
       );
+      return;
     }
+
+    noteState.update(() async {
+      return getNoteById(noteId);
+    });
+
+    getNoteById(noteId).then((result) {
+      result.fold(
+        (failure) => scaffoldState.onErrorMessage = failure.toString(),
+        (note) {
+          this.note = note;
+          titleController.text = note.title;
+          bodyController.text = note.body;
+          scaffoldState.onSuccessMessage = I18n.strings.noteEditedWithSuccess;
+        },
+      );
+    });
   }
 
   Future<bool> createNewNote() async {

@@ -2,7 +2,7 @@ import 'app_state.dart';
 
 class ScaffoldAppState extends AppState {
   String onSuccessMessage;
-  final String? onErrorMessage;
+  String? onErrorMessage;
   final String? onLoadingMessage;
 
   ScaffoldAppState({

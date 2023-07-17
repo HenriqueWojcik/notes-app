@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/routes/navigator.dart';
+import '../../../../core/routes/routes.dart';
 import '../../../../injectors.dart';
-import '../../../new_note/presentation/pages/new_note_page.dart';
 import '../../domain/entities/note.dart';
 import '../controller/home_controller.dart';
 import '../widgets/home_app_bar.dart';
@@ -70,16 +71,12 @@ class _HomePageState extends State<HomePage> {
   void _onClickHomeViewIcon() => _controller.changeHomeViewState();
 
   Future<bool?> _openNewNotePage({Note? note}) async {
-    bool? result = await showModalBottomSheet(
-      isScrollControlled: true,
-      useSafeArea: true,
-      context: context,
-      builder: (_) {
-        return NewNotePage(note: note);
-      },
+    bool? result = await AppNavigator.router.push<bool>(
+      Routes.noteDetail,
+      extra: note,
     );
 
-    return result;
+    return result ?? false;
   }
 
   @override

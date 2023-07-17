@@ -1,5 +1,5 @@
 class Routes {
   static String home = '/';
   static String login = '/login';
-  static String notes = '/notes';
+  static String noteDetail = '/notes/:id';
 }

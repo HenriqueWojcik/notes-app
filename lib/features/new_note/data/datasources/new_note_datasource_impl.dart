@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import '../../../../core/data/communication_inferface.dart';
 import '../../../../core/entities/request.dart';
 import '../../../../core/i18n/i18n.dart';
+import '../../../../core/print/print.dart';
 import '../../../../injectors.dart';
 import '../../../home_page/data/models/note_model.dart';
 import 'new_note_datasource_interface.dart';
@@ -13,6 +14,20 @@ class NewNoteDatasourceImpl implements NewNoteDatasourceInterface {
   NewNoteDatasourceImpl({required this.communication});
 
   User get user => getIt();
+
+  @override
+  Future<NoteModel> getNoteById(String id) async {
+    final request = Request(
+      collection: 'notes',
+      parameters: {'id': id},
+    );
+
+    final value = await communication.get(request);
+
+    debugPrint(value);
+
+    return NoteModel();
+  }
 
   @override
   Future<void> createNote(NoteModel noteModel) async {
