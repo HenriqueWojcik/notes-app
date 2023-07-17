@@ -25,7 +25,7 @@ void main() {
     late List<Note> list;
     result.fold((l) => null, (r) => list = r);
 
-    expect(result.isLeft(), true);
+    expect(result.isRight(), true);
     expect(list.length, 1);
   });
 
@@ -34,6 +34,6 @@ void main() {
 
     final result = await sut.getNotes();
 
-    expect(result.isRight(), true);
+    expect(result.isLeft(), true);
   });
 }

@@ -18,7 +18,7 @@ void main() {
 
     result.fold((l) => error = l, (r) => value = r);
 
-    expect(result.isLeft(), true);
+    expect(result.isRight(), true);
     expect(value, 1);
     expect(error, null);
   });
@@ -35,7 +35,7 @@ void main() {
 
       result.fold((l) => error = l, (r) => value = r);
 
-      expect(result.isRight(), true);
+      expect(result.isLeft(), true);
       expect(value, null);
       expect(error, exception);
     },

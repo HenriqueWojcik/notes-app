@@ -1,18 +1,16 @@
-{
-    "notes": [
-        {
-            "body": "body 1",
-            "title": "title 1",
-            "pinned": false,
-            "sync": false,
-            "editedAt": ""
-        },
-        {
-            "body": "body 2",
-            "title": "title 2",
-            "pinned": true,
-            "sync": false,
-            "editedAt": ""
-        }
-    ]
-}
+[
+    {
+        "body": "body 1",
+        "title": "title 1",
+        "pinned": false,
+        "sync": false,
+        "editedAt": ""
+    },
+    {
+        "body": "body 2",
+        "title": "title 2",
+        "pinned": true,
+        "sync": false,
+        "editedAt": ""
+    }
+]

@@ -10,7 +10,6 @@ void main() {
   late MockCollectionReference<Map<String, dynamic>> mockCollectionReference;
   late MockQuerySnapshot<Map<String, dynamic>> mockQuerySnapshot;
   late MockDocumentReference<Map<String, dynamic>> mockDocumentReference;
-
   late MockRequest mockRequest;
 
   setUp(() {
@@ -19,12 +18,10 @@ void main() {
     mockQuerySnapshot = MockQuerySnapshot();
     mockDocumentReference = MockDocumentReference();
     mockRequest = MockRequest();
+    sut = CommunicationImpl(firebase: mockFirebase);
   });
 
-  test('should return a list empty of maps<string, dynamic> succefully ',
-      () async {
-    final List<Map<String, dynamic>> map = [];
-
+  void setupSuccess() {
     when(mockFirebase.collection(any)).thenReturn(mockCollectionReference);
     when(mockCollectionReference.doc(any)).thenReturn(mockDocumentReference);
     when(mockFirebase.doc(any)).thenReturn(mockDocumentReference);
@@ -33,10 +30,15 @@ void main() {
         .thenAnswer((_) async => mockQuerySnapshot);
 
     when(mockQuerySnapshot.docs).thenAnswer((_) => []);
+  }
+
+  test('should return an empty list of maps<string, dynamic> succefully ',
+      () async {
+    final List<Map<String, dynamic>> map = [];
+    setupSuccess();
 
     when(mockRequest.collection).thenReturn('');
-
-    sut = CommunicationImpl(firebase: mockFirebase);
+    when(mockRequest.parameters).thenReturn(null);
 
     final result = await sut.get(mockRequest);
     expect(map, result);
