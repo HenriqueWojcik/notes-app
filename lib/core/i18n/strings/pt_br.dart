@@ -42,4 +42,10 @@ class PtBr implements Translations {
 
   @override
   String get noteRemovedWithSuccess => 'Nota removida com sucesso.';
+
+  @override
+  String get noteNotFound => 'Nota não encontrada.';
+
+  @override
+  String get loading => 'Carregando...';
 }

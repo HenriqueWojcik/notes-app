@@ -42,4 +42,10 @@ class EnUs implements Translations {
 
   @override
   String get noteRemovedWithSuccess => 'Note removed successfully.';
+
+  @override
+  String get noteNotFound => 'Note not found.';
+
+  @override
+  String get loading => 'Loading...';
 }

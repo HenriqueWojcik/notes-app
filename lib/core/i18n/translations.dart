@@ -13,4 +13,6 @@ abstract class Translations {
   String get noteRemovedWithSuccess;
   String get title;
   String get body;
+  String get noteNotFound;
+  String get loading;
 }

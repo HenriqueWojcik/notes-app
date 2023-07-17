@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../entities/request.dart';
+import '../i18n/i18n.dart';
 import '../print/print.dart';
 import 'communication_inferface.dart';
 
@@ -23,7 +24,15 @@ class CommunicationImpl implements CommunicationInterface {
       if (parameters.containsKey('id')) {
         var result = await collection.doc(parameters.values.first).get();
 
-        return [result.data() ?? {}];
+        Map<String, dynamic>? data = result.data();
+
+        if (data == null) {
+          throw Exception(I18n.strings.noteNotFound);
+        }
+
+        data.addEntries(parameters.entries);
+
+        return [data];
       }
 
       value = await collection

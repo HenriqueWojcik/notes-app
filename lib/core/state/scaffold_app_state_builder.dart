@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../i18n/i18n.dart';
 import '../widgets/snack_bar/error_icon.dart';
 import '../widgets/snack_bar/loading_icon.dart';
 import '../widgets/snack_bar/success_icon.dart';
@@ -62,7 +63,7 @@ class _ScaffoldAppStateBuilderState extends State<ScaffoldAppStateBuilder> {
   }
 
   void onLoading() {
-    showSnackBar(message: 'loading', icon: const LoadingIcon());
+    showSnackBar(message: I18n.strings.loading, icon: const LoadingIcon());
   }
 
   Future<void> onSuccess() async {
