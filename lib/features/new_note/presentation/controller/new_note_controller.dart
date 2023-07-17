@@ -84,26 +84,26 @@ class NewNoteController {
   }
 
   void setTitle(String title) {
-    editedAt();
+    _editedAt();
     note?.title = title;
     _update();
   }
 
   void setBody(String body) {
-    editedAt();
+    _editedAt();
     note?.body = body;
     _update();
   }
 
   void setPinned() {
-    editedAt();
+    _editedAt();
     bool? pinned = note?.pinned;
 
     note?.pinned = pinned == null ? true : !pinned;
     _update();
   }
 
-  void editedAt() => note?.editedAt = DateTime.now().toString();
+  void _editedAt() => note?.editedAt = DateTime.now().toString();
 
   void _update() => noteState.value = note;
 
