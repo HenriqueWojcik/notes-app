@@ -20,6 +20,12 @@ class CommunicationImpl implements CommunicationInterface {
     QuerySnapshot<Map<String, dynamic>> value;
 
     if (parameters != null) {
+      if (parameters.containsKey('id')) {
+        var result = await collection.doc(parameters.values.first).get();
+
+        return [result.data() ?? {}];
+      }
+
       value = await collection
           .where(parameters.keys.first, isEqualTo: parameters.values.first)
           .get();

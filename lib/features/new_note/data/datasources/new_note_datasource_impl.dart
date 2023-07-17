@@ -26,7 +26,7 @@ class NewNoteDatasourceImpl implements NewNoteDatasourceInterface {
 
     debugPrint(value);
 
-    return NoteModel();
+    return NoteModel.fromJson(value.first);
   }
 
   @override
