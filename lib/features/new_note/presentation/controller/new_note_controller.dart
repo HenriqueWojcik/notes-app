@@ -47,9 +47,7 @@ class NewNoteController {
     noteState.update(() async {
       final result = await getNoteById(noteId);
 
-      result
-          .fold((failure) => scaffoldState.onErrorMessage = failure.toString(),
-              (value) {
+      result.fold((_) => null, (value) {
         note = value;
         titleController.text = value.title;
         bodyController.text = value.body;
