@@ -71,7 +71,7 @@ class _ScaffoldAppStateBuilderState extends State<ScaffoldAppStateBuilder> {
       closeSnackBar();
 
       showSnackBar(message: state.onSuccessMessage, icon: const SuccessIcon());
-      await Future.delayed(const Duration(seconds: 2));
+      await Future.delayed(const Duration(seconds: 1));
 
       widget.onSuccess();
 
@@ -85,7 +85,7 @@ class _ScaffoldAppStateBuilderState extends State<ScaffoldAppStateBuilder> {
 
       showSnackBar(message: state.error.toString(), icon: const ErrorIcon());
 
-      await Future.delayed(const Duration(seconds: 5));
+      await Future.delayed(const Duration(seconds: 3));
       closeSnackBar();
     }
   }

@@ -1,6 +1,7 @@
 import '../../features/home_page/domain/entities/note.dart';
 import '../../firebase_helper.dart';
 import '../../injectors.dart';
+import 'app_navigator_interface.dart';
 import 'routes.dart';
 import 'package:go_router/go_router.dart';
 
@@ -8,7 +9,7 @@ import '../../features/home_page/presentation/pages/home_page.dart';
 import '../../features/login/presentation/pages/login_page.dart';
 import '../../features/new_note/presentation/pages/new_note_page.dart';
 
-class AppNavigator {
+class AppNavigator implements AppNavigatorInterface {
   static FirebaseHelper firebaseHelper = getIt<FirebaseHelper>();
 
   static final List<GoRoute> routes = [
@@ -41,4 +42,14 @@ class AppNavigator {
         firebaseHelper.isAuthenticate() ? Routes.home : Routes.login,
     routes: routes,
   );
+
+  @override
+  Future push<T>(String location, {Object? extra}) {
+    return router.push<T>(location, extra: extra);
+  }
+
+  @override
+  void pushReplacement<T>(String location, {Object? extra}) {
+    return router.pushReplacement(location, extra: extra);
+  }
 }

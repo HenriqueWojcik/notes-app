@@ -3,7 +3,7 @@ import 'package:intl/intl.dart';
 
 import 'core/enums/env.dart';
 import 'core/i18n/i18n.dart';
-import 'core/routes/app_navigator.dart';
+import 'core/navigator/app_navigator_impl.dart';
 import 'firebase_helper.dart';
 import 'injectors.dart';
 

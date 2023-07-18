@@ -7,6 +7,8 @@ import 'core/data/communication_impl.dart';
 import 'core/data/communication_inferface.dart';
 import 'core/enums/env.dart';
 import 'core/injector/feature_injector.dart';
+import 'core/navigator/app_navigator_impl.dart';
+import 'core/navigator/app_navigator_interface.dart';
 import 'features/home_page/home_injector.dart';
 import 'features/login/login_injector.dart';
 import 'features/new_note/new_note_injector.dart';
@@ -24,9 +26,9 @@ class Injectors {
   static void inject(Env env) {
     injectSingletons();
 
-    for (var e in featureInjectors) {
-      env == Env.prod ? e.injectDatasourcesImpl() : e.injectDatasourcesMock();
-      e.inject();
+    for (var f in featureInjectors) {
+      env == Env.prod ? f.injectDatasourcesImpl() : f.injectDatasourcesMock();
+      f.inject();
     }
   }
 
@@ -41,6 +43,8 @@ class Injectors {
     getIt.registerLazySingleton<CommunicationInterface>(
       () => CommunicationImpl(firebase: FirebaseFirestore.instance),
     );
+
+    getIt.registerLazySingleton<AppNavigatorInterface>(() => AppNavigator());
   }
 
   static void registerUser(User user) {
