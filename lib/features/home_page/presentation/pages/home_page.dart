@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/routes/navigator.dart';
-import '../../../../core/routes/routes.dart';
+import '../../../../core/navigator/app_navigator_impl.dart';
+import '../../../../core/navigator/routes.dart';
 import '../../../../injectors.dart';
 import '../../domain/entities/note.dart';
 import '../controller/home_controller.dart';

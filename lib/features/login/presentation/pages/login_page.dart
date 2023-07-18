@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../../../core/i18n/i18n.dart';
-import '../../../../core/routes/routes.dart';
+import '../../../../core/navigator/app_navigator_interface.dart';
+import '../../../../core/navigator/routes.dart';
 import '../../../../core/state/scaffold_app_state_builder.dart';
 import '../../../../injectors.dart';
 import '../controller/login_controller.dart';
+import 'keys/login_keys.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -16,6 +17,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final LoginController controller = getIt();
+  final AppNavigatorInterface navigator = getIt();
 
   @override
   Widget build(BuildContext context) {
@@ -27,11 +29,13 @@ class _LoginPageState extends State<LoginPage> {
         children: [
           Text(
             I18n.strings.appName,
+            key: LoginKeys.appName,
             style: const TextStyle(fontSize: 30),
           ),
           const SizedBox(height: 15),
           Center(
             child: ElevatedButton(
+              key: LoginKeys.loginWithGoogle,
               onPressed: _onClickLogin,
               child: Text(I18n.strings.loginWithGoogle),
             ),
@@ -45,5 +49,5 @@ class _LoginPageState extends State<LoginPage> {
     await controller.login();
   }
 
-  void _onSuccess() => context.go(Routes.home);
+  void _onSuccess() => navigator.pushReplacement(Routes.home);
 }
