@@ -50,6 +50,11 @@ class AppNavigator implements AppNavigatorInterface {
 
   @override
   void pushReplacement<T>(String location, {Object? extra}) {
-    return router.pushReplacement(location, extra: extra);
+    router.pushReplacement(location, extra: extra);
+  }
+
+  @override
+  void pop<T extends Object?>([T? result]) {
+    router.pop<T>(result);
   }
 }
