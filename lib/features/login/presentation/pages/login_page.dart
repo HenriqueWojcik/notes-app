@@ -50,4 +50,10 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void _onSuccess() => navigator.pushReplacement(Routes.home);
+
+  @override
+  void dispose() {
+    super.dispose();
+    controller.dispose();
+  }
 }

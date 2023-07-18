@@ -39,4 +39,10 @@ void main() {
 
     expect(sut.scaffoldState.onErrorMessage, exception.toString());
   });
+
+  test('should call state dispose when dispose method is called', () {
+    sut.dispose();
+
+    expect(sut.scaffoldState.isDisposed, true);
+  });
 }

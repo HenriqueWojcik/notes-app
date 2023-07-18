@@ -34,6 +34,10 @@ void main() {
     );
   });
 
+  tearDown(() {
+    getIt.reset();
+  });
+
   void initState() {
     when(controller.scaffoldState).thenReturn(
       ScaffoldAppState(onSuccessMessage: ''),
@@ -67,5 +71,17 @@ void main() {
 
     verify(controller.login()).called(1);
     verify(navigator.pushReplacement(Routes.home)).called(1);
+  });
+
+  testWidgets('should call dispose when page closes', (tester) async {
+    initState();
+
+    await tester.pumpWidget(sut);
+
+    await tester.pump();
+
+    await tester.pumpWidget(Container());
+
+    verify(controller.dispose()).called(1);
   });
 }

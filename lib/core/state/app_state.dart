@@ -16,6 +16,8 @@ class AppState<T> extends ChangeNotifier {
 
   bool get hasError => _error != null;
 
+  bool get isDisposed => !hasListeners;
+
   set value(T value) {
     _error = null;
     loading = false;

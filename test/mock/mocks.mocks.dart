@@ -5,6 +5,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i5;
 import 'dart:typed_data' as _i13;
+import 'dart:ui' as _i23;
 
 import 'package:cloud_firestore/cloud_firestore.dart' as _i4;
 import 'package:cloud_firestore_platform_interface/cloud_firestore_platform_interface.dart'
@@ -35,7 +36,7 @@ import 'package:flutter_notes_app/features/login/domain/repositories/login_repos
 import 'package:flutter_notes_app/features/login/domain/usecases/login_with_google_usecase.dart'
     as _i10;
 import 'package:flutter_notes_app/features/login/presentation/controller/login_controller.dart'
-    as _i23;
+    as _i24;
 import 'package:flutter_notes_app/firebase_helper.dart' as _i14;
 import 'package:google_sign_in/google_sign_in.dart' as _i7;
 import 'package:mockito/mockito.dart' as _i1;
@@ -326,8 +327,8 @@ class _FakeLoginWithGoogleUsecase_25 extends _i1.SmartFake
         );
 }
 
-class _FakeScaffoldAppState_26 extends _i1.SmartFake
-    implements _i11.ScaffoldAppState {
+class _FakeScaffoldAppState_26<T> extends _i1.SmartFake
+    implements _i11.ScaffoldAppState<T> {
   _FakeScaffoldAppState_26(
     Object parent,
     Invocation parentInvocation,
@@ -369,6 +370,14 @@ class MockAppNavigatorInterface extends _i1.Mock
           #pushReplacement,
           [location],
           {#extra: extra},
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  void pop<T extends Object?>([T? result]) => super.noSuchMethod(
+        Invocation.method(
+          #pop,
+          [result],
         ),
         returnValueForMissingStub: null,
       );
@@ -2515,10 +2524,123 @@ class MockLoginWithGoogleUsecase extends _i1.Mock
       ) as _i5.Future<_i8.Either<Exception, void>>);
 }
 
+/// A class which mocks [ScaffoldAppState].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockScaffoldAppState<T> extends _i1.Mock
+    implements _i11.ScaffoldAppState<T> {
+  MockScaffoldAppState() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  String get onSuccessMessage => (super.noSuchMethod(
+        Invocation.getter(#onSuccessMessage),
+        returnValue: '',
+      ) as String);
+  @override
+  set onSuccessMessage(String? _onSuccessMessage) => super.noSuchMethod(
+        Invocation.setter(
+          #onSuccessMessage,
+          _onSuccessMessage,
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  String get onErrorMessage => (super.noSuchMethod(
+        Invocation.getter(#onErrorMessage),
+        returnValue: '',
+      ) as String);
+  @override
+  bool get loading => (super.noSuchMethod(
+        Invocation.getter(#loading),
+        returnValue: false,
+      ) as bool);
+  @override
+  set loading(bool? _loading) => super.noSuchMethod(
+        Invocation.setter(
+          #loading,
+          _loading,
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  bool get hasData => (super.noSuchMethod(
+        Invocation.getter(#hasData),
+        returnValue: false,
+      ) as bool);
+  @override
+  bool get hasError => (super.noSuchMethod(
+        Invocation.getter(#hasError),
+        returnValue: false,
+      ) as bool);
+  @override
+  set value(T? value) => super.noSuchMethod(
+        Invocation.setter(
+          #value,
+          value,
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  set fail(Exception? e) => super.noSuchMethod(
+        Invocation.setter(
+          #fail,
+          e,
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  bool get hasListeners => (super.noSuchMethod(
+        Invocation.getter(#hasListeners),
+        returnValue: false,
+      ) as bool);
+  @override
+  void onLoad() => super.noSuchMethod(
+        Invocation.method(
+          #onLoad,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  void addListener(_i23.VoidCallback? listener) => super.noSuchMethod(
+        Invocation.method(
+          #addListener,
+          [listener],
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  void removeListener(_i23.VoidCallback? listener) => super.noSuchMethod(
+        Invocation.method(
+          #removeListener,
+          [listener],
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  void dispose() => super.noSuchMethod(
+        Invocation.method(
+          #dispose,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  void notifyListeners() => super.noSuchMethod(
+        Invocation.method(
+          #notifyListeners,
+          [],
+        ),
+        returnValueForMissingStub: null,
+      );
+}
+
 /// A class which mocks [LoginController].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockLoginController extends _i1.Mock implements _i23.LoginController {
+class MockLoginController extends _i1.Mock implements _i24.LoginController {
   MockLoginController() {
     _i1.throwOnMissingStub(this);
   }
@@ -2532,13 +2654,13 @@ class MockLoginController extends _i1.Mock implements _i23.LoginController {
         ),
       ) as _i10.LoginWithGoogleUsecase);
   @override
-  _i11.ScaffoldAppState get scaffoldState => (super.noSuchMethod(
+  _i11.ScaffoldAppState<dynamic> get scaffoldState => (super.noSuchMethod(
         Invocation.getter(#scaffoldState),
-        returnValue: _FakeScaffoldAppState_26(
+        returnValue: _FakeScaffoldAppState_26<dynamic>(
           this,
           Invocation.getter(#scaffoldState),
         ),
-      ) as _i11.ScaffoldAppState);
+      ) as _i11.ScaffoldAppState<dynamic>);
   @override
   _i5.Future<void> login() => (super.noSuchMethod(
         Invocation.method(
