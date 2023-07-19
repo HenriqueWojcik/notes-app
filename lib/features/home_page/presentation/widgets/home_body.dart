@@ -6,6 +6,7 @@ import '../../../../core/state/app_state_builder.dart';
 import '../../../../core/widgets/empty_placeholder.dart';
 import '../../domain/entities/note.dart';
 import '../controller/home_controller.dart';
+import '../pages/keys/home_keys.dart';
 import 'grid_view_title.dart';
 import 'home_grid_view.dart';
 
@@ -45,6 +46,7 @@ class HomeBody extends StatelessWidget {
             final homeViewValue = howeView.data ?? HomeView.grid;
 
             return SingleChildScrollView(
+              key: HomeKeys.notesList,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [

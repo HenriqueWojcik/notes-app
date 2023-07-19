@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../domain/entities/note.dart';
+import '../pages/keys/home_keys.dart';
 
 class NoteCard extends StatelessWidget {
   final Note note;
@@ -15,6 +16,7 @@ class NoteCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      key: HomeKeys.noteCard(id: note.id),
       onTap: () => onClickNoteCard(note),
       child: Card(
         shape: RoundedRectangleBorder(

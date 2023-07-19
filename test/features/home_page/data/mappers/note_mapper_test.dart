@@ -31,7 +31,7 @@ void main() {
   });
 
   test('should return a model in toModel method', () {
-    final entity = NoteSample.sample;
+    final entity = NoteSample.sample();
 
     final model = NoteMappper.toModel(entity);
 

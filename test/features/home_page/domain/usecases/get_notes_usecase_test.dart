@@ -17,7 +17,7 @@ void main() {
   });
 
   test('should return notes correctly', () async {
-    Either<Exception, List<Note>> value = Right([NoteSample.sample]);
+    Either<Exception, List<Note>> value = Right([NoteSample.sample()]);
 
     when(repository.getNotes()).thenAnswer((_) async => value);
 

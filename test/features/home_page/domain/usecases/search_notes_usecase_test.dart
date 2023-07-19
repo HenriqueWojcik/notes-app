@@ -23,9 +23,9 @@ void main() {
     'should return all item where constains the value',
     () {
       final List<Note> list = [
-        NoteSample.sample,
-        NoteSample.sample,
-        NoteSample.sample,
+        NoteSample.sample(),
+        NoteSample.sample(),
+        NoteSample.sample(),
       ];
 
       final result = sut(list, 'title');
@@ -39,9 +39,9 @@ void main() {
     'should return all item where constains the value',
     () {
       final List<Note> list = [
-        NoteSample.sample,
-        NoteSample.sample,
-        NoteSample.sample,
+        NoteSample.sample(),
+        NoteSample.sample(),
+        NoteSample.sample(),
       ];
 
       final result = sut(list, 'title');

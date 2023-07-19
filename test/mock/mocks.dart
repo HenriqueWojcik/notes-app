@@ -8,6 +8,7 @@ import 'package:flutter_notes_app/features/home_page/data/datasources/home_datas
 import 'package:flutter_notes_app/features/home_page/data/repositories/home_repository_interface.dart';
 import 'package:flutter_notes_app/features/home_page/domain/usecases/get_notes_usecase.dart';
 import 'package:flutter_notes_app/features/home_page/domain/usecases/search_notes_usecase.dart';
+import 'package:flutter_notes_app/features/home_page/presentation/controller/home_controller.dart';
 import 'package:flutter_notes_app/features/login/data/datasources/login_datasource_interface.dart';
 import 'package:flutter_notes_app/features/login/domain/repositories/login_repository_interface.dart';
 import 'package:flutter_notes_app/features/login/domain/usecases/login_with_google_usecase.dart';
@@ -74,5 +75,6 @@ import 'package:mockito/annotations.dart';
 @GenerateMocks([
   ScaffoldAppState,
   LoginController,
+  HomeController,
 ])
 void main() {}

@@ -27,8 +27,8 @@ void main() {
       'should check that the notes state is updated with the result of the getNotes usecase ',
       () async {
     final Either<Exception, List<Note>> result = Right([
-      NoteSample.sample,
-      NoteSample.sample,
+      NoteSample.sample(),
+      NoteSample.sample(),
     ]);
 
     when(getNotes()).thenAnswer((_) async => result);
@@ -41,8 +41,8 @@ void main() {
 
   test('should refresh notes when refresh value is true', () async {
     final Either<Exception, List<Note>> result = Right([
-      NoteSample.sample,
-      NoteSample.sample,
+      NoteSample.sample(),
+      NoteSample.sample(),
     ]);
 
     when(getNotes()).thenAnswer((_) async => result);
@@ -71,8 +71,8 @@ void main() {
 
   test('should search notes corretly', () async {
     final Either<Exception, List<Note>> result = Right([
-      NoteSample.sample,
-      NoteSample.sample,
+      NoteSample.sample(),
+      NoteSample.sample(),
     ]);
 
     when(searchNotes(any, any)).thenReturn(result);

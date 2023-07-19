@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/navigator/app_navigator_impl.dart';
+import '../../../../core/navigator/app_navigator_interface.dart';
 import '../../../../core/navigator/routes.dart';
 import '../../../../injectors.dart';
 import '../../domain/entities/note.dart';
@@ -8,6 +8,7 @@ import '../controller/home_controller.dart';
 import '../widgets/home_app_bar.dart';
 import '../widgets/home_body.dart';
 import '../widgets/home_floating_button.dart';
+import 'keys/home_keys.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -17,32 +18,34 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final HomeController _controller = getIt<HomeController>();
+  final HomeController controller = getIt();
+  final AppNavigatorInterface navigator = getIt();
 
   @override
   void initState() {
     super.initState();
-    _controller.init();
+    controller.init();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: HomeFloatingButton(
+        key: HomeKeys.floatingButton,
         onClick: _onClickAddNote,
       ),
       body: SafeArea(
         child: Column(
           children: [
             HomeAppBar(
-              controller: _controller,
+              controller: controller,
               onClickDrawerIcon: _onClickDrawerIcon,
               onClickHomeViewIcon: _onClickHomeViewIcon,
               onSearchNotes: _onSearchNotes,
             ),
             Expanded(
               child: HomeBody(
-                controller: _controller,
+                controller: controller,
                 onClickNoteCard: _onClickNoteCard,
               ),
             ),
@@ -52,26 +55,26 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  void _onSearchNotes(String value) => _controller.onSearchNotes(value);
+  void _onSearchNotes(String value) => controller.onSearchNotes(value);
 
   void _onClickAddNote() async {
     bool? result = await _openNewNotePage();
 
-    _controller.update(refresh: result);
+    controller.update(refresh: result);
   }
 
   void _onClickNoteCard(Note note) async {
     bool? result = await _openNewNotePage(note: note);
 
-    _controller.update(refresh: result);
+    controller.update(refresh: result);
   }
 
   void _onClickDrawerIcon() {}
 
-  void _onClickHomeViewIcon() => _controller.changeHomeViewState();
+  void _onClickHomeViewIcon() => controller.changeHomeViewState();
 
   Future<bool?> _openNewNotePage({Note? note}) async {
-    bool? result = await AppNavigator.router.push<bool>(
+    bool? result = await navigator.push<bool>(
       Routes.noteDetail,
       extra: note,
     );
@@ -82,6 +85,6 @@ class _HomePageState extends State<HomePage> {
   @override
   void dispose() {
     super.dispose();
-    _controller.dispose();
+    controller.dispose();
   }
 }

@@ -6,6 +6,7 @@ import '../../../../core/i18n/i18n.dart';
 import '../../../../core/state/app_state_builder.dart';
 import '../../../../injectors.dart';
 import '../controller/home_controller.dart';
+import '../pages/keys/home_keys.dart';
 
 class HomeAppBar extends StatelessWidget {
   final HomeController controller;
@@ -32,11 +33,13 @@ class HomeAppBar extends StatelessWidget {
       child: Row(
         children: [
           IconButton(
+            key: HomeKeys.drawerIcon,
             onPressed: onClickDrawerIcon,
             icon: const Icon(Icons.menu),
           ),
           Expanded(
             child: TextFormField(
+              key: HomeKeys.textFieldSearch,
               decoration: InputDecoration(
                 border: InputBorder.none,
                 hintText: I18n.strings.searchNotes,
@@ -49,6 +52,7 @@ class HomeAppBar extends StatelessWidget {
             builder: (_, state) {
               final homeView = state.data;
               return IconButton(
+                key: HomeKeys.homeViewTypeIcon,
                 onPressed: onClickHomeViewIcon,
                 icon: Icon(
                   homeView == HomeView.list ? Icons.grid_view : Icons.list,
@@ -56,15 +60,16 @@ class HomeAppBar extends StatelessWidget {
               );
             },
           ),
-          if (photoUrl != null) ...[
-            CircleAvatar(
-              backgroundImage: NetworkImage(photoUrl!),
-              maxRadius: 15,
-            ),
-            const SizedBox(
-              width: 10,
-            )
-          ]
+          // TODO Cicle avatar
+          // if (photoUrl != null) ...[
+          //   CircleAvatar(
+          //     backgroundImage: NetworkImage(photoUrl!),
+          //     maxRadius: 15,
+          //   ),
+          //   const SizedBox(
+          //     width: 10,
+          //   )
+          // ]
         ],
       ),
     );
