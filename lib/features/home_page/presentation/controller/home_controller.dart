@@ -32,9 +32,9 @@ class HomeController {
     });
   }
 
-  void update({bool? refresh = false}) {
+  Future<void> update({bool? refresh = false}) async {
     if (refresh != null && refresh) {
-      init();
+      await init();
     }
   }
 
@@ -43,8 +43,8 @@ class HomeController {
         _homeViewState == HomeView.grid ? HomeView.list : HomeView.grid;
   }
 
-  void onSearchNotes(String value) {
-    notes.update(() => Future.value(searchNotes(_notes, value)));
+  Future<void> onSearchNotes(String value) async {
+    await notes.update(() => Future.value(searchNotes(_notes, value)));
   }
 
   void dispose() {

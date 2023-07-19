@@ -4,40 +4,48 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i5;
-import 'dart:typed_data' as _i13;
-import 'dart:ui' as _i23;
+import 'dart:typed_data' as _i15;
+import 'dart:ui' as _i27;
 
 import 'package:cloud_firestore/cloud_firestore.dart' as _i4;
 import 'package:cloud_firestore_platform_interface/cloud_firestore_platform_interface.dart'
     as _i3;
-import 'package:dartz/dartz.dart' as _i8;
+import 'package:dartz/dartz.dart' as _i9;
 import 'package:firebase_auth/firebase_auth.dart' as _i6;
 import 'package:firebase_auth_platform_interface/firebase_auth_platform_interface.dart'
-    as _i15;
+    as _i17;
 import 'package:firebase_core/firebase_core.dart' as _i2;
 import 'package:flutter_notes_app/core/data/communication_inferface.dart'
-    as _i16;
-import 'package:flutter_notes_app/core/entities/request.dart' as _i17;
-import 'package:flutter_notes_app/core/navigator/app_navigator_interface.dart'
-    as _i12;
-import 'package:flutter_notes_app/core/state/scaffold_app_state.dart' as _i11;
-import 'package:flutter_notes_app/features/home_page/data/datasources/home_datasource_interface.dart'
     as _i18;
-import 'package:flutter_notes_app/features/home_page/data/models/note_model.dart'
-    as _i19;
-import 'package:flutter_notes_app/features/home_page/data/repositories/home_repository_interface.dart'
-    as _i21;
-import 'package:flutter_notes_app/features/home_page/domain/entities/note.dart'
-    as _i22;
-import 'package:flutter_notes_app/features/login/data/datasources/login_datasource_interface.dart'
+import 'package:flutter_notes_app/core/entities/request.dart' as _i19;
+import 'package:flutter_notes_app/core/navigator/app_navigator_interface.dart'
+    as _i14;
+import 'package:flutter_notes_app/core/state/scaffold_app_state.dart' as _i13;
+import 'package:flutter_notes_app/features/home_page/data/datasources/home_datasource_interface.dart'
     as _i20;
+import 'package:flutter_notes_app/features/home_page/data/models/note_model.dart'
+    as _i8;
+import 'package:flutter_notes_app/features/home_page/data/repositories/home_repository_interface.dart'
+    as _i11;
+import 'package:flutter_notes_app/features/home_page/domain/entities/note.dart'
+    as _i23;
+import 'package:flutter_notes_app/features/home_page/domain/usecases/get_notes_usecase.dart'
+    as _i25;
+import 'package:flutter_notes_app/features/home_page/domain/usecases/search_notes_usecase.dart'
+    as _i26;
+import 'package:flutter_notes_app/features/login/data/datasources/login_datasource_interface.dart'
+    as _i21;
 import 'package:flutter_notes_app/features/login/domain/repositories/login_repository_interface.dart'
-    as _i9;
-import 'package:flutter_notes_app/features/login/domain/usecases/login_with_google_usecase.dart'
     as _i10;
+import 'package:flutter_notes_app/features/login/domain/usecases/login_with_google_usecase.dart'
+    as _i12;
 import 'package:flutter_notes_app/features/login/presentation/controller/login_controller.dart'
+    as _i28;
+import 'package:flutter_notes_app/features/new_note/data/datasources/new_note_datasource_interface.dart'
+    as _i22;
+import 'package:flutter_notes_app/features/new_note/domain/repositories/new_note_repository_interface.dart'
     as _i24;
-import 'package:flutter_notes_app/firebase_helper.dart' as _i14;
+import 'package:flutter_notes_app/firebase_helper.dart' as _i16;
 import 'package:google_sign_in/google_sign_in.dart' as _i7;
 import 'package:mockito/mockito.dart' as _i1;
 
@@ -265,8 +273,8 @@ class _FakeGoogleSignInAuthentication_19 extends _i1.SmartFake
         );
 }
 
-class _FakeUserMetadata_20 extends _i1.SmartFake implements _i6.UserMetadata {
-  _FakeUserMetadata_20(
+class _FakeNoteModel_20 extends _i1.SmartFake implements _i8.NoteModel {
+  _FakeNoteModel_20(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -275,8 +283,8 @@ class _FakeUserMetadata_20 extends _i1.SmartFake implements _i6.UserMetadata {
         );
 }
 
-class _FakeMultiFactor_21 extends _i1.SmartFake implements _i6.MultiFactor {
-  _FakeMultiFactor_21(
+class _FakeUserMetadata_21 extends _i1.SmartFake implements _i6.UserMetadata {
+  _FakeUserMetadata_21(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -285,8 +293,8 @@ class _FakeMultiFactor_21 extends _i1.SmartFake implements _i6.MultiFactor {
         );
 }
 
-class _FakeIdTokenResult_22 extends _i1.SmartFake implements _i6.IdTokenResult {
-  _FakeIdTokenResult_22(
+class _FakeMultiFactor_22 extends _i1.SmartFake implements _i6.MultiFactor {
+  _FakeMultiFactor_22(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -295,8 +303,8 @@ class _FakeIdTokenResult_22 extends _i1.SmartFake implements _i6.IdTokenResult {
         );
 }
 
-class _FakeEither_23<L, R> extends _i1.SmartFake implements _i8.Either<L, R> {
-  _FakeEither_23(
+class _FakeIdTokenResult_23 extends _i1.SmartFake implements _i6.IdTokenResult {
+  _FakeIdTokenResult_23(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -305,9 +313,8 @@ class _FakeEither_23<L, R> extends _i1.SmartFake implements _i8.Either<L, R> {
         );
 }
 
-class _FakeLoginRepositoryInterface_24 extends _i1.SmartFake
-    implements _i9.LoginRepositoryInterface {
-  _FakeLoginRepositoryInterface_24(
+class _FakeEither_24<L, R> extends _i1.SmartFake implements _i9.Either<L, R> {
+  _FakeEither_24(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -316,9 +323,9 @@ class _FakeLoginRepositoryInterface_24 extends _i1.SmartFake
         );
 }
 
-class _FakeLoginWithGoogleUsecase_25 extends _i1.SmartFake
-    implements _i10.LoginWithGoogleUsecase {
-  _FakeLoginWithGoogleUsecase_25(
+class _FakeLoginRepositoryInterface_25 extends _i1.SmartFake
+    implements _i10.LoginRepositoryInterface {
+  _FakeLoginRepositoryInterface_25(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -327,9 +334,31 @@ class _FakeLoginWithGoogleUsecase_25 extends _i1.SmartFake
         );
 }
 
-class _FakeScaffoldAppState_26<T> extends _i1.SmartFake
-    implements _i11.ScaffoldAppState<T> {
-  _FakeScaffoldAppState_26(
+class _FakeHomeRepositoryInterface_26 extends _i1.SmartFake
+    implements _i11.HomeRepositoryInterface {
+  _FakeHomeRepositoryInterface_26(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeLoginWithGoogleUsecase_27 extends _i1.SmartFake
+    implements _i12.LoginWithGoogleUsecase {
+  _FakeLoginWithGoogleUsecase_27(
+    Object parent,
+    Invocation parentInvocation,
+  ) : super(
+          parent,
+          parentInvocation,
+        );
+}
+
+class _FakeScaffoldAppState_28<T> extends _i1.SmartFake
+    implements _i13.ScaffoldAppState<T> {
+  _FakeScaffoldAppState_28(
     Object parent,
     Invocation parentInvocation,
   ) : super(
@@ -342,7 +371,7 @@ class _FakeScaffoldAppState_26<T> extends _i1.SmartFake
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockAppNavigatorInterface extends _i1.Mock
-    implements _i12.AppNavigatorInterface {
+    implements _i14.AppNavigatorInterface {
   MockAppNavigatorInterface() {
     _i1.throwOnMissingStub(this);
   }
@@ -479,7 +508,7 @@ class MockFirebaseFirestore extends _i1.Mock implements _i4.FirebaseFirestore {
         returnValueForMissingStub: _i5.Future<void>.value(),
       ) as _i5.Future<void>);
   @override
-  _i4.LoadBundleTask loadBundle(_i13.Uint8List? bundle) => (super.noSuchMethod(
+  _i4.LoadBundleTask loadBundle(_i15.Uint8List? bundle) => (super.noSuchMethod(
         Invocation.method(
           #loadBundle,
           [bundle],
@@ -1268,7 +1297,7 @@ class MockQuerySnapshot<T extends Object?> extends _i1.Mock
 /// A class which mocks [FirebaseHelper].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockFirebaseHelper extends _i1.Mock implements _i14.FirebaseHelper {
+class MockFirebaseHelper extends _i1.Mock implements _i16.FirebaseHelper {
   MockFirebaseHelper() {
     _i1.throwOnMissingStub(this);
   }
@@ -1681,7 +1710,7 @@ class MockFirebaseAuth extends _i1.Mock implements _i6.FirebaseAuth {
       ) as _i5.Future<_i6.UserCredential>);
   @override
   _i5.Future<_i6.UserCredential> signInWithAuthProvider(
-          _i15.AuthProvider? provider) =>
+          _i17.AuthProvider? provider) =>
       (super.noSuchMethod(
         Invocation.method(
           #signInWithAuthProvider,
@@ -1698,7 +1727,7 @@ class MockFirebaseAuth extends _i1.Mock implements _i6.FirebaseAuth {
       ) as _i5.Future<_i6.UserCredential>);
   @override
   _i5.Future<_i6.UserCredential> signInWithProvider(
-          _i15.AuthProvider? provider) =>
+          _i17.AuthProvider? provider) =>
       (super.noSuchMethod(
         Invocation.method(
           #signInWithProvider,
@@ -1739,7 +1768,7 @@ class MockFirebaseAuth extends _i1.Mock implements _i6.FirebaseAuth {
         )),
       ) as _i5.Future<_i6.ConfirmationResult>);
   @override
-  _i5.Future<_i6.UserCredential> signInWithPopup(_i15.AuthProvider? provider) =>
+  _i5.Future<_i6.UserCredential> signInWithPopup(_i17.AuthProvider? provider) =>
       (super.noSuchMethod(
         Invocation.method(
           #signInWithPopup,
@@ -1755,7 +1784,7 @@ class MockFirebaseAuth extends _i1.Mock implements _i6.FirebaseAuth {
         )),
       ) as _i5.Future<_i6.UserCredential>);
   @override
-  _i5.Future<void> signInWithRedirect(_i15.AuthProvider? provider) =>
+  _i5.Future<void> signInWithRedirect(_i17.AuthProvider? provider) =>
       (super.noSuchMethod(
         Invocation.method(
           #signInWithRedirect,
@@ -1986,13 +2015,13 @@ class MockUserCredential extends _i1.Mock implements _i6.UserCredential {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockCommunicationInterface extends _i1.Mock
-    implements _i16.CommunicationInterface {
+    implements _i18.CommunicationInterface {
   MockCommunicationInterface() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i5.Future<List<Map<String, dynamic>>> get(_i17.Request? request) =>
+  _i5.Future<List<Map<String, dynamic>>> get(_i19.Request? request) =>
       (super.noSuchMethod(
         Invocation.method(
           #get,
@@ -2002,7 +2031,7 @@ class MockCommunicationInterface extends _i1.Mock
             <Map<String, dynamic>>[]),
       ) as _i5.Future<List<Map<String, dynamic>>>);
   @override
-  _i5.Future<Map<String, dynamic>> post(_i17.Request? request) =>
+  _i5.Future<Map<String, dynamic>> post(_i19.Request? request) =>
       (super.noSuchMethod(
         Invocation.method(
           #post,
@@ -2012,7 +2041,7 @@ class MockCommunicationInterface extends _i1.Mock
             _i5.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
       ) as _i5.Future<Map<String, dynamic>>);
   @override
-  _i5.Future<Map<String, dynamic>> put(_i17.Request? request) =>
+  _i5.Future<Map<String, dynamic>> put(_i19.Request? request) =>
       (super.noSuchMethod(
         Invocation.method(
           #put,
@@ -2022,7 +2051,7 @@ class MockCommunicationInterface extends _i1.Mock
             _i5.Future<Map<String, dynamic>>.value(<String, dynamic>{}),
       ) as _i5.Future<Map<String, dynamic>>);
   @override
-  _i5.Future<bool> delete(_i17.Request? request) => (super.noSuchMethod(
+  _i5.Future<bool> delete(_i19.Request? request) => (super.noSuchMethod(
         Invocation.method(
           #delete,
           [request],
@@ -2035,26 +2064,26 @@ class MockCommunicationInterface extends _i1.Mock
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockHomeDatasourceInterface extends _i1.Mock
-    implements _i18.HomeDatasourceInterface {
+    implements _i20.HomeDatasourceInterface {
   MockHomeDatasourceInterface() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i5.Future<List<_i19.NoteModel>> getNotes() => (super.noSuchMethod(
+  _i5.Future<List<_i8.NoteModel>> getNotes() => (super.noSuchMethod(
         Invocation.method(
           #getNotes,
           [],
         ),
-        returnValue: _i5.Future<List<_i19.NoteModel>>.value(<_i19.NoteModel>[]),
-      ) as _i5.Future<List<_i19.NoteModel>>);
+        returnValue: _i5.Future<List<_i8.NoteModel>>.value(<_i8.NoteModel>[]),
+      ) as _i5.Future<List<_i8.NoteModel>>);
 }
 
 /// A class which mocks [LoginDatasourceInterface].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockLoginDatasourceInterface extends _i1.Mock
-    implements _i20.LoginDatasourceInterface {
+    implements _i21.LoginDatasourceInterface {
   MockLoginDatasourceInterface() {
     _i1.throwOnMissingStub(this);
   }
@@ -2075,10 +2104,61 @@ class MockLoginDatasourceInterface extends _i1.Mock
       ) as _i5.Future<_i6.User>);
 }
 
+/// A class which mocks [NewNoteDatasourceInterface].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockNewNoteDatasourceInterface extends _i1.Mock
+    implements _i22.NewNoteDatasourceInterface {
+  MockNewNoteDatasourceInterface() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i5.Future<_i8.NoteModel> getNoteById(String? id) => (super.noSuchMethod(
+        Invocation.method(
+          #getNoteById,
+          [id],
+        ),
+        returnValue: _i5.Future<_i8.NoteModel>.value(_FakeNoteModel_20(
+          this,
+          Invocation.method(
+            #getNoteById,
+            [id],
+          ),
+        )),
+      ) as _i5.Future<_i8.NoteModel>);
+  @override
+  _i5.Future<void> createNote(_i8.NoteModel? noteModel) => (super.noSuchMethod(
+        Invocation.method(
+          #createNote,
+          [noteModel],
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+  @override
+  _i5.Future<void> editNote(_i8.NoteModel? noteModel) => (super.noSuchMethod(
+        Invocation.method(
+          #editNote,
+          [noteModel],
+        ),
+        returnValue: _i5.Future<void>.value(),
+        returnValueForMissingStub: _i5.Future<void>.value(),
+      ) as _i5.Future<void>);
+  @override
+  _i5.Future<bool> deleteNote(_i8.NoteModel? noteModel) => (super.noSuchMethod(
+        Invocation.method(
+          #deleteNote,
+          [noteModel],
+        ),
+        returnValue: _i5.Future<bool>.value(false),
+      ) as _i5.Future<bool>);
+}
+
 /// A class which mocks [Request].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockRequest extends _i1.Mock implements _i17.Request {
+class MockRequest extends _i1.Mock implements _i19.Request {
   MockRequest() {
     _i1.throwOnMissingStub(this);
   }
@@ -2116,7 +2196,7 @@ class MockUser extends _i1.Mock implements _i6.User {
   @override
   _i6.UserMetadata get metadata => (super.noSuchMethod(
         Invocation.getter(#metadata),
-        returnValue: _FakeUserMetadata_20(
+        returnValue: _FakeUserMetadata_21(
           this,
           Invocation.getter(#metadata),
         ),
@@ -2134,7 +2214,7 @@ class MockUser extends _i1.Mock implements _i6.User {
   @override
   _i6.MultiFactor get multiFactor => (super.noSuchMethod(
         Invocation.getter(#multiFactor),
-        returnValue: _FakeMultiFactor_21(
+        returnValue: _FakeMultiFactor_22(
           this,
           Invocation.getter(#multiFactor),
         ),
@@ -2165,7 +2245,7 @@ class MockUser extends _i1.Mock implements _i6.User {
           #getIdTokenResult,
           [forceRefresh],
         ),
-        returnValue: _i5.Future<_i6.IdTokenResult>.value(_FakeIdTokenResult_22(
+        returnValue: _i5.Future<_i6.IdTokenResult>.value(_FakeIdTokenResult_23(
           this,
           Invocation.method(
             #getIdTokenResult,
@@ -2192,7 +2272,7 @@ class MockUser extends _i1.Mock implements _i6.User {
       ) as _i5.Future<_i6.UserCredential>);
   @override
   _i5.Future<_i6.UserCredential> linkWithProvider(
-          _i15.AuthProvider? provider) =>
+          _i17.AuthProvider? provider) =>
       (super.noSuchMethod(
         Invocation.method(
           #linkWithProvider,
@@ -2209,7 +2289,7 @@ class MockUser extends _i1.Mock implements _i6.User {
       ) as _i5.Future<_i6.UserCredential>);
   @override
   _i5.Future<_i6.UserCredential> reauthenticateWithProvider(
-          _i15.AuthProvider? provider) =>
+          _i17.AuthProvider? provider) =>
       (super.noSuchMethod(
         Invocation.method(
           #reauthenticateWithProvider,
@@ -2226,7 +2306,7 @@ class MockUser extends _i1.Mock implements _i6.User {
       ) as _i5.Future<_i6.UserCredential>);
   @override
   _i5.Future<_i6.UserCredential> reauthenticateWithPopup(
-          _i15.AuthProvider? provider) =>
+          _i17.AuthProvider? provider) =>
       (super.noSuchMethod(
         Invocation.method(
           #reauthenticateWithPopup,
@@ -2242,7 +2322,7 @@ class MockUser extends _i1.Mock implements _i6.User {
         )),
       ) as _i5.Future<_i6.UserCredential>);
   @override
-  _i5.Future<void> reauthenticateWithRedirect(_i15.AuthProvider? provider) =>
+  _i5.Future<void> reauthenticateWithRedirect(_i17.AuthProvider? provider) =>
       (super.noSuchMethod(
         Invocation.method(
           #reauthenticateWithRedirect,
@@ -2252,7 +2332,7 @@ class MockUser extends _i1.Mock implements _i6.User {
         returnValueForMissingStub: _i5.Future<void>.value(),
       ) as _i5.Future<void>);
   @override
-  _i5.Future<_i6.UserCredential> linkWithPopup(_i15.AuthProvider? provider) =>
+  _i5.Future<_i6.UserCredential> linkWithPopup(_i17.AuthProvider? provider) =>
       (super.noSuchMethod(
         Invocation.method(
           #linkWithPopup,
@@ -2268,7 +2348,7 @@ class MockUser extends _i1.Mock implements _i6.User {
         )),
       ) as _i5.Future<_i6.UserCredential>);
   @override
-  _i5.Future<void> linkWithRedirect(_i15.AuthProvider? provider) =>
+  _i5.Future<void> linkWithRedirect(_i17.AuthProvider? provider) =>
       (super.noSuchMethod(
         Invocation.method(
           #linkWithRedirect,
@@ -2440,95 +2520,239 @@ class MockUser extends _i1.Mock implements _i6.User {
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockLoginRepositoryInterface extends _i1.Mock
-    implements _i9.LoginRepositoryInterface {
+    implements _i10.LoginRepositoryInterface {
   MockLoginRepositoryInterface() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i5.Future<_i8.Either<Exception, void>> loginWithGoogle() =>
+  _i5.Future<_i9.Either<Exception, void>> loginWithGoogle() =>
       (super.noSuchMethod(
         Invocation.method(
           #loginWithGoogle,
           [],
         ),
-        returnValue: _i5.Future<_i8.Either<Exception, void>>.value(
-            _FakeEither_23<Exception, void>(
+        returnValue: _i5.Future<_i9.Either<Exception, void>>.value(
+            _FakeEither_24<Exception, void>(
           this,
           Invocation.method(
             #loginWithGoogle,
             [],
           ),
         )),
-      ) as _i5.Future<_i8.Either<Exception, void>>);
+      ) as _i5.Future<_i9.Either<Exception, void>>);
 }
 
 /// A class which mocks [HomeRepositoryInterface].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockHomeRepositoryInterface extends _i1.Mock
-    implements _i21.HomeRepositoryInterface {
+    implements _i11.HomeRepositoryInterface {
   MockHomeRepositoryInterface() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i5.Future<_i8.Either<Exception, List<_i22.Note>>> getNotes() =>
+  _i5.Future<_i9.Either<Exception, List<_i23.Note>>> getNotes() =>
       (super.noSuchMethod(
         Invocation.method(
           #getNotes,
           [],
         ),
-        returnValue: _i5.Future<_i8.Either<Exception, List<_i22.Note>>>.value(
-            _FakeEither_23<Exception, List<_i22.Note>>(
+        returnValue: _i5.Future<_i9.Either<Exception, List<_i23.Note>>>.value(
+            _FakeEither_24<Exception, List<_i23.Note>>(
           this,
           Invocation.method(
             #getNotes,
             [],
           ),
         )),
-      ) as _i5.Future<_i8.Either<Exception, List<_i22.Note>>>);
+      ) as _i5.Future<_i9.Either<Exception, List<_i23.Note>>>);
+}
+
+/// A class which mocks [NewNoteRepositoryInterface].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockNewNoteRepositoryInterface extends _i1.Mock
+    implements _i24.NewNoteRepositoryInterface {
+  MockNewNoteRepositoryInterface() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i5.Future<_i9.Either<Exception, _i23.Note>> getNoteById(String? id) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #getNoteById,
+          [id],
+        ),
+        returnValue: _i5.Future<_i9.Either<Exception, _i23.Note>>.value(
+            _FakeEither_24<Exception, _i23.Note>(
+          this,
+          Invocation.method(
+            #getNoteById,
+            [id],
+          ),
+        )),
+      ) as _i5.Future<_i9.Either<Exception, _i23.Note>>);
+  @override
+  _i5.Future<_i9.Either<Exception, void>> createNote(_i23.Note? note) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #createNote,
+          [note],
+        ),
+        returnValue: _i5.Future<_i9.Either<Exception, void>>.value(
+            _FakeEither_24<Exception, void>(
+          this,
+          Invocation.method(
+            #createNote,
+            [note],
+          ),
+        )),
+      ) as _i5.Future<_i9.Either<Exception, void>>);
+  @override
+  _i5.Future<_i9.Either<Exception, void>> editNote(_i23.Note? note) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #editNote,
+          [note],
+        ),
+        returnValue: _i5.Future<_i9.Either<Exception, void>>.value(
+            _FakeEither_24<Exception, void>(
+          this,
+          Invocation.method(
+            #editNote,
+            [note],
+          ),
+        )),
+      ) as _i5.Future<_i9.Either<Exception, void>>);
+  @override
+  _i5.Future<_i9.Either<Exception, void>> deleteNote(_i23.Note? note) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #deleteNote,
+          [note],
+        ),
+        returnValue: _i5.Future<_i9.Either<Exception, void>>.value(
+            _FakeEither_24<Exception, void>(
+          this,
+          Invocation.method(
+            #deleteNote,
+            [note],
+          ),
+        )),
+      ) as _i5.Future<_i9.Either<Exception, void>>);
 }
 
 /// A class which mocks [LoginWithGoogleUsecase].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockLoginWithGoogleUsecase extends _i1.Mock
-    implements _i10.LoginWithGoogleUsecase {
+    implements _i12.LoginWithGoogleUsecase {
   MockLoginWithGoogleUsecase() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i9.LoginRepositoryInterface get repository => (super.noSuchMethod(
+  _i10.LoginRepositoryInterface get repository => (super.noSuchMethod(
         Invocation.getter(#repository),
-        returnValue: _FakeLoginRepositoryInterface_24(
+        returnValue: _FakeLoginRepositoryInterface_25(
           this,
           Invocation.getter(#repository),
         ),
-      ) as _i9.LoginRepositoryInterface);
+      ) as _i10.LoginRepositoryInterface);
   @override
-  _i5.Future<_i8.Either<Exception, void>> call() => (super.noSuchMethod(
+  _i5.Future<_i9.Either<Exception, void>> call() => (super.noSuchMethod(
         Invocation.method(
           #call,
           [],
         ),
-        returnValue: _i5.Future<_i8.Either<Exception, void>>.value(
-            _FakeEither_23<Exception, void>(
+        returnValue: _i5.Future<_i9.Either<Exception, void>>.value(
+            _FakeEither_24<Exception, void>(
           this,
           Invocation.method(
             #call,
             [],
           ),
         )),
-      ) as _i5.Future<_i8.Either<Exception, void>>);
+      ) as _i5.Future<_i9.Either<Exception, void>>);
+}
+
+/// A class which mocks [GetNotesUsecase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockGetNotesUsecase extends _i1.Mock implements _i25.GetNotesUsecase {
+  MockGetNotesUsecase() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i11.HomeRepositoryInterface get repository => (super.noSuchMethod(
+        Invocation.getter(#repository),
+        returnValue: _FakeHomeRepositoryInterface_26(
+          this,
+          Invocation.getter(#repository),
+        ),
+      ) as _i11.HomeRepositoryInterface);
+  @override
+  _i5.Future<_i9.Either<Exception, List<_i23.Note>>> call() =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [],
+        ),
+        returnValue: _i5.Future<_i9.Either<Exception, List<_i23.Note>>>.value(
+            _FakeEither_24<Exception, List<_i23.Note>>(
+          this,
+          Invocation.method(
+            #call,
+            [],
+          ),
+        )),
+      ) as _i5.Future<_i9.Either<Exception, List<_i23.Note>>>);
+}
+
+/// A class which mocks [SearchNotesUsecase].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockSearchNotesUsecase extends _i1.Mock
+    implements _i26.SearchNotesUsecase {
+  MockSearchNotesUsecase() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i9.Either<Exception, List<_i23.Note>?> call(
+    List<_i23.Note>? notes,
+    String? value,
+  ) =>
+      (super.noSuchMethod(
+        Invocation.method(
+          #call,
+          [
+            notes,
+            value,
+          ],
+        ),
+        returnValue: _FakeEither_24<Exception, List<_i23.Note>?>(
+          this,
+          Invocation.method(
+            #call,
+            [
+              notes,
+              value,
+            ],
+          ),
+        ),
+      ) as _i9.Either<Exception, List<_i23.Note>?>);
 }
 
 /// A class which mocks [ScaffoldAppState].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockScaffoldAppState<T> extends _i1.Mock
-    implements _i11.ScaffoldAppState<T> {
+    implements _i13.ScaffoldAppState<T> {
   MockScaffoldAppState() {
     _i1.throwOnMissingStub(this);
   }
@@ -2575,6 +2799,11 @@ class MockScaffoldAppState<T> extends _i1.Mock
         returnValue: false,
       ) as bool);
   @override
+  bool get isDisposed => (super.noSuchMethod(
+        Invocation.getter(#isDisposed),
+        returnValue: false,
+      ) as bool);
+  @override
   set value(T? value) => super.noSuchMethod(
         Invocation.setter(
           #value,
@@ -2604,7 +2833,7 @@ class MockScaffoldAppState<T> extends _i1.Mock
         returnValueForMissingStub: null,
       );
   @override
-  void addListener(_i23.VoidCallback? listener) => super.noSuchMethod(
+  void addListener(_i27.VoidCallback? listener) => super.noSuchMethod(
         Invocation.method(
           #addListener,
           [listener],
@@ -2612,7 +2841,7 @@ class MockScaffoldAppState<T> extends _i1.Mock
         returnValueForMissingStub: null,
       );
   @override
-  void removeListener(_i23.VoidCallback? listener) => super.noSuchMethod(
+  void removeListener(_i27.VoidCallback? listener) => super.noSuchMethod(
         Invocation.method(
           #removeListener,
           [listener],
@@ -2640,27 +2869,27 @@ class MockScaffoldAppState<T> extends _i1.Mock
 /// A class which mocks [LoginController].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockLoginController extends _i1.Mock implements _i24.LoginController {
+class MockLoginController extends _i1.Mock implements _i28.LoginController {
   MockLoginController() {
     _i1.throwOnMissingStub(this);
   }
 
   @override
-  _i10.LoginWithGoogleUsecase get loginWithGoogle => (super.noSuchMethod(
+  _i12.LoginWithGoogleUsecase get loginWithGoogle => (super.noSuchMethod(
         Invocation.getter(#loginWithGoogle),
-        returnValue: _FakeLoginWithGoogleUsecase_25(
+        returnValue: _FakeLoginWithGoogleUsecase_27(
           this,
           Invocation.getter(#loginWithGoogle),
         ),
-      ) as _i10.LoginWithGoogleUsecase);
+      ) as _i12.LoginWithGoogleUsecase);
   @override
-  _i11.ScaffoldAppState<dynamic> get scaffoldState => (super.noSuchMethod(
+  _i13.ScaffoldAppState<dynamic> get scaffoldState => (super.noSuchMethod(
         Invocation.getter(#scaffoldState),
-        returnValue: _FakeScaffoldAppState_26<dynamic>(
+        returnValue: _FakeScaffoldAppState_28<dynamic>(
           this,
           Invocation.getter(#scaffoldState),
         ),
-      ) as _i11.ScaffoldAppState<dynamic>);
+      ) as _i13.ScaffoldAppState<dynamic>);
   @override
   _i5.Future<void> login() => (super.noSuchMethod(
         Invocation.method(
