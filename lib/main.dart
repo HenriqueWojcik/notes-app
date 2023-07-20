@@ -9,7 +9,6 @@ import 'injectors.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await FirebaseHelper.init();
 
   runApp(const MainApp());
 }
