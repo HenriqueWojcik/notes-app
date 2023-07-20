@@ -10,14 +10,14 @@ void main() {
   late MockCollectionReference<Map<String, dynamic>> mockCollectionReference;
   late MockQuerySnapshot<Map<String, dynamic>> mockQuerySnapshot;
   late MockDocumentReference<Map<String, dynamic>> mockDocumentReference;
-  late MockRequest mockRequest;
+  late MockAppRequest mockRequest;
 
   setUp(() {
     mockFirebase = MockFirebaseFirestore();
     mockCollectionReference = MockCollectionReference<Map<String, dynamic>>();
     mockQuerySnapshot = MockQuerySnapshot();
     mockDocumentReference = MockDocumentReference();
-    mockRequest = MockRequest();
+    mockRequest = MockAppRequest();
     sut = CommunicationImpl(firebase: mockFirebase);
   });
 

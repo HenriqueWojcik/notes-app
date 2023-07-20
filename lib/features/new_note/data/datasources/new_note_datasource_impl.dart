@@ -17,7 +17,7 @@ class NewNoteDatasourceImpl implements NewNoteDatasourceInterface {
 
   @override
   Future<NoteModel> getNoteById(String id) async {
-    final request = Request(
+    final request = AppRequest(
       collection: 'notes',
       parameters: {'id': id},
     );
@@ -33,7 +33,7 @@ class NewNoteDatasourceImpl implements NewNoteDatasourceInterface {
   Future<void> createNote(NoteModel noteModel) async {
     noteModel.userId = user.uid;
 
-    final request = Request(
+    final request = AppRequest(
       collection: 'notes',
       parameters: noteModel.toJson(),
     );
@@ -49,7 +49,7 @@ class NewNoteDatasourceImpl implements NewNoteDatasourceInterface {
 
   @override
   Future<void> editNote(NoteModel noteModel) async {
-    final request = Request(
+    final request = AppRequest(
       collection: 'notes',
       parameters: noteModel.toJson(),
     );
@@ -59,7 +59,7 @@ class NewNoteDatasourceImpl implements NewNoteDatasourceInterface {
 
   @override
   Future<bool> deleteNote(NoteModel noteModel) async {
-    final request = Request(
+    final request = AppRequest(
       collection: 'notes',
       parameters: noteModel.toJson(),
     );

@@ -66,12 +66,7 @@ void main() {
 
     when(communication.put(any)).thenAnswer((_) async => {});
 
-    expect(
-      () async => await sut.editNote(
-        noteModel,
-      ),
-      isA<void>(),
-    );
+    expect(() async => await sut.editNote(noteModel), isA<void>());
   });
 
   test('should delete note correctly', () async {

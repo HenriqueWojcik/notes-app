@@ -1,7 +1,7 @@
 import 'package:flutter_notes_app/core/entities/request.dart';
 
-extension RequestSample on Request {
-  static Request get sample => const Request(
+extension RequestSample on AppRequest {
+  static AppRequest get sample => const AppRequest(
         collection: 'collection',
         parameters: {'key': 'value'},
       );

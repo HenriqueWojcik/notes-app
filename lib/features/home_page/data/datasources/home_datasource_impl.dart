@@ -15,7 +15,7 @@ class HomeDatasourceImpl implements HomeDatasourceInterface {
 
   @override
   Future<List<NoteModel>> getNotes() async {
-    final request = Request(
+    final request = AppRequest(
       collection: 'notes',
       parameters: {'userId': user.uid},
     );

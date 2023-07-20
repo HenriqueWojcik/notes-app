@@ -15,6 +15,10 @@ import 'package:flutter_notes_app/features/login/domain/usecases/login_with_goog
 import 'package:flutter_notes_app/features/login/presentation/controller/login_controller.dart';
 import 'package:flutter_notes_app/features/new_note/data/datasources/new_note_datasource_interface.dart';
 import 'package:flutter_notes_app/features/new_note/domain/repositories/new_note_repository_interface.dart';
+import 'package:flutter_notes_app/features/new_note/domain/usecases/create_note_usecase.dart';
+import 'package:flutter_notes_app/features/new_note/domain/usecases/delete_note_usecase.dart';
+import 'package:flutter_notes_app/features/new_note/domain/usecases/edit_note_usecase.dart';
+import 'package:flutter_notes_app/features/new_note/domain/usecases/get_note_by_id.dart';
 import 'package:flutter_notes_app/firebase_helper.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:mockito/annotations.dart';
@@ -53,7 +57,7 @@ import 'package:mockito/annotations.dart';
 
 // Entities
 @GenerateMocks([
-  Request,
+  AppRequest,
   User,
 ])
 
@@ -69,6 +73,10 @@ import 'package:mockito/annotations.dart';
   LoginWithGoogleUsecase,
   GetNotesUsecase,
   SearchNotesUsecase,
+  GetNoteById,
+  CreateNoteUseCase,
+  EditNoteUsecase,
+  DeleteNoteUseCase,
 ])
 
 // Controller

@@ -62,7 +62,7 @@ void main() {
   test('should return a either void correctly in editNote method', () async {
     final note = NoteSample.sample();
 
-    when(datasource.createNote(any)).thenAnswer((_) async => {});
+    when(datasource.editNote(any)).thenAnswer((_) async => {});
 
     final result = await sut.editNote(note);
 
@@ -72,7 +72,7 @@ void main() {
   test(
       'should return a either Exception when receive a note null in editNote method',
       () async {
-    when(datasource.createNote(any)).thenThrow(Exception());
+    when(datasource.editNote(any)).thenThrow(Exception());
 
     final result = await sut.editNote(null);
 
@@ -85,7 +85,7 @@ void main() {
 
     when(datasource.deleteNote(any)).thenAnswer((_) async => true);
 
-    final result = await sut.editNote(note);
+    final result = await sut.deleteNote(note);
 
     expect(result.isRight(), true);
   });
@@ -95,7 +95,7 @@ void main() {
       () async {
     when(datasource.deleteNote(any)).thenThrow(Exception());
 
-    final result = await sut.editNote(null);
+    final result = await sut.deleteNote(null);
 
     expect(result.isLeft(), true);
     expect(result.asLeft(), isA<Exception>());

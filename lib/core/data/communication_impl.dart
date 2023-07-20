@@ -12,7 +12,7 @@ class CommunicationImpl implements CommunicationInterface {
 
   @override
   Future<List<Map<String, dynamic>>> get(
-    Request request,
+    AppRequest request,
   ) async {
     final collection = firebase.collection(request.collection);
 
@@ -52,7 +52,7 @@ class CommunicationImpl implements CommunicationInterface {
   }
 
   @override
-  Future<Map<String, dynamic>> post(Request request) async {
+  Future<Map<String, dynamic>> post(AppRequest request) async {
     Map<String, dynamic>? data = request.parameters;
 
     if (data == null) {
@@ -67,7 +67,7 @@ class CommunicationImpl implements CommunicationInterface {
   }
 
   @override
-  Future<Map<String, dynamic>> put(Request request) async {
+  Future<Map<String, dynamic>> put(AppRequest request) async {
     Map<String, dynamic>? data = request.parameters;
 
     if (data == null) {
@@ -90,7 +90,7 @@ class CommunicationImpl implements CommunicationInterface {
   }
 
   @override
-  Future<bool> delete(Request request) {
+  Future<bool> delete(AppRequest request) {
     Map<String, dynamic>? data = request.parameters;
 
     if (data == null) {

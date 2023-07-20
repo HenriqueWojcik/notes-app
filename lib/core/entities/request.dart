@@ -1,10 +1,10 @@
 import 'package:equatable/equatable.dart';
 
-class Request extends Equatable {
+class AppRequest extends Equatable {
   final String collection;
   final Map<String, dynamic>? parameters;
 
-  const Request({
+  const AppRequest({
     required this.collection,
     this.parameters,
   });
