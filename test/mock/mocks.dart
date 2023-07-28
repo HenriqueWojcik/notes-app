@@ -6,6 +6,7 @@ import 'package:flutter_notes_app/core/navigator/app_navigator_interface.dart';
 import 'package:flutter_notes_app/core/state/scaffold_app_state.dart';
 import 'package:flutter_notes_app/features/home_page/data/datasources/home_datasource_interface.dart';
 import 'package:flutter_notes_app/features/home_page/data/repositories/home_repository_interface.dart';
+import 'package:flutter_notes_app/features/home_page/domain/entities/note.dart';
 import 'package:flutter_notes_app/features/home_page/domain/usecases/get_notes_usecase.dart';
 import 'package:flutter_notes_app/features/home_page/domain/usecases/search_notes_usecase.dart';
 import 'package:flutter_notes_app/features/home_page/presentation/controller/home_controller.dart';
@@ -59,6 +60,7 @@ import 'package:mockito/annotations.dart';
 @GenerateMocks([
   AppRequest,
   User,
+  Note,
 ])
 
 // Repositories
@@ -73,7 +75,7 @@ import 'package:mockito/annotations.dart';
   LoginWithGoogleUsecase,
   GetNotesUsecase,
   SearchNotesUsecase,
-  GetNoteById,
+  GetNoteByIdUseCase,
   CreateNoteUseCase,
   EditNoteUsecase,
   DeleteNoteUseCase,

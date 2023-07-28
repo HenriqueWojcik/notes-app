@@ -2571,6 +2571,87 @@ class MockUser extends _i1.Mock implements _i6.User {
       ) as _i5.Future<void>);
 }
 
+/// A class which mocks [Note].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockNote extends _i1.Mock implements _i27.Note {
+  MockNote() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  set id(String? _id) => super.noSuchMethod(
+        Invocation.setter(
+          #id,
+          _id,
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  String get title => (super.noSuchMethod(
+        Invocation.getter(#title),
+        returnValue: '',
+      ) as String);
+  @override
+  set title(String? _title) => super.noSuchMethod(
+        Invocation.setter(
+          #title,
+          _title,
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  String get body => (super.noSuchMethod(
+        Invocation.getter(#body),
+        returnValue: '',
+      ) as String);
+  @override
+  set body(String? _body) => super.noSuchMethod(
+        Invocation.setter(
+          #body,
+          _body,
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  set editedAt(String? _editedAt) => super.noSuchMethod(
+        Invocation.setter(
+          #editedAt,
+          _editedAt,
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  set pinned(bool? _pinned) => super.noSuchMethod(
+        Invocation.setter(
+          #pinned,
+          _pinned,
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  bool get sync => (super.noSuchMethod(
+        Invocation.getter(#sync),
+        returnValue: false,
+      ) as bool);
+  @override
+  set sync(bool? _sync) => super.noSuchMethod(
+        Invocation.setter(
+          #sync,
+          _sync,
+        ),
+        returnValueForMissingStub: null,
+      );
+  @override
+  set userId(String? _userId) => super.noSuchMethod(
+        Invocation.setter(
+          #userId,
+          _userId,
+        ),
+        returnValueForMissingStub: null,
+      );
+}
+
 /// A class which mocks [LoginRepositoryInterface].
 ///
 /// See the documentation for Mockito's code generation for more information.
@@ -2803,11 +2884,12 @@ class MockSearchNotesUsecase extends _i1.Mock
       ) as _i9.Either<Exception, List<_i27.Note>?>);
 }
 
-/// A class which mocks [GetNoteById].
+/// A class which mocks [GetNoteByIdUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockGetNoteById extends _i1.Mock implements _i28.GetNoteById {
-  MockGetNoteById() {
+class MockGetNoteByIdUseCase extends _i1.Mock
+    implements _i28.GetNoteByIdUseCase {
+  MockGetNoteByIdUseCase() {
     _i1.throwOnMissingStub(this);
   }
 
