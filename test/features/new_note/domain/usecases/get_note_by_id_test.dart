@@ -7,12 +7,12 @@ import '../../../../mock/mocks.mocks.dart';
 import '../../../../samples/entities/note_model_sample.dart';
 
 void main() {
-  late GetNoteById sut;
+  late GetNoteByIdUseCase sut;
   late MockNewNoteRepositoryInterface repository;
 
   setUp(() {
     repository = MockNewNoteRepositoryInterface();
-    sut = GetNoteById(repository: repository);
+    sut = GetNoteByIdUseCase(repository: repository);
   });
 
   test('should return correctly a right either correctly', () async {

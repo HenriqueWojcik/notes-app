@@ -36,7 +36,7 @@ class NewNoteInjector extends FeatureInjector {
   @override
   void injectUsecases() {
     getIt
-      ..registerFactory(() => GetNoteById(repository: getIt()))
+      ..registerFactory(() => GetNoteByIdUseCase(repository: getIt()))
       ..registerFactory(() => CreateNoteUseCase(repository: getIt()))
       ..registerFactory(() => EditNoteUsecase(repository: getIt()))
       ..registerFactory(() => DeleteNoteUseCase(repository: getIt()));

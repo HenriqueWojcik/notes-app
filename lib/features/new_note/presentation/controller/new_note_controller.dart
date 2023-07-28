@@ -1,3 +1,4 @@
+import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/i18n/i18n.dart';
@@ -11,7 +12,7 @@ import '../../domain/usecases/edit_note_usecase.dart';
 import '../../domain/usecases/get_note_by_id.dart';
 
 class NewNoteController {
-  final GetNoteById getNoteById;
+  final GetNoteByIdUseCase getNoteById;
   final CreateNoteUseCase createNote;
   final EditNoteUsecase editNote;
   final DeleteNoteUseCase deleteNoteUseCase;
@@ -35,16 +36,13 @@ class NewNoteController {
 
   bool get isEditingNote => note?.id != null;
 
-  void init(String? noteId) {
+  Future<void> init(String? noteId) async {
     if (noteId == null) {
-      note = Note(
-        title: '',
-        body: '',
-      );
+      _createNoteIfNotExists();
       return;
     }
 
-    noteState.update(() async {
+    await noteState.update(() async {
       final result = await getNoteById(noteId);
 
       result.fold((_) => null, (value) {
@@ -58,60 +56,72 @@ class NewNoteController {
     });
   }
 
-  Future<bool> createNewNote() async {
+  Future<bool> createOrUpdateNote() async {
     bool? value;
 
-    if (note?.id == null) {
-      await scaffoldState.update(() async {
-        final result = await createNote(note);
-        value = result.isLeft();
+    Future<Either<Exception, void>> task() async {
+      if (isEditingNote) {
+        scaffoldState.onSuccessMessage = I18n.strings.noteEditedWithSuccess;
+        return editNote(note);
+      }
 
-        return result;
-      });
-    } else {
-      scaffoldState.onSuccessMessage = I18n.strings.noteEditedWithSuccess;
-      await scaffoldState.update(() async {
-        final result = await editNote(note);
-        value = result.isLeft();
-
-        return result;
-      });
+      return createNote(note);
     }
+
+    await scaffoldState.update(() async {
+      final result = await task();
+      value = result.isRight();
+
+      return result;
+    });
 
     return value ?? false;
   }
 
   void setTitle(String title) {
+    _createNoteIfNotExists();
     _editedAt();
+
     note?.title = title;
-    _update();
+    _updateState();
   }
 
   void setBody(String body) {
+    _createNoteIfNotExists();
     _editedAt();
+
     note?.body = body;
-    _update();
+    _updateState();
   }
 
   void setPinned() {
+    _createNoteIfNotExists();
     _editedAt();
+
     bool? pinned = note?.pinned;
 
     note?.pinned = pinned == null ? true : !pinned;
-    _update();
+    _updateState();
   }
 
   void _editedAt() => note?.editedAt = DateTime.now().toString();
 
-  void _update() => noteState.value = note;
+  void _updateState() => noteState.value = note;
+
+  void _createNoteIfNotExists() {
+    note ??= Note(
+      title: '',
+      body: '',
+    );
+  }
 
   Future<bool> deleteNote() async {
     bool? value;
 
     scaffoldState.onSuccessMessage = I18n.strings.noteRemovedWithSuccess;
     await scaffoldState.update(() async {
-      final result = await deleteNoteUseCase.call(note);
-      value = result.isLeft();
+      final result = await deleteNoteUseCase(note);
+      value = result.isRight();
 
       return result;
     });

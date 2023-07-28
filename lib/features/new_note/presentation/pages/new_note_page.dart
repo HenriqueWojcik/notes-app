@@ -62,7 +62,7 @@ class _NewNotePageState extends State<NewNotePage> {
   }
 
   Future<void> _onClickDone() async {
-    await _controller.createNewNote();
+    await _controller.createOrUpdateNote();
   }
 
   Future<void> _onSuccess() async {
