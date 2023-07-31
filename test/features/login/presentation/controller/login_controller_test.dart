@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:flutter_notes_app/core/entities/failure.dart';
 import 'package:flutter_notes_app/core/i18n/i18n.dart';
 import 'package:flutter_notes_app/features/login/presentation/controller/login_controller.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -31,13 +32,13 @@ void main() {
 
   test('should update scaffold state corretly when result is error', () async {
     const String errorMsg = 'error';
-    final exception = Exception(errorMsg);
+    final failure = Failure(message: errorMsg);
 
-    when(loginWithGoogle()).thenAnswer((_) async => Left(exception));
+    when(loginWithGoogle()).thenAnswer((_) async => Left(failure));
 
     await sut.login();
 
-    expect(sut.scaffoldState.onErrorMessage, exception.toString());
+    expect(sut.scaffoldState.onErrorMessage, failure.toString());
   });
 
   test('should call state dispose when dispose method is called', () {

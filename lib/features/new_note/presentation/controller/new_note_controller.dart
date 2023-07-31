@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../core/entities/failure.dart';
 import '../../../../core/i18n/i18n.dart';
 import '../../../../core/state/app_state.dart';
 import '../../../../core/state/app_state_extension.dart';
@@ -59,7 +60,7 @@ class NewNoteController {
   Future<bool> createOrUpdateNote() async {
     bool? value;
 
-    Future<Either<Exception, void>> task() async {
+    Future<Either<Failure, void>> task() async {
       if (isEditingNote) {
         scaffoldState.onSuccessMessage = I18n.strings.noteEditedWithSuccess;
         return editNote(note);

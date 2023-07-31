@@ -1,7 +1,8 @@
 import 'package:dartz/dartz.dart';
 
+import '../../../../core/entities/failure.dart';
 import '../../domain/entities/note.dart';
 
 abstract class HomeRepositoryInterface {
-  Future<Either<Exception, List<Note>>> getNotes();
+  Future<Either<Failure, List<Note>>> getNotes();
 }

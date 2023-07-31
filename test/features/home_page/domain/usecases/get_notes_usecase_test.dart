@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:flutter_notes_app/core/entities/failure.dart';
 import 'package:flutter_notes_app/features/home_page/domain/entities/note.dart';
 import 'package:flutter_notes_app/features/home_page/domain/usecases/get_notes_usecase.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -17,7 +18,7 @@ void main() {
   });
 
   test('should return notes correctly', () async {
-    Either<Exception, List<Note>> value = Right([NoteSample.sample()]);
+    Either<Failure, List<Note>> value = Right([NoteSample.sample()]);
 
     when(repository.getNotes()).thenAnswer((_) async => value);
 
@@ -27,7 +28,7 @@ void main() {
   });
 
   test('should return a Exception when datasource fails', () async {
-    Either<Exception, List<Note>> value = Left(Exception());
+    Either<Failure, List<Note>> value = Left(Failure(message: ''));
 
     when(repository.getNotes()).thenAnswer((_) async => value);
 

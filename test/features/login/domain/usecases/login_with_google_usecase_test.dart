@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:flutter_notes_app/core/entities/failure.dart';
 import 'package:flutter_notes_app/core/helpers/dart_z_externsion.dart';
 import 'package:flutter_notes_app/features/login/domain/usecases/login_with_google_usecase.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -25,12 +26,12 @@ void main() {
   });
 
   test('should return a Exception if something fails', () async {
-    final Exception exception = Exception();
-    when(repository.loginWithGoogle()).thenAnswer((_) async => Left(exception));
+    final Failure failure = Failure(message: '');
+    when(repository.loginWithGoogle()).thenAnswer((_) async => Left(failure));
 
     final result = await sut();
 
     expect(result.isLeft(), true);
-    expect(result.asLeft(), exception);
+    expect(result.asLeft(), failure);
   });
 }

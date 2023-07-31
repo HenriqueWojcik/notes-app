@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 
+import '../../../../core/entities/failure.dart';
 import '../repositories/login_repository_interface.dart';
 
 class LoginWithGoogleUsecase {
@@ -7,7 +8,7 @@ class LoginWithGoogleUsecase {
 
   LoginWithGoogleUsecase({required this.repository});
 
-  Future<Either<Exception, void>> call() async {
+  Future<Either<Failure, void>> call() async {
     return await repository.loginWithGoogle();
   }
 }

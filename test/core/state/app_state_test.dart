@@ -1,3 +1,4 @@
+import 'package:flutter_notes_app/core/entities/failure.dart';
 import 'package:flutter_notes_app/core/state/app_state.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -30,10 +31,10 @@ void main() {
   test(
       'when call set error, should have error and loading set false and data as null',
       () async {
-    final Exception exception = Exception();
-    sut.fail = exception;
+    final Failure failure = Failure(message: '');
+    sut.fail = failure;
 
-    expect(sut.error, exception);
+    expect(sut.error, failure);
     expect(sut.data, null);
     expect(sut.loading, false);
   });

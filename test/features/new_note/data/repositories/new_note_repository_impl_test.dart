@@ -1,3 +1,4 @@
+import 'package:flutter_notes_app/core/entities/failure.dart';
 import 'package:flutter_notes_app/core/helpers/dart_z_externsion.dart';
 import 'package:flutter_notes_app/features/home_page/data/models/note_model.dart';
 import 'package:flutter_notes_app/features/home_page/domain/entities/note.dart';
@@ -35,7 +36,7 @@ void main() {
     final result = await sut.getNoteById('');
 
     expect(result.isLeft(), true);
-    expect(result.asLeft(), isA<Exception>());
+    expect(result.asLeft(), isA<Failure>());
   });
 
   test('should return a either void correctly in createNote method', () async {
@@ -56,7 +57,7 @@ void main() {
     final result = await sut.createNote(null);
 
     expect(result.isLeft(), true);
-    expect(result.asLeft(), isA<Exception>());
+    expect(result.asLeft(), isA<Failure>());
   });
 
   test('should return a either void correctly in editNote method', () async {
@@ -77,7 +78,7 @@ void main() {
     final result = await sut.editNote(null);
 
     expect(result.isLeft(), true);
-    expect(result.asLeft(), isA<Exception>());
+    expect(result.asLeft(), isA<Failure>());
   });
 
   test('should return a either void correctly in deleteNote method', () async {
@@ -98,6 +99,6 @@ void main() {
     final result = await sut.deleteNote(null);
 
     expect(result.isLeft(), true);
-    expect(result.asLeft(), isA<Exception>());
+    expect(result.asLeft(), isA<Failure>());
   });
 }

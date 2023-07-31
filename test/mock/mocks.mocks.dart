@@ -5,7 +5,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _i5;
 import 'dart:typed_data' as _i19;
-import 'dart:ui' as _i32;
+import 'dart:ui' as _i33;
 
 import 'package:cloud_firestore/cloud_firestore.dart' as _i4;
 import 'package:cloud_firestore_platform_interface/cloud_firestore_platform_interface.dart'
@@ -17,8 +17,9 @@ import 'package:firebase_auth_platform_interface/firebase_auth_platform_interfac
 import 'package:firebase_core/firebase_core.dart' as _i2;
 import 'package:flutter_notes_app/core/data/communication_inferface.dart'
     as _i22;
+import 'package:flutter_notes_app/core/entities/failure.dart' as _i28;
 import 'package:flutter_notes_app/core/entities/request.dart' as _i23;
-import 'package:flutter_notes_app/core/enums/home_view.dart' as _i35;
+import 'package:flutter_notes_app/core/enums/home_view.dart' as _i36;
 import 'package:flutter_notes_app/core/navigator/app_navigator_interface.dart'
     as _i18;
 import 'package:flutter_notes_app/core/state/app_state.dart' as _i17;
@@ -36,7 +37,7 @@ import 'package:flutter_notes_app/features/home_page/domain/usecases/get_notes_u
 import 'package:flutter_notes_app/features/home_page/domain/usecases/search_notes_usecase.dart'
     as _i16;
 import 'package:flutter_notes_app/features/home_page/presentation/controller/home_controller.dart'
-    as _i34;
+    as _i35;
 import 'package:flutter_notes_app/features/login/data/datasources/login_datasource_interface.dart'
     as _i25;
 import 'package:flutter_notes_app/features/login/domain/repositories/login_repository_interface.dart'
@@ -44,19 +45,19 @@ import 'package:flutter_notes_app/features/login/domain/repositories/login_repos
 import 'package:flutter_notes_app/features/login/domain/usecases/login_with_google_usecase.dart'
     as _i13;
 import 'package:flutter_notes_app/features/login/presentation/controller/login_controller.dart'
-    as _i33;
+    as _i34;
 import 'package:flutter_notes_app/features/new_note/data/datasources/new_note_datasource_interface.dart'
     as _i26;
 import 'package:flutter_notes_app/features/new_note/domain/repositories/new_note_repository_interface.dart'
     as _i12;
 import 'package:flutter_notes_app/features/new_note/domain/usecases/create_note_usecase.dart'
-    as _i29;
-import 'package:flutter_notes_app/features/new_note/domain/usecases/delete_note_usecase.dart'
-    as _i31;
-import 'package:flutter_notes_app/features/new_note/domain/usecases/edit_note_usecase.dart'
     as _i30;
+import 'package:flutter_notes_app/features/new_note/domain/usecases/delete_note_usecase.dart'
+    as _i32;
+import 'package:flutter_notes_app/features/new_note/domain/usecases/edit_note_usecase.dart'
+    as _i31;
 import 'package:flutter_notes_app/features/new_note/domain/usecases/get_note_by_id.dart'
-    as _i28;
+    as _i29;
 import 'package:flutter_notes_app/firebase_helper.dart' as _i20;
 import 'package:google_sign_in/google_sign_in.dart' as _i7;
 import 'package:mockito/mockito.dart' as _i1;
@@ -2662,21 +2663,21 @@ class MockLoginRepositoryInterface extends _i1.Mock
   }
 
   @override
-  _i5.Future<_i9.Either<Exception, void>> loginWithGoogle() =>
+  _i5.Future<_i9.Either<_i28.Failure, void>> loginWithGoogle() =>
       (super.noSuchMethod(
         Invocation.method(
           #loginWithGoogle,
           [],
         ),
-        returnValue: _i5.Future<_i9.Either<Exception, void>>.value(
-            _FakeEither_24<Exception, void>(
+        returnValue: _i5.Future<_i9.Either<_i28.Failure, void>>.value(
+            _FakeEither_24<_i28.Failure, void>(
           this,
           Invocation.method(
             #loginWithGoogle,
             [],
           ),
         )),
-      ) as _i5.Future<_i9.Either<Exception, void>>);
+      ) as _i5.Future<_i9.Either<_i28.Failure, void>>);
 }
 
 /// A class which mocks [HomeRepositoryInterface].
@@ -2689,21 +2690,22 @@ class MockHomeRepositoryInterface extends _i1.Mock
   }
 
   @override
-  _i5.Future<_i9.Either<Exception, List<_i27.Note>>> getNotes() =>
+  _i5.Future<_i9.Either<_i28.Failure, List<_i27.Note>>> getNotes() =>
       (super.noSuchMethod(
         Invocation.method(
           #getNotes,
           [],
         ),
-        returnValue: _i5.Future<_i9.Either<Exception, List<_i27.Note>>>.value(
-            _FakeEither_24<Exception, List<_i27.Note>>(
+        returnValue:
+            _i5.Future<_i9.Either<_i28.Failure, List<_i27.Note>>>.value(
+                _FakeEither_24<_i28.Failure, List<_i27.Note>>(
           this,
           Invocation.method(
             #getNotes,
             [],
           ),
         )),
-      ) as _i5.Future<_i9.Either<Exception, List<_i27.Note>>>);
+      ) as _i5.Future<_i9.Either<_i28.Failure, List<_i27.Note>>>);
 }
 
 /// A class which mocks [NewNoteRepositoryInterface].
@@ -2716,69 +2718,69 @@ class MockNewNoteRepositoryInterface extends _i1.Mock
   }
 
   @override
-  _i5.Future<_i9.Either<Exception, _i27.Note>> getNoteById(String? id) =>
+  _i5.Future<_i9.Either<_i28.Failure, _i27.Note>> getNoteById(String? id) =>
       (super.noSuchMethod(
         Invocation.method(
           #getNoteById,
           [id],
         ),
-        returnValue: _i5.Future<_i9.Either<Exception, _i27.Note>>.value(
-            _FakeEither_24<Exception, _i27.Note>(
+        returnValue: _i5.Future<_i9.Either<_i28.Failure, _i27.Note>>.value(
+            _FakeEither_24<_i28.Failure, _i27.Note>(
           this,
           Invocation.method(
             #getNoteById,
             [id],
           ),
         )),
-      ) as _i5.Future<_i9.Either<Exception, _i27.Note>>);
+      ) as _i5.Future<_i9.Either<_i28.Failure, _i27.Note>>);
   @override
-  _i5.Future<_i9.Either<Exception, void>> createNote(_i27.Note? note) =>
+  _i5.Future<_i9.Either<_i28.Failure, void>> createNote(_i27.Note? note) =>
       (super.noSuchMethod(
         Invocation.method(
           #createNote,
           [note],
         ),
-        returnValue: _i5.Future<_i9.Either<Exception, void>>.value(
-            _FakeEither_24<Exception, void>(
+        returnValue: _i5.Future<_i9.Either<_i28.Failure, void>>.value(
+            _FakeEither_24<_i28.Failure, void>(
           this,
           Invocation.method(
             #createNote,
             [note],
           ),
         )),
-      ) as _i5.Future<_i9.Either<Exception, void>>);
+      ) as _i5.Future<_i9.Either<_i28.Failure, void>>);
   @override
-  _i5.Future<_i9.Either<Exception, void>> editNote(_i27.Note? note) =>
+  _i5.Future<_i9.Either<_i28.Failure, void>> editNote(_i27.Note? note) =>
       (super.noSuchMethod(
         Invocation.method(
           #editNote,
           [note],
         ),
-        returnValue: _i5.Future<_i9.Either<Exception, void>>.value(
-            _FakeEither_24<Exception, void>(
+        returnValue: _i5.Future<_i9.Either<_i28.Failure, void>>.value(
+            _FakeEither_24<_i28.Failure, void>(
           this,
           Invocation.method(
             #editNote,
             [note],
           ),
         )),
-      ) as _i5.Future<_i9.Either<Exception, void>>);
+      ) as _i5.Future<_i9.Either<_i28.Failure, void>>);
   @override
-  _i5.Future<_i9.Either<Exception, void>> deleteNote(_i27.Note? note) =>
+  _i5.Future<_i9.Either<_i28.Failure, void>> deleteNote(_i27.Note? note) =>
       (super.noSuchMethod(
         Invocation.method(
           #deleteNote,
           [note],
         ),
-        returnValue: _i5.Future<_i9.Either<Exception, void>>.value(
-            _FakeEither_24<Exception, void>(
+        returnValue: _i5.Future<_i9.Either<_i28.Failure, void>>.value(
+            _FakeEither_24<_i28.Failure, void>(
           this,
           Invocation.method(
             #deleteNote,
             [note],
           ),
         )),
-      ) as _i5.Future<_i9.Either<Exception, void>>);
+      ) as _i5.Future<_i9.Either<_i28.Failure, void>>);
 }
 
 /// A class which mocks [LoginWithGoogleUsecase].
@@ -2799,20 +2801,20 @@ class MockLoginWithGoogleUsecase extends _i1.Mock
         ),
       ) as _i10.LoginRepositoryInterface);
   @override
-  _i5.Future<_i9.Either<Exception, void>> call() => (super.noSuchMethod(
+  _i5.Future<_i9.Either<_i28.Failure, void>> call() => (super.noSuchMethod(
         Invocation.method(
           #call,
           [],
         ),
-        returnValue: _i5.Future<_i9.Either<Exception, void>>.value(
-            _FakeEither_24<Exception, void>(
+        returnValue: _i5.Future<_i9.Either<_i28.Failure, void>>.value(
+            _FakeEither_24<_i28.Failure, void>(
           this,
           Invocation.method(
             #call,
             [],
           ),
         )),
-      ) as _i5.Future<_i9.Either<Exception, void>>);
+      ) as _i5.Future<_i9.Either<_i28.Failure, void>>);
 }
 
 /// A class which mocks [GetNotesUsecase].
@@ -2832,21 +2834,22 @@ class MockGetNotesUsecase extends _i1.Mock implements _i15.GetNotesUsecase {
         ),
       ) as _i11.HomeRepositoryInterface);
   @override
-  _i5.Future<_i9.Either<Exception, List<_i27.Note>>> call() =>
+  _i5.Future<_i9.Either<_i28.Failure, List<_i27.Note>>> call() =>
       (super.noSuchMethod(
         Invocation.method(
           #call,
           [],
         ),
-        returnValue: _i5.Future<_i9.Either<Exception, List<_i27.Note>>>.value(
-            _FakeEither_24<Exception, List<_i27.Note>>(
+        returnValue:
+            _i5.Future<_i9.Either<_i28.Failure, List<_i27.Note>>>.value(
+                _FakeEither_24<_i28.Failure, List<_i27.Note>>(
           this,
           Invocation.method(
             #call,
             [],
           ),
         )),
-      ) as _i5.Future<_i9.Either<Exception, List<_i27.Note>>>);
+      ) as _i5.Future<_i9.Either<_i28.Failure, List<_i27.Note>>>);
 }
 
 /// A class which mocks [SearchNotesUsecase].
@@ -2859,7 +2862,7 @@ class MockSearchNotesUsecase extends _i1.Mock
   }
 
   @override
-  _i9.Either<Exception, List<_i27.Note>?> call(
+  _i9.Either<_i28.Failure, List<_i27.Note>?> call(
     List<_i27.Note>? notes,
     String? value,
   ) =>
@@ -2871,7 +2874,7 @@ class MockSearchNotesUsecase extends _i1.Mock
             value,
           ],
         ),
-        returnValue: _FakeEither_24<Exception, List<_i27.Note>?>(
+        returnValue: _FakeEither_24<_i28.Failure, List<_i27.Note>?>(
           this,
           Invocation.method(
             #call,
@@ -2881,14 +2884,14 @@ class MockSearchNotesUsecase extends _i1.Mock
             ],
           ),
         ),
-      ) as _i9.Either<Exception, List<_i27.Note>?>);
+      ) as _i9.Either<_i28.Failure, List<_i27.Note>?>);
 }
 
 /// A class which mocks [GetNoteByIdUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockGetNoteByIdUseCase extends _i1.Mock
-    implements _i28.GetNoteByIdUseCase {
+    implements _i29.GetNoteByIdUseCase {
   MockGetNoteByIdUseCase() {
     _i1.throwOnMissingStub(this);
   }
@@ -2902,27 +2905,27 @@ class MockGetNoteByIdUseCase extends _i1.Mock
         ),
       ) as _i12.NewNoteRepositoryInterface);
   @override
-  _i5.Future<_i9.Either<Exception, _i27.Note>> call(String? id) =>
+  _i5.Future<_i9.Either<_i28.Failure, _i27.Note>> call(String? id) =>
       (super.noSuchMethod(
         Invocation.method(
           #call,
           [id],
         ),
-        returnValue: _i5.Future<_i9.Either<Exception, _i27.Note>>.value(
-            _FakeEither_24<Exception, _i27.Note>(
+        returnValue: _i5.Future<_i9.Either<_i28.Failure, _i27.Note>>.value(
+            _FakeEither_24<_i28.Failure, _i27.Note>(
           this,
           Invocation.method(
             #call,
             [id],
           ),
         )),
-      ) as _i5.Future<_i9.Either<Exception, _i27.Note>>);
+      ) as _i5.Future<_i9.Either<_i28.Failure, _i27.Note>>);
 }
 
 /// A class which mocks [CreateNoteUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockCreateNoteUseCase extends _i1.Mock implements _i29.CreateNoteUseCase {
+class MockCreateNoteUseCase extends _i1.Mock implements _i30.CreateNoteUseCase {
   MockCreateNoteUseCase() {
     _i1.throwOnMissingStub(this);
   }
@@ -2936,27 +2939,27 @@ class MockCreateNoteUseCase extends _i1.Mock implements _i29.CreateNoteUseCase {
         ),
       ) as _i12.NewNoteRepositoryInterface);
   @override
-  _i5.Future<_i9.Either<Exception, void>> call(_i27.Note? note) =>
+  _i5.Future<_i9.Either<_i28.Failure, void>> call(_i27.Note? note) =>
       (super.noSuchMethod(
         Invocation.method(
           #call,
           [note],
         ),
-        returnValue: _i5.Future<_i9.Either<Exception, void>>.value(
-            _FakeEither_24<Exception, void>(
+        returnValue: _i5.Future<_i9.Either<_i28.Failure, void>>.value(
+            _FakeEither_24<_i28.Failure, void>(
           this,
           Invocation.method(
             #call,
             [note],
           ),
         )),
-      ) as _i5.Future<_i9.Either<Exception, void>>);
+      ) as _i5.Future<_i9.Either<_i28.Failure, void>>);
 }
 
 /// A class which mocks [EditNoteUsecase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockEditNoteUsecase extends _i1.Mock implements _i30.EditNoteUsecase {
+class MockEditNoteUsecase extends _i1.Mock implements _i31.EditNoteUsecase {
   MockEditNoteUsecase() {
     _i1.throwOnMissingStub(this);
   }
@@ -2970,27 +2973,27 @@ class MockEditNoteUsecase extends _i1.Mock implements _i30.EditNoteUsecase {
         ),
       ) as _i12.NewNoteRepositoryInterface);
   @override
-  _i5.Future<_i9.Either<Exception, void>> call(_i27.Note? note) =>
+  _i5.Future<_i9.Either<_i28.Failure, void>> call(_i27.Note? note) =>
       (super.noSuchMethod(
         Invocation.method(
           #call,
           [note],
         ),
-        returnValue: _i5.Future<_i9.Either<Exception, void>>.value(
-            _FakeEither_24<Exception, void>(
+        returnValue: _i5.Future<_i9.Either<_i28.Failure, void>>.value(
+            _FakeEither_24<_i28.Failure, void>(
           this,
           Invocation.method(
             #call,
             [note],
           ),
         )),
-      ) as _i5.Future<_i9.Either<Exception, void>>);
+      ) as _i5.Future<_i9.Either<_i28.Failure, void>>);
 }
 
 /// A class which mocks [DeleteNoteUseCase].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockDeleteNoteUseCase extends _i1.Mock implements _i31.DeleteNoteUseCase {
+class MockDeleteNoteUseCase extends _i1.Mock implements _i32.DeleteNoteUseCase {
   MockDeleteNoteUseCase() {
     _i1.throwOnMissingStub(this);
   }
@@ -3004,21 +3007,21 @@ class MockDeleteNoteUseCase extends _i1.Mock implements _i31.DeleteNoteUseCase {
         ),
       ) as _i12.NewNoteRepositoryInterface);
   @override
-  _i5.Future<_i9.Either<Exception, void>> call(_i27.Note? note) =>
+  _i5.Future<_i9.Either<_i28.Failure, void>> call(_i27.Note? note) =>
       (super.noSuchMethod(
         Invocation.method(
           #call,
           [note],
         ),
-        returnValue: _i5.Future<_i9.Either<Exception, void>>.value(
-            _FakeEither_24<Exception, void>(
+        returnValue: _i5.Future<_i9.Either<_i28.Failure, void>>.value(
+            _FakeEither_24<_i28.Failure, void>(
           this,
           Invocation.method(
             #call,
             [note],
           ),
         )),
-      ) as _i5.Future<_i9.Either<Exception, void>>);
+      ) as _i5.Future<_i9.Either<_i28.Failure, void>>);
 }
 
 /// A class which mocks [ScaffoldAppState].
@@ -3085,7 +3088,7 @@ class MockScaffoldAppState<T> extends _i1.Mock
         returnValueForMissingStub: null,
       );
   @override
-  set fail(Exception? e) => super.noSuchMethod(
+  set fail(_i28.Failure? e) => super.noSuchMethod(
         Invocation.setter(
           #fail,
           e,
@@ -3106,7 +3109,7 @@ class MockScaffoldAppState<T> extends _i1.Mock
         returnValueForMissingStub: null,
       );
   @override
-  void addListener(_i32.VoidCallback? listener) => super.noSuchMethod(
+  void addListener(_i33.VoidCallback? listener) => super.noSuchMethod(
         Invocation.method(
           #addListener,
           [listener],
@@ -3114,7 +3117,7 @@ class MockScaffoldAppState<T> extends _i1.Mock
         returnValueForMissingStub: null,
       );
   @override
-  void removeListener(_i32.VoidCallback? listener) => super.noSuchMethod(
+  void removeListener(_i33.VoidCallback? listener) => super.noSuchMethod(
         Invocation.method(
           #removeListener,
           [listener],
@@ -3142,7 +3145,7 @@ class MockScaffoldAppState<T> extends _i1.Mock
 /// A class which mocks [LoginController].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockLoginController extends _i1.Mock implements _i33.LoginController {
+class MockLoginController extends _i1.Mock implements _i34.LoginController {
   MockLoginController() {
     _i1.throwOnMissingStub(this);
   }
@@ -3185,7 +3188,7 @@ class MockLoginController extends _i1.Mock implements _i33.LoginController {
 /// A class which mocks [HomeController].
 ///
 /// See the documentation for Mockito's code generation for more information.
-class MockHomeController extends _i1.Mock implements _i34.HomeController {
+class MockHomeController extends _i1.Mock implements _i35.HomeController {
   MockHomeController() {
     _i1.throwOnMissingStub(this);
   }
@@ -3215,13 +3218,13 @@ class MockHomeController extends _i1.Mock implements _i34.HomeController {
         ),
       ) as _i17.AppState<List<_i27.Note>>);
   @override
-  _i17.AppState<_i35.HomeView> get homeView => (super.noSuchMethod(
+  _i17.AppState<_i36.HomeView> get homeView => (super.noSuchMethod(
         Invocation.getter(#homeView),
-        returnValue: _FakeAppState_32<_i35.HomeView>(
+        returnValue: _FakeAppState_32<_i36.HomeView>(
           this,
           Invocation.getter(#homeView),
         ),
-      ) as _i17.AppState<_i35.HomeView>);
+      ) as _i17.AppState<_i36.HomeView>);
   @override
   _i5.Future<void> init() => (super.noSuchMethod(
         Invocation.method(

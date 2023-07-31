@@ -1,14 +1,16 @@
 import 'package:flutter/foundation.dart';
 
+import '../entities/failure.dart';
+
 class AppState<T> extends ChangeNotifier {
   T? _data;
-  Exception? _error;
+  Failure? _error;
   bool loading = false;
 
   AppState();
 
   T? get data => _data;
-  Exception? get error => _error;
+  Failure? get error => _error;
 
   AppState.init(this._data);
 
@@ -25,7 +27,7 @@ class AppState<T> extends ChangeNotifier {
     notifyListeners();
   }
 
-  set fail(Exception e) {
+  set fail(Failure e) {
     loading = false;
     _data = null;
     _error = e;

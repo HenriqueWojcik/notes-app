@@ -48,4 +48,7 @@ class EnUs implements Translations {
 
   @override
   String get loading => 'Loading...';
+
+  @override
+  String get titleError => 'Error';
 }

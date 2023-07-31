@@ -1,3 +1,4 @@
+import 'package:flutter_notes_app/core/entities/failure.dart';
 import 'package:flutter_notes_app/core/helpers/dart_z_externsion.dart';
 import 'package:flutter_notes_app/features/login/data/repositories/login_repository_impl.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -25,7 +26,7 @@ void main() {
   test(
     'should return a exception when something got wrong in datasource',
     () async {
-      final Exception exception = Exception();
+      final Failure exception = Failure(message: '');
       when(datasource.loginWithGoogle()).thenThrow(exception);
 
       final result = await sut.loginWithGoogle();

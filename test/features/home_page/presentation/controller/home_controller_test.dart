@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:flutter_notes_app/core/entities/failure.dart';
 import 'package:flutter_notes_app/core/enums/home_view.dart';
 import 'package:flutter_notes_app/features/home_page/domain/entities/note.dart';
 import 'package:flutter_notes_app/features/home_page/presentation/controller/home_controller.dart';
@@ -26,7 +27,7 @@ void main() {
   test(
       'should check that the notes state is updated with the result of the getNotes usecase ',
       () async {
-    final Either<Exception, List<Note>> result = Right([
+    final Either<Failure, List<Note>> result = Right([
       NoteSample.sample(),
       NoteSample.sample(),
     ]);
@@ -40,7 +41,7 @@ void main() {
   });
 
   test('should refresh notes when refresh value is true', () async {
-    final Either<Exception, List<Note>> result = Right([
+    final Either<Failure, List<Note>> result = Right([
       NoteSample.sample(),
       NoteSample.sample(),
     ]);
@@ -70,7 +71,7 @@ void main() {
   });
 
   test('should search notes corretly', () async {
-    final Either<Exception, List<Note>> result = Right([
+    final Either<Failure, List<Note>> result = Right([
       NoteSample.sample(),
       NoteSample.sample(),
     ]);

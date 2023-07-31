@@ -48,4 +48,7 @@ class PtBr implements Translations {
 
   @override
   String get loading => 'Carregando...';
+
+  @override
+  String get titleError => 'Error';
 }

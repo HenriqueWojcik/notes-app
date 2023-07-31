@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_notes_app/core/entities/failure.dart';
 import 'package:flutter_notes_app/core/navigator/app_navigator_impl.dart';
 import 'package:flutter_notes_app/core/navigator/app_navigator_interface.dart';
 import 'package:flutter_notes_app/core/navigator/routes.dart';
@@ -56,7 +57,7 @@ void main() {
       (tester) async {
     initState();
 
-    Either<Exception, void> either = const Right(null);
+    Either<Failure, void> either = const Right(null);
 
     when(controller.login()).thenAnswer(
       (_) async => controller.scaffoldState

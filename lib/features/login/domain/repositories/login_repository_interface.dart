@@ -1,5 +1,7 @@
 import 'package:dartz/dartz.dart';
 
+import '../../../../core/entities/failure.dart';
+
 abstract class LoginRepositoryInterface {
-  Future<Either<Exception, void>> loginWithGoogle();
+  Future<Either<Failure, void>> loginWithGoogle();
 }

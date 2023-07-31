@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 
+import '../../../../core/entities/failure.dart';
 import '../../../../core/i18n/i18n.dart';
 import '../../../../core/repositories/base_repository.dart';
 import '../../../home_page/data/mappers/note_mapper.dart';
@@ -14,7 +15,7 @@ class NewNoteRepositoryImpl extends BaseRepository
   NewNoteRepositoryImpl({required this.datasource});
 
   @override
-  Future<Either<Exception, Note>> getNoteById(String id) {
+  Future<Either<Failure, Note>> getNoteById(String id) {
     return doAsync(() async {
       final note = await datasource.getNoteById(id);
 
@@ -23,7 +24,7 @@ class NewNoteRepositoryImpl extends BaseRepository
   }
 
   @override
-  Future<Either<Exception, void>> createNote(Note? note) {
+  Future<Either<Failure, void>> createNote(Note? note) {
     return doAsync(() async {
       if (note == null) {
         throw Exception(I18n.strings.noteIsNull);
@@ -34,7 +35,7 @@ class NewNoteRepositoryImpl extends BaseRepository
   }
 
   @override
-  Future<Either<Exception, void>> editNote(Note? note) {
+  Future<Either<Failure, void>> editNote(Note? note) {
     return doAsync(() async {
       if (note == null) {
         throw Exception(I18n.strings.noteIsNull);
@@ -45,7 +46,7 @@ class NewNoteRepositoryImpl extends BaseRepository
   }
 
   @override
-  Future<Either<Exception, void>> deleteNote(Note? note) async {
+  Future<Either<Failure, void>> deleteNote(Note? note) async {
     return doAsync(() async {
       if (note == null) {
         throw Exception(I18n.strings.noteIsNull);

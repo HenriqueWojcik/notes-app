@@ -1,3 +1,4 @@
+import 'package:flutter_notes_app/core/entities/failure.dart';
 import 'package:flutter_notes_app/core/repositories/base_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -10,9 +11,9 @@ void main() {
     sut = BaseRepositoryTest();
   });
 
-  test('return left when is success on the task', () async {
+  test('return right when is success on the task', () async {
     int? value;
-    Exception? error;
+    Failure? error;
 
     final result = await sut.doAsync<int>(() async => 1);
 
@@ -24,20 +25,20 @@ void main() {
   });
 
   test(
-    'return right when has erros on the task',
+    'return left when has erros on the task',
     () async {
       int? value;
-      Exception? error;
+      Failure? error;
 
-      Exception exception = Exception();
+      Failure failure = Failure(message: '');
 
-      final result = await sut.doAsync<int>(() async => throw exception);
+      final result = await sut.doAsync<int>(() async => throw failure);
 
       result.fold((l) => error = l, (r) => value = r);
 
       expect(result.isLeft(), true);
       expect(value, null);
-      expect(error, exception);
+      expect(error, failure);
     },
   );
 }

@@ -1,9 +1,10 @@
 import 'package:dartz/dartz.dart';
 
+import '../../../../core/entities/failure.dart';
 import '../entities/note.dart';
 
 class SearchNotesUsecase {
-  Either<Exception, List<Note>?> call(List<Note> notes, String value) {
+  Either<Failure, List<Note>?> call(List<Note> notes, String value) {
     try {
       List<Note> result = [];
 
@@ -17,7 +18,7 @@ class SearchNotesUsecase {
       }
       return Right(result);
     } on Exception catch (e) {
-      return Left(e);
+      return Left(Failure(message: e.toString()));
     }
   }
 }
