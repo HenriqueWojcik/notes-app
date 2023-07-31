@@ -13,6 +13,11 @@ import 'presentation/controller/new_note_controller.dart';
 
 class NewNoteInjector extends FeatureInjector {
   @override
+  void injectExceptionHandler() {
+    // TODO: implement injectExceptionHandler
+  }
+
+  @override
   void injectDatasourcesImpl() {
     getIt.registerFactory<NewNoteDatasourceInterface>(
       () => NewNoteDatasourceImpl(communication: getIt()),

@@ -1,5 +1,6 @@
 abstract class FeatureInjector {
   void inject() {
+    injectExceptionHandler();
     injectRepositories();
     injectUsecases();
     injectControllers();
@@ -7,6 +8,7 @@ abstract class FeatureInjector {
 
   void injectDatasourcesImpl();
   void injectDatasourcesMock();
+  void injectExceptionHandler();
   void injectRepositories();
   void injectUsecases();
   void injectControllers();
