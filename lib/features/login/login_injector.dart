@@ -9,9 +9,7 @@ import 'presentation/controller/login_controller.dart';
 
 class LoginInjector extends FeatureInjector {
   @override
-  void injectExceptionHandler() {
-    // TODO: implement injectExceptionHandler
-  }
+  void injectExceptionHandler() {}
 
   @override
   void injectDatasourcesImpl() {

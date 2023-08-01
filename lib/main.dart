@@ -17,7 +17,7 @@ class MainApp extends StatelessWidget {
   const MainApp({super.key});
 
   Future<void> _init() async {
-    Injectors.inject(Env.prod);
+    Injectors.inject(Env.mock);
     I18n.load(
       Intl.getCurrentLocale(),
     );

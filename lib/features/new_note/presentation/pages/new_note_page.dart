@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
+import '../../../../core/navigator/app_navigator_interface.dart';
 import '../../../../core/state/scaffold_app_state_builder.dart';
 import '../../../../injectors.dart';
 import '../controller/new_note_controller.dart';
@@ -21,6 +21,7 @@ class NewNotePage extends StatefulWidget {
 
 class _NewNotePageState extends State<NewNotePage> {
   final NewNoteController _controller = getIt<NewNoteController>();
+  final AppNavigatorInterface _navigator = getIt<AppNavigatorInterface>();
 
   @override
   void initState() {
@@ -53,21 +54,15 @@ class _NewNotePageState extends State<NewNotePage> {
 
   void _onChangeBody(String body) => _controller.setBody(body);
 
-  void _onClickBack() => Navigator.of(context).pop();
+  void _onClickBack() => _navigator.pop();
 
   void _onClickPinned() => _controller.setPinned();
 
-  Future<void> _onClickDelete() async {
-    await _controller.deleteNote();
-  }
+  Future<void> _onClickDelete() async => await _controller.deleteNote();
 
-  Future<void> _onClickDone() async {
-    await _controller.createOrUpdateNote();
-  }
+  Future<void> _onClickDone() async => await _controller.createOrUpdateNote();
 
-  Future<void> _onSuccess() async {
-    context.pop(true);
-  }
+  Future<void> _onSuccess() async => _navigator.pop(true);
 
   @override
   void dispose() {

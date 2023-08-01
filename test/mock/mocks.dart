@@ -5,6 +5,7 @@ import 'package:flutter_notes_app/core/entities/request.dart';
 import 'package:flutter_notes_app/core/navigator/app_navigator_interface.dart';
 import 'package:flutter_notes_app/core/state/scaffold_app_state.dart';
 import 'package:flutter_notes_app/features/home_page/data/datasources/home_datasource_interface.dart';
+import 'package:flutter_notes_app/features/home_page/data/error/home_error_handler.dart';
 import 'package:flutter_notes_app/features/home_page/data/repositories/home_repository_interface.dart';
 import 'package:flutter_notes_app/features/home_page/domain/entities/note.dart';
 import 'package:flutter_notes_app/features/home_page/domain/usecases/get_notes_usecase.dart';
@@ -61,6 +62,11 @@ import 'package:mockito/annotations.dart';
   AppRequest,
   User,
   Note,
+])
+
+// ErrorHandlers
+@GenerateMocks([
+  HomeErrorHandler,
 ])
 
 // Repositories

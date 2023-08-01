@@ -9,13 +9,18 @@ import '../../../../samples/models/note_model_sample.dart';
 void main() {
   late HomeRepositoryImpl sut;
   late MockHomeDatasourceInterface homeDatasource;
+  late MockHomeErrorHandler homeErrorHandler;
 
   setUp(() {
     homeDatasource = MockHomeDatasourceInterface();
-    sut = HomeRepositoryImpl(datasource: homeDatasource);
+    homeErrorHandler = MockHomeErrorHandler();
+    sut = HomeRepositoryImpl(
+      datasource: homeDatasource,
+      homeErrorHandler: homeErrorHandler,
+    );
   });
 
-  test('should return a notes list and a left-result from method', () async {
+  test('should return a notes list and a right-result from method', () async {
     final sample = NoteModelSample.sample;
 
     when(homeDatasource.getNotes()).thenAnswer((_) async => [sample]);
@@ -29,7 +34,7 @@ void main() {
     expect(list.length, 1);
   });
 
-  test('should return a Exception and a right-result from method', () async {
+  test('should return a Exception and a left-result from method', () async {
     when(homeDatasource.getNotes()).thenThrow(Exception());
 
     final result = await sut.getNotes();
@@ -37,3 +42,4 @@ void main() {
     expect(result.isLeft(), true);
   });
 }
+ 

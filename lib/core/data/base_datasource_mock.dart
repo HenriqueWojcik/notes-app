@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 abstract class BaseDatasourceMock {
   Future doAsyncMock(String file) async {
     try {
-      final fileLocation = 'assets/mock/$file';
+      final fileLocation = 'assets/mocks/$file';
 
       var json = await rootBundle.loadString(fileLocation);
 

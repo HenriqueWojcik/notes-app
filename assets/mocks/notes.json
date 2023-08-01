@@ -1,5 +1,6 @@
 [
     {
+        "id": "1",
         "body": "body 1",
         "title": "title 1",
         "pinned": false,
@@ -7,6 +8,7 @@
         "editedAt": ""
     },
     {
+        "id": "2",
         "body": "body 2",
         "title": "title 2",
         "pinned": true,
