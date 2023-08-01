@@ -1,4 +1,3 @@
-import '../../core/data/error/error_handler.dart';
 import '../../core/injector/feature_injector.dart';
 import '../../injectors.dart';
 import 'data/datasources/home_datasource_impl.dart';
@@ -14,7 +13,7 @@ import 'presentation/controller/home_controller.dart';
 class HomeInjector extends FeatureInjector {
   @override
   void injectExceptionHandler() {
-    getIt.registerFactory<ErrorHandler>(
+    getIt.registerFactory<HomeErrorHandler>(
       () => HomeErrorHandler(),
     );
   }
