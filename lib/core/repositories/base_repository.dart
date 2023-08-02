@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 
 import '../data/error/error_handler.dart';
 import '../entities/failure.dart';
-import '../print/print.dart';
+import '../print/debug_print.dart';
 
 typedef Task<T> = Future<T> Function();
 

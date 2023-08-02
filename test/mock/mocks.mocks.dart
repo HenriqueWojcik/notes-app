@@ -60,7 +60,8 @@ import 'package:flutter_notes_app/features/new_note/domain/usecases/edit_note_us
     as _i32;
 import 'package:flutter_notes_app/features/new_note/domain/usecases/get_note_by_id.dart'
     as _i30;
-import 'package:flutter_notes_app/firebase_helper.dart' as _i20;
+import 'package:flutter_notes_app/core/authentication/firebase_helper.dart'
+    as _i20;
 import 'package:google_sign_in/google_sign_in.dart' as _i7;
 import 'package:mockito/mockito.dart' as _i1;
 

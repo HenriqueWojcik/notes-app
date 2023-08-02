@@ -1,4 +1,4 @@
-import '../print/print.dart';
+import '../print/debug_print.dart';
 import 'strings/en_us.dart';
 import 'strings/pt_br.dart';
 

@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
-import '../../../../firebase_helper.dart';
+import '../../../../core/authentication/firebase_helper.dart';
 import 'login_datasource_interface.dart';
 
 class LoginDatasourceImpl implements LoginDatasourceInterface {

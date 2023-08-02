@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import '../../../../core/data/communication_inferface.dart';
 import '../../../../core/entities/request.dart';
 import '../../../../core/i18n/i18n.dart';
-import '../../../../core/print/print.dart';
+import '../../../../core/print/debug_print.dart';
 import '../../../../injectors.dart';
 import '../../../home_page/data/models/note_model.dart';
 import 'new_note_datasource_interface.dart';

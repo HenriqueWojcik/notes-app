@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 import '../entities/request.dart';
 import '../i18n/i18n.dart';
-import '../print/print.dart';
+import '../print/debug_print.dart';
 import 'communication_inferface.dart';
 
 class CommunicationImpl implements CommunicationInterface {

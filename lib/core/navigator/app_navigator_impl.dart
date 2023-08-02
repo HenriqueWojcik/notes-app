@@ -1,5 +1,5 @@
 import '../../features/home_page/domain/entities/note.dart';
-import '../../firebase_helper.dart';
+import '../authentication/firebase_helper.dart';
 import '../../injectors.dart';
 import 'app_navigator_interface.dart';
 import 'routes.dart';

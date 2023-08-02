@@ -1,4 +1,4 @@
-import 'package:flutter_notes_app/firebase_helper.dart';
+import 'package:flutter_notes_app/core/authentication/firebase_helper.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 

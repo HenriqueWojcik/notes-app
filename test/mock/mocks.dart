@@ -21,7 +21,7 @@ import 'package:flutter_notes_app/features/new_note/domain/usecases/create_note_
 import 'package:flutter_notes_app/features/new_note/domain/usecases/delete_note_usecase.dart';
 import 'package:flutter_notes_app/features/new_note/domain/usecases/edit_note_usecase.dart';
 import 'package:flutter_notes_app/features/new_note/domain/usecases/get_note_by_id.dart';
-import 'package:flutter_notes_app/firebase_helper.dart';
+import 'package:flutter_notes_app/core/authentication/firebase_helper.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:mockito/annotations.dart';
 

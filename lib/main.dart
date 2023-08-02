@@ -5,7 +5,7 @@ import 'core/enums/env.dart';
 import 'core/i18n/i18n.dart';
 import 'core/navigator/app_navigator_impl.dart';
 import 'features/loading/presentation/pages/loading_page.dart';
-import 'firebase_helper.dart';
+import 'core/authentication/firebase_helper.dart';
 import 'injectors.dart';
 
 void main() async {

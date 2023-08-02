@@ -12,7 +12,7 @@ import 'core/navigator/app_navigator_interface.dart';
 import 'features/home_page/home_injector.dart';
 import 'features/login/login_injector.dart';
 import 'features/new_note/new_note_injector.dart';
-import 'firebase_helper.dart';
+import 'core/authentication/firebase_helper.dart';
 
 GetIt get getIt => GetIt.I;
 
