@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import 'core/enums/env.dart';
 import 'core/i18n/i18n.dart';
 import 'core/navigator/app_navigator_impl.dart';
+import 'features/loading/presentation/pages/loading_page.dart';
 import 'firebase_helper.dart';
 import 'injectors.dart';
 
@@ -30,7 +31,7 @@ class MainApp extends StatelessWidget {
       future: _init(),
       builder: (_, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(child: CircularProgressIndicator());
+          return const LoadingPage();
         }
 
         return MaterialApp.router(
