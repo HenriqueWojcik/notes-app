@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 import '../../../../core/enums/home_view.dart';
 import '../../../../core/helpers/dart_z_externsion.dart';
 import '../../../../core/state/app_state.dart';
@@ -21,6 +23,8 @@ class HomeController {
   HomeView get _homeViewState => homeView.data ?? HomeView.grid;
 
   List<Note> _notes = [];
+
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   Future<void> init() async {
     notes.update(() async {

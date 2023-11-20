@@ -13,9 +13,7 @@ import 'presentation/controller/new_note_controller.dart';
 
 class NewNoteInjector extends FeatureInjector {
   @override
-  void injectExceptionHandler() {
-    // TODO: implement injectExceptionHandler
-  }
+  void injectExceptionHandler() {}
 
   @override
   void injectDatasourcesImpl() {

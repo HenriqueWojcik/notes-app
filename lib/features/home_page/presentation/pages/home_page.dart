@@ -30,6 +30,8 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: controller.scaffoldKey,
+      drawer: const Drawer(),
       floatingActionButton: HomeFloatingButton(
         key: HomeKeys.floatingButton,
         onClick: _onClickAddNote,
@@ -69,7 +71,8 @@ class _HomePageState extends State<HomePage> {
     controller.update(refresh: result);
   }
 
-  void _onClickDrawerIcon() {}
+  void _onClickDrawerIcon() =>
+      controller.scaffoldKey.currentState?.openDrawer();
 
   void _onClickHomeViewIcon() => controller.changeHomeViewState();
 
@@ -86,5 +89,6 @@ class _HomePageState extends State<HomePage> {
   void dispose() {
     super.dispose();
     controller.dispose();
+    controller.scaffoldKey.currentState?.dispose();
   }
 }
