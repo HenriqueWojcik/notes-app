@@ -34,7 +34,7 @@ class AppNavigator implements AppNavigatorInterface {
 
         return NewNotePage(noteId: noteId);
       },
-    )
+    ),
   ];
 
   static final router = GoRouter(

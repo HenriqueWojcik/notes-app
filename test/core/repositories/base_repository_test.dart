@@ -12,33 +12,22 @@ void main() {
   });
 
   test('return right when is success on the task', () async {
-    int? value;
-    Failure? error;
+    final (Failure? failure, int? data) = await sut.doAsync<int>(() async => 1);
 
-    final result = await sut.doAsync<int>(() async => 1);
-
-    result.fold((l) => error = l, (r) => value = r);
-
-    expect(result.isRight(), true);
-    expect(value, 1);
-    expect(error, null);
+    expect(data, 1);
+    expect(failure, null);
   });
 
   test(
     'return left when has erros on the task',
     () async {
-      int? value;
-      Failure? error;
+      final Exception exception = Exception('Error');
 
-      Failure failure = Failure(message: '');
+      final (Failure? failure, int? data) =
+          await sut.doAsync<int>(() async => throw exception);
 
-      final result = await sut.doAsync<int>(() async => throw failure);
-
-      result.fold((l) => error = l, (r) => value = r);
-
-      expect(result.isLeft(), true);
-      expect(value, null);
-      expect(error, failure);
+      expect(data, null);
+      expect(failure?.message, exception.toString());
     },
   );
 }

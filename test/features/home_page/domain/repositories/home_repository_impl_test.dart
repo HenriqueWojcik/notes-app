@@ -1,3 +1,4 @@
+import 'package:flutter_notes_app/core/entities/failure.dart';
 import 'package:flutter_notes_app/features/home_page/domain/entities/note.dart';
 import 'package:flutter_notes_app/features/home_page/domain/repositories/home_repository_impl.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -25,21 +26,17 @@ void main() {
 
     when(homeDatasource.getNotes()).thenAnswer((_) async => [sample]);
 
-    final result = await sut.getNotes();
+    final (Failure? _, List<Note>? notes) = await sut.getNotes();
 
-    late List<Note> list;
-    result.fold((l) => null, (r) => list = r);
-
-    expect(result.isRight(), true);
-    expect(list.length, 1);
+    expect(notes?.isNotEmpty, true);
+    expect(notes?.length, 1);
   });
 
   test('should return a Exception and a left-result from method', () async {
     when(homeDatasource.getNotes()).thenThrow(Exception());
 
-    final result = await sut.getNotes();
+    final (Failure? failure, List<Note>? _) = await sut.getNotes();
 
-    expect(result.isLeft(), true);
+    expect(failure?.message.isNotEmpty, true);
   });
 }
- 

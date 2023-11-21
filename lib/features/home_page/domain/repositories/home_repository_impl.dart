@@ -1,5 +1,3 @@
-import 'package:dartz/dartz.dart';
-
 import '../../../../core/entities/failure.dart';
 import '../../../../core/repositories/base_repository.dart';
 
@@ -19,7 +17,7 @@ class HomeRepositoryImpl extends BaseRepository<HomeErrorHandler>
   }) : super(errorHandler: homeErrorHandler);
 
   @override
-  Future<Either<Failure, List<Note>>> getNotes() {
+  Future<(Failure?, List<Note>?)> getNotes() {
     return doAsync<List<Note>>(() async {
       final data = await datasource.getNotes();
 

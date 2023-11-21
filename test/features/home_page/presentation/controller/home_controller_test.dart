@@ -1,7 +1,4 @@
-import 'package:dartz/dartz.dart';
-import 'package:flutter_notes_app/core/entities/failure.dart';
 import 'package:flutter_notes_app/core/enums/home_view.dart';
-import 'package:flutter_notes_app/features/home_page/domain/entities/note.dart';
 import 'package:flutter_notes_app/features/home_page/presentation/controller/home_controller.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
@@ -27,12 +24,12 @@ void main() {
   test(
       'should check that the notes state is updated with the result of the getNotes usecase ',
       () async {
-    final Either<Failure, List<Note>> result = Right([
+    final data = [
       NoteSample.sample(),
       NoteSample.sample(),
-    ]);
+    ];
 
-    when(getNotes()).thenAnswer((_) async => result);
+    when(getNotes()).thenAnswer((_) async => (null, data));
 
     await sut.init();
 
@@ -41,12 +38,12 @@ void main() {
   });
 
   test('should refresh notes when refresh value is true', () async {
-    final Either<Failure, List<Note>> result = Right([
+    final data = [
       NoteSample.sample(),
       NoteSample.sample(),
-    ]);
+    ];
 
-    when(getNotes()).thenAnswer((_) async => result);
+    when(getNotes()).thenAnswer((_) async => (null, data));
 
     await sut.update(refresh: true);
 
@@ -71,12 +68,12 @@ void main() {
   });
 
   test('should search notes corretly', () async {
-    final Either<Failure, List<Note>> result = Right([
+    final data = [
       NoteSample.sample(),
       NoteSample.sample(),
-    ]);
+    ];
 
-    when(searchNotes(any, any)).thenReturn(result);
+    when(searchNotes(any, any)).thenReturn((null, data));
 
     await sut.onSearchNotes('title');
 

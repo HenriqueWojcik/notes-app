@@ -1,4 +1,3 @@
-import 'package:dartz/dartz.dart';
 import 'package:flutter_notes_app/core/i18n/i18n.dart';
 import 'package:flutter_notes_app/features/home_page/domain/entities/note.dart';
 import 'package:flutter_notes_app/features/new_note/presentation/controller/new_note_controller.dart';
@@ -40,7 +39,7 @@ void main() {
   test('should get a note by id when id is not null', () async {
     final Note note = NoteSample.sample();
 
-    when(getNoteById(note.id)).thenAnswer((_) async => Right(note));
+    when(getNoteById(note.id)).thenAnswer((_) async => (null, note));
 
     await sut.init(note.id);
 
@@ -54,7 +53,7 @@ void main() {
   });
 
   test('should create a note correctly', () async {
-    when(createNote(any)).thenAnswer((_) async => const Right(null));
+    when(createNote(any)).thenAnswer((_) async => const (null, null));
 
     final value = await sut.createOrUpdateNote();
 
@@ -68,7 +67,7 @@ void main() {
   test('should update note correctly', () async {
     sut.note = NoteSample.sample();
 
-    when(editNote(any)).thenAnswer((_) async => const Right(null));
+    when(editNote(any)).thenAnswer((_) async => const (null, null));
 
     final value = await sut.createOrUpdateNote();
     expect(
@@ -79,7 +78,8 @@ void main() {
   });
 
   test('should delete note correctly', () async {
-    when(sut.deleteNoteUseCase(any)).thenAnswer((_) async => const Right(null));
+    when(sut.deleteNoteUseCase(any))
+        .thenAnswer((_) async => const (null, null));
 
     final value = await sut.deleteNote();
 

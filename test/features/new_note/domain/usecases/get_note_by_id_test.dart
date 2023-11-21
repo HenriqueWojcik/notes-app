@@ -1,5 +1,5 @@
-import 'package:dartz/dartz.dart';
 import 'package:flutter_notes_app/core/entities/failure.dart';
+import 'package:flutter_notes_app/features/home_page/domain/entities/note.dart';
 import 'package:flutter_notes_app/features/new_note/domain/usecases/get_note_by_id.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
@@ -17,21 +17,22 @@ void main() {
   });
 
   test('should return correctly a right either correctly', () async {
-    final note = NoteSample.sample();
+    final n = NoteSample.sample();
     when(repository.getNoteById(any))
-        .thenAnswer((_) => Future.value(Right(note)));
+        .thenAnswer((_) => Future.value((null, n)));
 
-    final result = await sut('');
+    final (Failure? _, Note? note) = await sut('');
 
-    expect(result.isRight(), true);
+    expect(note != null, true);
   });
 
   test('should return correctly a right either correctly', () async {
+    final error = Failure(message: '');
     when(repository.getNoteById(any))
-        .thenAnswer((_) => Future.value(Left(Failure(message: ''))));
+        .thenAnswer((_) => Future.value((error, null)));
 
-    final result = await sut('');
+    final (Failure? failure, Note? _) = await sut('');
 
-    expect(result.isLeft(), true);
+    expect(failure != null, true);
   });
 }

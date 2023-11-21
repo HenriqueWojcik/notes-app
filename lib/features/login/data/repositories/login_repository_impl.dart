@@ -1,5 +1,3 @@
-import 'package:dartz/dartz.dart';
-
 import '../../../../core/entities/failure.dart';
 import '../../../../core/repositories/base_repository.dart';
 import '../../../../injectors.dart';
@@ -13,7 +11,7 @@ class LoginRepositoryImpl extends BaseRepository
   LoginRepositoryImpl({required this.datasource});
 
   @override
-  Future<Either<Failure, void>> loginWithGoogle() {
+  Future<(Failure?, void)> loginWithGoogle() {
     return doAsync(() async {
       final user = await datasource.loginWithGoogle();
 

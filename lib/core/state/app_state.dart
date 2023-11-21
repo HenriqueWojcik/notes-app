@@ -27,7 +27,7 @@ class AppState<T> extends ChangeNotifier {
     notifyListeners();
   }
 
-  set fail(Failure e) {
+  set fail(Failure? e) {
     loading = false;
     _data = null;
     _error = e;

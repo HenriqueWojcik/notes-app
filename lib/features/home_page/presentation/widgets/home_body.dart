@@ -65,7 +65,7 @@ class HomeBody extends StatelessWidget {
                       homeView: homeViewValue,
                       onClickNoteCard: onClickNoteCard,
                     ),
-                  ]
+                  ],
                 ],
               ),
             );

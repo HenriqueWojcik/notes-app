@@ -1,5 +1,3 @@
-import 'package:dartz/dartz.dart';
-
 import '../data/error/error_handler.dart';
 import '../entities/failure.dart';
 import '../print/debug_print.dart';
@@ -11,13 +9,13 @@ abstract class BaseRepository<EH extends ErrorHandler> {
 
   BaseRepository({this.errorHandler});
 
-  Future<Either<Failure, T>> doAsync<T>(
+  Future<(Failure?, T?)> doAsync<T>(
     Task<T> task,
   ) async {
     try {
       final value = await task();
 
-      return Right(value);
+      return (null, value);
     } on Exception catch (e, stack) {
       debugPrint('>>>>>>>>> Exception $e');
       debugPrint('>>>>>>>>> StackTrace $stack');
@@ -25,10 +23,10 @@ abstract class BaseRepository<EH extends ErrorHandler> {
       final Failure? error = errorHandler?.handleError(e);
 
       if (error != null) {
-        return Left(error);
+        return (error, null);
       }
 
-      return Left(Failure(message: e.toString()));
+      return (Failure(message: e.toString()), null);
     }
   }
 }

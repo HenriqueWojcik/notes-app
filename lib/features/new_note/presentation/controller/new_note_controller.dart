@@ -1,4 +1,3 @@
-import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/entities/failure.dart';
@@ -44,23 +43,23 @@ class NewNoteController {
     }
 
     await noteState.update(() async {
-      final result = await getNoteById(noteId);
+      final (Failure? failure, Note? data) = await getNoteById(noteId);
 
-      result.fold((_) => null, (value) {
-        note = value;
-        titleController.text = value.title;
-        bodyController.text = value.body;
+      if (data != null) {
+        note = data;
+        titleController.text = data.title;
+        bodyController.text = data.body;
         scaffoldState.onSuccessMessage = I18n.strings.noteEditedWithSuccess;
-      });
+      }
 
-      return result;
+      return (failure, data);
     });
   }
 
   Future<bool> createOrUpdateNote() async {
     bool? value;
 
-    Future<Either<Failure, void>> task() async {
+    Future<(Failure?, void)> task() async {
       if (isEditingNote) {
         scaffoldState.onSuccessMessage = I18n.strings.noteEditedWithSuccess;
         return editNote(note);
@@ -70,10 +69,10 @@ class NewNoteController {
     }
 
     await scaffoldState.update(() async {
-      final result = await task();
-      value = result.isRight();
+      final (Failure? failure, void data) = await task();
+      value = failure == null;
 
-      return result;
+      return (failure, data);
     });
 
     return value ?? false;
@@ -121,10 +120,11 @@ class NewNoteController {
 
     scaffoldState.onSuccessMessage = I18n.strings.noteRemovedWithSuccess;
     await scaffoldState.update(() async {
-      final result = await deleteNoteUseCase(note);
-      value = result.isRight();
+      final (Failure? failure, void data) = await deleteNoteUseCase(note);
 
-      return result;
+      value = failure == null;
+
+      return (failure, data);
     });
 
     return value ?? false;

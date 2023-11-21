@@ -1,5 +1,5 @@
 import 'package:flutter_notes_app/core/entities/failure.dart';
-import 'package:flutter_notes_app/core/helpers/dart_z_externsion.dart';
+
 import 'package:flutter_notes_app/features/home_page/data/models/note_model.dart';
 import 'package:flutter_notes_app/features/home_page/domain/entities/note.dart';
 import 'package:flutter_notes_app/features/new_note/data/repositories/new_note_repository_impl.dart';
@@ -24,19 +24,19 @@ void main() {
 
     when(datasource.getNoteById(any)).thenAnswer((_) async => noteModel);
 
-    final result = await sut.getNoteById('');
+    final (Failure? failure, Note? data) = await sut.getNoteById('');
 
-    expect(result.isRight(), true);
-    expect(result.asRight(), isA<Note>());
+    expect(failure == null, true);
+    expect(data, isA<Note>());
   });
 
   test('should return a either Exception when getNoteById fails', () async {
     when(datasource.getNoteById(any)).thenThrow(Exception());
 
-    final result = await sut.getNoteById('');
+    final (Failure? failure, Note? data) = await sut.getNoteById('');
 
-    expect(result.isLeft(), true);
-    expect(result.asLeft(), isA<Failure>());
+    expect(data == null, true);
+    expect(failure, isA<Failure>());
   });
 
   test('should return a either void correctly in createNote method', () async {
@@ -44,9 +44,9 @@ void main() {
 
     when(datasource.createNote(any)).thenAnswer((_) async => {});
 
-    final result = await sut.createNote(note);
+    final (Failure? failure, void _) = await sut.createNote(note);
 
-    expect(result.isRight(), true);
+    expect(failure == null, true);
   });
 
   test(
@@ -54,10 +54,10 @@ void main() {
       () async {
     when(datasource.createNote(any)).thenThrow(Exception());
 
-    final result = await sut.createNote(null);
+    final (Failure? failure, void _) = await sut.createNote(null);
 
-    expect(result.isLeft(), true);
-    expect(result.asLeft(), isA<Failure>());
+    expect(failure != null, true);
+    expect(failure, isA<Failure>());
   });
 
   test('should return a either void correctly in editNote method', () async {
@@ -65,9 +65,9 @@ void main() {
 
     when(datasource.editNote(any)).thenAnswer((_) async => {});
 
-    final result = await sut.editNote(note);
+    final (Failure? failure, void _) = await sut.editNote(note);
 
-    expect(result.isRight(), true);
+    expect(failure == null, true);
   });
 
   test(
@@ -75,10 +75,10 @@ void main() {
       () async {
     when(datasource.editNote(any)).thenThrow(Exception());
 
-    final result = await sut.editNote(null);
+    final (Failure? failure, void _) = await sut.editNote(null);
 
-    expect(result.isLeft(), true);
-    expect(result.asLeft(), isA<Failure>());
+    expect(failure != null, true);
+    expect(failure, isA<Failure>());
   });
 
   test('should return a either void correctly in deleteNote method', () async {
@@ -86,9 +86,9 @@ void main() {
 
     when(datasource.deleteNote(any)).thenAnswer((_) async => true);
 
-    final result = await sut.deleteNote(note);
+    final (Failure? falure, void _) = await sut.deleteNote(note);
 
-    expect(result.isRight(), true);
+    expect(falure == null, true);
   });
 
   test(
@@ -96,9 +96,9 @@ void main() {
       () async {
     when(datasource.deleteNote(any)).thenThrow(Exception());
 
-    final result = await sut.deleteNote(null);
+    final (Failure? failure, void _) = await sut.deleteNote(null);
 
-    expect(result.isLeft(), true);
-    expect(result.asLeft(), isA<Failure>());
+    expect(failure != null, true);
+    expect(failure, isA<Failure>());
   });
 }

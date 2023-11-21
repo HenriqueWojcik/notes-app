@@ -1,4 +1,3 @@
-import 'package:dartz/dartz.dart';
 import 'package:flutter_notes_app/core/entities/failure.dart';
 import 'package:flutter_notes_app/features/new_note/domain/usecases/edit_note_usecase.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -18,19 +17,20 @@ void main() {
 
   test('should return correctly a right either correctly', () async {
     when(repository.editNote(any))
-        .thenAnswer((_) => Future.value(const Right(null)));
+        .thenAnswer((_) => Future.value(const (null, null)));
 
-    final result = await sut(NoteSample.sample());
+    final (Failure? failure, void _) = await sut(NoteSample.sample());
 
-    expect(result.isRight(), true);
+    expect(failure == null, true);
   });
 
   test('should return correctly a right either correctly', () async {
+    final error = Failure(message: '');
     when(repository.editNote(any))
-        .thenAnswer((_) => Future.value(Left(Failure(message: ''))));
+        .thenAnswer((_) => Future.value((error, null)));
 
-    final result = await sut(NoteSample.sample());
+    final (Failure? failure, void _) = await sut(NoteSample.sample());
 
-    expect(result.isLeft(), true);
+    expect(failure != null, true);
   });
 }

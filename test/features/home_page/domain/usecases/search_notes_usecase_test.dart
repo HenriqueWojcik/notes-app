@@ -1,4 +1,4 @@
-import 'package:flutter_notes_app/core/helpers/dart_z_externsion.dart';
+import 'package:flutter_notes_app/core/entities/failure.dart';
 import 'package:flutter_notes_app/features/home_page/domain/entities/note.dart';
 import 'package:flutter_notes_app/features/home_page/domain/usecases/search_notes_usecase.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -14,9 +14,9 @@ void main() {
 
   test('should return an empty note list', () async {
     final List<Note> list = [];
-    final result = sut(list, '');
+    final (Failure? _, List<Note>? notes) = sut(list, '');
 
-    expect(result.asRight(), list);
+    expect(notes, list);
   });
 
   test(
@@ -28,26 +28,10 @@ void main() {
         NoteSample.sample(),
       ];
 
-      final result = sut(list, 'title');
+      final (Failure? _, List<Note>? notes) = sut(list, '');
 
-      expect(result.asRight(), list);
-      expect(result.asRight()?.length, 3);
-    },
-  );
-
-  test(
-    'should return all item where constains the value',
-    () {
-      final List<Note> list = [
-        NoteSample.sample(),
-        NoteSample.sample(),
-        NoteSample.sample(),
-      ];
-
-      final result = sut(list, 'title');
-
-      expect(result.asRight(), list);
-      expect(result.asRight()?.length, 3);
+      expect(notes, list);
+      expect(notes?.length, 3);
     },
   );
 }

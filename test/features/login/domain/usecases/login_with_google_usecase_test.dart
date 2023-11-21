@@ -1,6 +1,5 @@
-import 'package:dartz/dartz.dart';
 import 'package:flutter_notes_app/core/entities/failure.dart';
-import 'package:flutter_notes_app/core/helpers/dart_z_externsion.dart';
+
 import 'package:flutter_notes_app/features/login/domain/usecases/login_with_google_usecase.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
@@ -18,20 +17,20 @@ void main() {
 
   test('should return as Right if return successfully', () async {
     when(repository.loginWithGoogle())
-        .thenAnswer((_) async => const Right(null));
+        .thenAnswer((_) async => (null, MockUser()));
 
-    final result = await sut();
+    final (Failure? failure, void _) = await sut();
 
-    expect(result.isRight(), true);
+    expect(failure == null, true);
   });
 
   test('should return a Exception if something fails', () async {
-    final Failure failure = Failure(message: '');
-    when(repository.loginWithGoogle()).thenAnswer((_) async => Left(failure));
+    final Failure error = Failure(message: '');
+    when(repository.loginWithGoogle()).thenAnswer((_) async => (error, null));
 
-    final result = await sut();
+    final (Failure? failure, void _) = await sut();
 
-    expect(result.isLeft(), true);
-    expect(result.asLeft(), failure);
+    expect(failure != null, true);
+    expect(failure, error);
   });
 }

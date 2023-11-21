@@ -1,5 +1,5 @@
 import 'package:flutter_notes_app/core/entities/failure.dart';
-import 'package:flutter_notes_app/core/helpers/dart_z_externsion.dart';
+
 import 'package:flutter_notes_app/features/login/data/repositories/login_repository_impl.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
@@ -18,9 +18,9 @@ void main() {
   test('should return a either with a void result when success', () async {
     when(datasource.loginWithGoogle()).thenAnswer((_) async => MockUser());
 
-    final result = await sut.loginWithGoogle();
+    final (Failure? failure, void _) = await sut.loginWithGoogle();
 
-    expect(result.isRight(), true);
+    expect(failure == null, true);
   });
 
   test(
@@ -29,10 +29,9 @@ void main() {
       final Failure exception = Failure(message: '');
       when(datasource.loginWithGoogle()).thenThrow(exception);
 
-      final result = await sut.loginWithGoogle();
+      final (Failure? failure, void _) = await sut.loginWithGoogle();
 
-      expect(result.isLeft(), true);
-      expect(result.asLeft(), exception);
+      expect(failure, exception);
     },
   );
 }

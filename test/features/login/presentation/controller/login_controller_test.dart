@@ -1,4 +1,3 @@
-import 'package:dartz/dartz.dart';
 import 'package:flutter_notes_app/core/entities/failure.dart';
 import 'package:flutter_notes_app/core/i18n/i18n.dart';
 import 'package:flutter_notes_app/features/login/presentation/controller/login_controller.dart';
@@ -22,8 +21,7 @@ void main() {
       () async {
     final user = MockUser();
 
-    // ignore: void_checks
-    when(loginWithGoogle()).thenAnswer((_) async => Right(user));
+    when(loginWithGoogle()).thenAnswer((_) async => (null, user));
 
     await sut.login();
 
@@ -34,7 +32,7 @@ void main() {
     const String errorMsg = 'error';
     final failure = Failure(message: errorMsg);
 
-    when(loginWithGoogle()).thenAnswer((_) async => Left(failure));
+    when(loginWithGoogle()).thenAnswer((_) async => (failure, null));
 
     await sut.login();
 

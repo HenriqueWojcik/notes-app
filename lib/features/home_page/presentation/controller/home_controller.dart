@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/entities/failure.dart';
 import '../../../../core/enums/home_view.dart';
-import '../../../../core/helpers/dart_z_externsion.dart';
 import '../../../../core/state/app_state.dart';
 import '../../../../core/state/app_state_extension.dart';
 import '../../domain/entities/note.dart';
@@ -28,11 +28,13 @@ class HomeController {
 
   Future<void> init() async {
     notes.update(() async {
-      final value = await getNotes();
+      final (Failure? fail, List<Note>? notes) = await getNotes();
 
-      _notes = value.asRight();
+      if (notes != null) {
+        _notes = notes;
+      }
 
-      return value;
+      return (fail, notes);
     });
   }
 
