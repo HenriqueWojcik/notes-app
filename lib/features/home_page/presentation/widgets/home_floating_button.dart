@@ -13,7 +13,10 @@ class HomeFloatingButton extends StatelessWidget {
     return FloatingActionButton(
       onPressed: onClick,
       backgroundColor: Colors.black,
-      child: const Icon(Icons.add),
+      child: const Icon(
+        Icons.add,
+        color: Colors.white,
+      ),
     );
   }
 }

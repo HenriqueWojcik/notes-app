@@ -69,10 +69,10 @@ class NewNoteController {
     }
 
     await scaffoldState.update(() async {
-      final (Failure? failure, void data) = await task();
-      value = failure == null;
+      final (Failure? failure, void data) v = await task();
+      value = v.$1 == null;
 
-      return (failure, data);
+      return v;
     });
 
     return value ?? false;
@@ -120,11 +120,11 @@ class NewNoteController {
 
     scaffoldState.onSuccessMessage = I18n.strings.noteRemovedWithSuccess;
     await scaffoldState.update(() async {
-      final (Failure? failure, void data) = await deleteNoteUseCase(note);
+      final (Failure? failure, void data) v = await deleteNoteUseCase(note);
 
-      value = failure == null;
+      value = v.$1 == null;
 
-      return (failure, data);
+      return v;
     });
 
     return value ?? false;
