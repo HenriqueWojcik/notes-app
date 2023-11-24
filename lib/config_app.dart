@@ -8,10 +8,10 @@ import 'injectors.dart';
 class ConfigApp {
   static bool configDone = false;
 
-  static Future<void> onInit() async {
+  static Future<void> onInit(Env env) async {
     if (configDone) return;
 
-    Injectors.inject(Env.mock);
+    Injectors.inject(env);
     I18n.load(
       Intl.getCurrentLocale(),
     );

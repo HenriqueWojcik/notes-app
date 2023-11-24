@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'config_app.dart';
+import 'core/enums/env.dart';
 import 'core/navigator/app_navigator_impl.dart';
 import 'features/loading/presentation/pages/loading_page.dart';
 
@@ -16,7 +17,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: ConfigApp.onInit(),
+      future: ConfigApp.onInit(Env.mock),
       builder: (_, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const LoadingPage();
