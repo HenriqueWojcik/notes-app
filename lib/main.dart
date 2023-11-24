@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
-import 'core/enums/env.dart';
-import 'core/i18n/i18n.dart';
+import 'config_app.dart';
 import 'core/navigator/app_navigator_impl.dart';
 import 'features/loading/presentation/pages/loading_page.dart';
-import 'core/authentication/firebase_helper.dart';
-import 'injectors.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -17,18 +13,10 @@ void main() async {
 class MainApp extends StatelessWidget {
   const MainApp({super.key});
 
-  Future<void> _init() async {
-    Injectors.inject(Env.mock);
-    I18n.load(
-      Intl.getCurrentLocale(),
-    );
-    await FirebaseHelper.init();
-  }
-
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: _init(),
+      future: ConfigApp.onInit(),
       builder: (_, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const LoadingPage();
