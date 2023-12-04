@@ -54,4 +54,8 @@ class Injectors {
 
     getIt.registerLazySingleton<User>(() => user);
   }
+
+  static void unregisterUser() {
+    getIt.unregister<User>();
+  }
 }

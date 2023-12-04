@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../core/navigator/app_navigator_interface.dart';
 import '../../../../core/navigator/routes.dart';
 import '../../../../injectors.dart';
+import '../../../drawer/presentation/pages/drawer_page.dart';
 import '../../domain/entities/note.dart';
 import '../controller/home_controller.dart';
 import '../widgets/home_app_bar.dart';
@@ -31,7 +32,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: controller.scaffoldKey,
-      drawer: const Drawer(),
+      drawer: const DrawerPage(),
       floatingActionButton: HomeFloatingButton(
         key: HomeKeys.floatingButton,
         onClick: _onClickAddNote,

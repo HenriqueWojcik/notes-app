@@ -5,4 +5,9 @@ class Failure {
   final String message;
 
   Failure({required this.message}) : title = I18n.strings.titleError;
+
+  @override
+  String toString() {
+    return '$title >> $message';
+  }
 }

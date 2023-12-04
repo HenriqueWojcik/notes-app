@@ -8,7 +8,11 @@ extension AppStateExtension<T> on AppState {
 
     final (Failure? failure, T? data) = await task();
 
-    fail = failure;
+    if (failure != null) {
+      fail = failure;
+      return;
+    }
+
     value = data;
   }
 }

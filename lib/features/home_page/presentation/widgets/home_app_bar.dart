@@ -1,10 +1,8 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/enums/home_view.dart';
 import '../../../../core/i18n/i18n.dart';
 import '../../../../core/state/app_state_builder.dart';
-import '../../../../injectors.dart';
 import '../controller/home_controller.dart';
 import '../pages/keys/home_keys.dart';
 
@@ -14,17 +12,13 @@ class HomeAppBar extends StatelessWidget {
   final Function() onClickDrawerIcon;
   final Function() onClickHomeViewIcon;
 
-  HomeAppBar({
+  const HomeAppBar({
     Key? key,
     required this.controller,
     required this.onSearchNotes,
     required this.onClickDrawerIcon,
     required this.onClickHomeViewIcon,
   }) : super(key: key);
-
-  final User user = getIt();
-
-  String? get photoUrl => user.photoURL;
 
   @override
   Widget build(BuildContext context) {
@@ -60,16 +54,6 @@ class HomeAppBar extends StatelessWidget {
               );
             },
           ),
-          // TODO Cicle avatar
-          // if (photoUrl != null) ...[
-          //   CircleAvatar(
-          //     backgroundImage: NetworkImage(photoUrl!),
-          //     maxRadius: 15,
-          //   ),
-          //   const SizedBox(
-          //     width: 10,
-          //   )
-          // ]
         ],
       ),
     );

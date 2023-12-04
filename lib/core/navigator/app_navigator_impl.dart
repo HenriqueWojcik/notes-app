@@ -57,4 +57,12 @@ class AppNavigator implements AppNavigatorInterface {
   void pop<T extends Object?>([T? result]) {
     router.pop<T>(result);
   }
+
+  @override
+  void popAll(String location) {
+    do {
+      router.pop();
+    } while (router.canPop());
+    push(location);
+  }
 }
