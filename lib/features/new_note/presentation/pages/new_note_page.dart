@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:my_foundation/main.dart';
 
 import '../../../../core/navigator/app_navigator_interface.dart';
-import '../../../../core/state/scaffold_app_state_builder.dart';
 import '../../../../injectors.dart';
 import '../controller/new_note_controller.dart';
 import '../widgets/new_note_app_bar.dart';

@@ -21,6 +21,11 @@ dependencies:
   firebase_auth: 4.6.3
   google_sign_in: 6.1.4
 
+  my_foundation:
+    git:
+      url: https://github.com/HenriqueWojcik/my_foundation
+      ref: main
+
 dev_dependencies:
   flutter_lints: ^2.0.0
   build_runner: 2.3.3

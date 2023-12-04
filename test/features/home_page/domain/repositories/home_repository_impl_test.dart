@@ -1,8 +1,8 @@
-import 'package:flutter_notes_app/core/entities/failure.dart';
 import 'package:flutter_notes_app/features/home_page/domain/entities/note.dart';
 import 'package:flutter_notes_app/features/home_page/domain/repositories/home_repository_impl.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
+import 'package:my_foundation/main.dart';
 
 import '../../../../mock/mocks.mocks.dart';
 import '../../../../samples/models/note_model_sample.dart';

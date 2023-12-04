@@ -1,4 +1,5 @@
-import '../../../../core/entities/failure.dart';
+import 'package:my_foundation/main.dart';
+
 import '../repositories/login_repository_interface.dart';
 
 class LoginWithGoogleUsecase {

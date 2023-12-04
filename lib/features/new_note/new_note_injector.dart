@@ -1,4 +1,5 @@
-import '../../core/injector/feature_injector.dart';
+import 'package:my_foundation/main.dart';
+
 import '../../injectors.dart';
 import 'data/datasources/new_note_datasource_impl.dart';
 import 'data/datasources/new_note_datasource_interface.dart';

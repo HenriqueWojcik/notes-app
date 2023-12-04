@@ -1,10 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:my_foundation/main.dart';
 
 import '../../../../core/navigator/app_navigator_interface.dart';
 import '../../../../core/navigator/routes.dart';
 import '../../../../injectors.dart';
-import '../../../../core/helpers/string_extension.dart';
 
 class DrawerPage extends StatefulWidget {
   const DrawerPage({super.key});

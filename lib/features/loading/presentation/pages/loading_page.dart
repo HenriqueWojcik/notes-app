@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../../../../core/widgets/app_progress_indicator.dart';
+import 'package:my_foundation/main.dart';
 
 class LoadingPage extends StatelessWidget {
   const LoadingPage({super.key});

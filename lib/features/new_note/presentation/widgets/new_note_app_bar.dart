@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:my_foundation/main.dart';
 
-import '../../../../core/state/app_state_builder.dart';
 import '../controller/new_note_controller.dart';
 
 class NewNoteAppBar extends AppBar {

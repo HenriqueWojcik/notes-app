@@ -1,7 +1,7 @@
-import 'package:flutter_notes_app/core/entities/failure.dart';
 import 'package:flutter_notes_app/features/home_page/domain/entities/note.dart';
 import 'package:flutter_notes_app/features/home_page/domain/usecases/search_notes_usecase.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:my_foundation/main.dart';
 
 import '../../../../samples/entities/note_model_sample.dart';
 

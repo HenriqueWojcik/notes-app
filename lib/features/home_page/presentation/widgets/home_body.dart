@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:my_foundation/main.dart';
 
 import '../../../../core/enums/home_view.dart';
 import '../../../../core/i18n/i18n.dart';
-import '../../../../core/state/app_state_builder.dart';
-import '../../../../core/widgets/empty_placeholder.dart';
 import '../../domain/entities/note.dart';
 import '../controller/home_controller.dart';
 import '../pages/keys/home_keys.dart';

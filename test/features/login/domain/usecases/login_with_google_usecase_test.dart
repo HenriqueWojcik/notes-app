@@ -1,8 +1,7 @@
-import 'package:flutter_notes_app/core/entities/failure.dart';
-
 import 'package:flutter_notes_app/features/login/domain/usecases/login_with_google_usecase.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
+import 'package:my_foundation/main.dart';
 
 import '../../../../mock/mocks.mocks.dart';
 
@@ -25,7 +24,7 @@ void main() {
   });
 
   test('should return a Exception if something fails', () async {
-    final Failure error = Failure(message: '');
+    final Failure error = Failure(message: '', title: '');
     when(repository.loginWithGoogle()).thenAnswer((_) async => (error, null));
 
     final (Failure? failure, void _) = await sut();

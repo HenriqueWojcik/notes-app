@@ -1,4 +1,5 @@
-import '../../../../core/entities/failure.dart';
+import 'package:my_foundation/main.dart';
+
 import '../entities/note.dart';
 
 class SearchNotesUsecase {
@@ -16,7 +17,7 @@ class SearchNotesUsecase {
       }
       return (null, result);
     } on Exception catch (e) {
-      return (Failure(message: e.toString()), null);
+      return (Failure(message: e.toString(), title: 'Error'), null);
     }
   }
 }

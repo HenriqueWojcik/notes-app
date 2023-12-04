@@ -1,5 +1,4 @@
-import '../../../../core/entities/failure.dart';
-import '../../../../core/repositories/base_repository.dart';
+import 'package:my_foundation/main.dart';
 
 import '../../data/datasources/home_datasource_interface.dart';
 import '../../data/error/home_error_handler.dart';

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:my_foundation/main.dart';
 
-import '../../../../core/entities/failure.dart';
 import '../../../../core/enums/home_view.dart';
-import '../../../../core/state/app_state.dart';
-import '../../../../core/state/app_state_extension.dart';
 import '../../domain/entities/note.dart';
 import '../../domain/usecases/get_notes_usecase.dart';
 import '../../domain/usecases/search_notes_usecase.dart';

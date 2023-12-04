@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:my_foundation/main.dart';
 
 import '../../../../core/i18n/i18n.dart';
 import '../../../../core/navigator/app_navigator_interface.dart';
 import '../../../../core/navigator/routes.dart';
-import '../../../../core/state/scaffold_app_state_builder.dart';
 import '../../../../injectors.dart';
 import '../controller/login_controller.dart';
 import 'keys/login_keys.dart';

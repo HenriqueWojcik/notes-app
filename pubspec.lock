@@ -209,6 +209,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.3"
+  cupertino_icons:
+    dependency: transitive
+    description:
+      name: cupertino_icons
+      sha256: d57953e10f9f8327ce64a508a355f0b1ec902193f66288e8cb5070e7c47eeb2d
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.6"
   dart_style:
     dependency: transitive
     description:
@@ -576,6 +584,15 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.10.2"
+  my_foundation:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: main
+      resolved-ref: "02e18e4c6cadd55602bfab94856ad5d2f0ff1f50"
+      url: "https://github.com/HenriqueWojcik/my_foundation"
+    source: git
+    version: "1.0.0+1"
   package_config:
     dependency: transitive
     description:

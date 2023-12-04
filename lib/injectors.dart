@@ -2,11 +2,11 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get_it/get_it.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:my_foundation/main.dart';
 
 import 'core/data/communication_impl.dart';
 import 'core/data/communication_inferface.dart';
 import 'core/enums/env.dart';
-import 'core/injector/feature_injector.dart';
 import 'core/navigator/app_navigator_impl.dart';
 import 'core/navigator/app_navigator_interface.dart';
 import 'features/home_page/home_injector.dart';

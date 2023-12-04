@@ -1,5 +1,5 @@
-import '../../../../core/entities/failure.dart';
-import '../../../../core/repositories/base_repository.dart';
+import 'package:my_foundation/main.dart';
+
 import '../../../../injectors.dart';
 import '../../domain/repositories/login_repository_interface.dart';
 import '../datasources/login_datasource_interface.dart';

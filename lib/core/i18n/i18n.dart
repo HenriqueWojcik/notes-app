@@ -1,4 +1,4 @@
-import '../print/debug_print.dart';
+import 'package:my_foundation/main.dart';
 import 'strings/en_us.dart';
 import 'strings/pt_br.dart';
 

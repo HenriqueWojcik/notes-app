@@ -1,7 +1,7 @@
-import 'package:flutter_notes_app/core/entities/failure.dart';
 import 'package:flutter_notes_app/features/new_note/domain/usecases/edit_note_usecase.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
+import 'package:my_foundation/main.dart';
 
 import '../../../../mock/mocks.mocks.dart';
 import '../../../../samples/entities/note_model_sample.dart';
@@ -25,7 +25,7 @@ void main() {
   });
 
   test('should return correctly a right either correctly', () async {
-    final error = Failure(message: '');
+    final error = Failure(message: '', title: '');
     when(repository.editNote(any))
         .thenAnswer((_) => Future.value((error, null)));
 

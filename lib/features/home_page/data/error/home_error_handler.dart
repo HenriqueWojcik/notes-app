@@ -1,9 +1,8 @@
-import '../../../../core/data/error/error_handler.dart';
-import '../../../../core/entities/failure.dart';
+import 'package:my_foundation/main.dart';
 
 class HomeErrorHandler implements ErrorHandler {
   @override
   Failure? handleError(Exception e) {
-    return Failure(message: e.toString());
+    return Failure(message: e.toString(), title: 'Error');
   }
 }

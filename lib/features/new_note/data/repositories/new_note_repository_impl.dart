@@ -1,6 +1,6 @@
-import '../../../../core/entities/failure.dart';
+import 'package:my_foundation/main.dart';
+
 import '../../../../core/i18n/i18n.dart';
-import '../../../../core/repositories/base_repository.dart';
 import '../../../home_page/data/mappers/note_mapper.dart';
 import '../../../home_page/domain/entities/note.dart';
 import '../datasources/new_note_datasource_interface.dart';

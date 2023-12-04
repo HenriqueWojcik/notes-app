@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:my_foundation/main.dart';
 
 import '../entities/request.dart';
 import '../i18n/i18n.dart';
-import '../print/debug_print.dart';
 import 'communication_inferface.dart';
 
 class CommunicationImpl implements CommunicationInterface {

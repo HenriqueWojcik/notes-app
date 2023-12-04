@@ -4,7 +4,6 @@ import 'package:flutter_notes_app/core/enums/home_view.dart';
 import 'package:flutter_notes_app/core/navigator/app_navigator_impl.dart';
 import 'package:flutter_notes_app/core/navigator/app_navigator_interface.dart';
 import 'package:flutter_notes_app/core/navigator/routes.dart';
-import 'package:flutter_notes_app/core/state/app_state.dart';
 import 'package:flutter_notes_app/features/home_page/domain/entities/note.dart';
 import 'package:flutter_notes_app/features/home_page/presentation/controller/home_controller.dart';
 import 'package:flutter_notes_app/features/home_page/presentation/pages/keys/home_keys.dart';
@@ -12,6 +11,7 @@ import 'package:flutter_notes_app/injectors.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mockito/mockito.dart';
+import 'package:my_foundation/main.dart';
 
 import '../../../../mock/mocks.mocks.dart';
 import '../../../../samples/entities/note_model_sample.dart';

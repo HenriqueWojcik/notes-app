@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:my_foundation/main.dart';
 
-import '../../../../core/entities/failure.dart';
 import '../../../../core/i18n/i18n.dart';
-import '../../../../core/state/app_state.dart';
-import '../../../../core/state/app_state_extension.dart';
-import '../../../../core/state/scaffold_app_state.dart';
 import '../../../home_page/domain/entities/note.dart';
 import '../../domain/usecases/create_note_usecase.dart';
 import '../../domain/usecases/delete_note_usecase.dart';

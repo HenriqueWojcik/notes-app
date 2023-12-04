@@ -1,4 +1,5 @@
-import '../../../../core/entities/failure.dart';
+import 'package:my_foundation/main.dart';
+
 import '../../../home_page/domain/entities/note.dart';
 
 abstract class NewNoteRepositoryInterface {

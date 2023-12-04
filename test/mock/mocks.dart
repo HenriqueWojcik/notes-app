@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_notes_app/core/data/communication_inferface.dart';
 import 'package:flutter_notes_app/core/entities/request.dart';
 import 'package:flutter_notes_app/core/navigator/app_navigator_interface.dart';
-import 'package:flutter_notes_app/core/state/scaffold_app_state.dart';
 import 'package:flutter_notes_app/features/home_page/data/datasources/home_datasource_interface.dart';
 import 'package:flutter_notes_app/features/home_page/data/error/home_error_handler.dart';
 import 'package:flutter_notes_app/features/home_page/data/repositories/home_repository_interface.dart';
@@ -24,6 +23,7 @@ import 'package:flutter_notes_app/features/new_note/domain/usecases/get_note_by_
 import 'package:flutter_notes_app/core/authentication/firebase_helper.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:mockito/annotations.dart';
+import 'package:my_foundation/main.dart';
 
 // App native classes
 @GenerateMocks([

@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_notes_app/core/navigator/app_navigator_impl.dart';
 import 'package:flutter_notes_app/core/navigator/app_navigator_interface.dart';
 import 'package:flutter_notes_app/core/navigator/routes.dart';
-import 'package:flutter_notes_app/core/state/app_state_extension.dart';
-import 'package:flutter_notes_app/core/state/scaffold_app_state.dart';
 import 'package:flutter_notes_app/features/login/presentation/controller/login_controller.dart';
 import 'package:flutter_notes_app/features/login/presentation/pages/keys/login_keys.dart';
 import 'package:flutter_notes_app/injectors.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 import 'package:mockito/mockito.dart';
+import 'package:my_foundation/main.dart';
 
 import '../../../../mock/mocks.mocks.dart';
 
