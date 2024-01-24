@@ -28,6 +28,8 @@ class NewNoteController {
 
   Note? note;
 
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
   final TextEditingController titleController = TextEditingController();
   final TextEditingController bodyController = TextEditingController();
 
@@ -54,6 +56,10 @@ class NewNoteController {
   }
 
   Future<bool> createOrUpdateNote() async {
+    if (!validateForm()) {
+      return false;
+    }
+
     bool? value;
 
     Future<(Failure?, void)> task() async {
@@ -125,6 +131,10 @@ class NewNoteController {
     });
 
     return value ?? false;
+  }
+
+  bool validateForm() {
+    return formKey.currentState!.validate();
   }
 
   void dispose() {

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_foundation/main.dart';
 
 import '../../../../core/i18n/i18n.dart';
 import '../controller/new_note_controller.dart';
@@ -19,28 +20,35 @@ class NewNoteBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 10, 16, 0),
-      child: Column(
-        children: [
-          TextFormField(
-            controller: controller.titleController,
-            onChanged: onChangeTitle,
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              hintText: I18n.strings.title,
-              hintStyle: const TextStyle(
-                fontSize: 20,
+      child: Form(
+        key: controller.formKey,
+        child: Column(
+          children: [
+            AppTextFormField(
+              controller: controller.titleController,
+              onChanged: onChangeTitle,
+              validationRules: [RequiredValidationRule()],
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: I18n.strings.title,
+                hintStyle: const TextStyle(
+                  fontSize: 20,
+                ),
               ),
             ),
-          ),
-          TextFormField(
-            controller: controller.bodyController,
-            onChanged: onChangeBody,
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              hintText: I18n.strings.body,
+            AppTextFormField(
+              controller: controller.bodyController,
+              onChanged: onChangeBody,
+              validationRules: [
+                RequiredValidationRule(),
+              ],
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                hintText: I18n.strings.body,
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
