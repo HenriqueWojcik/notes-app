@@ -51,4 +51,10 @@ class EnUs implements Translations {
 
   @override
   String get titleError => 'Error';
+
+  @override
+  String get editNoteTitle => 'Edit Note';
+
+  @override
+  String get newNoteTitle => 'New note';
 }

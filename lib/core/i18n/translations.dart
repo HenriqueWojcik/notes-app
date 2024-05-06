@@ -15,6 +15,8 @@ abstract class Translations {
   String get body;
   String get noteNotFound;
   String get loading;
+  String get newNoteTitle;
+  String get editNoteTitle;
 
   String get titleError;
 }

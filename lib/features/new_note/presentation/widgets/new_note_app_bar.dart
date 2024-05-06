@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:my_foundation/main.dart';
 
+import '../../../../core/i18n/i18n.dart';
 import '../controller/new_note_controller.dart';
 
 class NewNoteAppBar extends AppBar {
@@ -21,6 +22,16 @@ class NewNoteAppBar extends AppBar {
               Icons.chevron_left_outlined,
               color: Colors.black87,
             ),
+          ),
+          title: AppStateBuilder(
+            state: controller.noteState,
+            builder: (_, __) {
+              return Text(
+                controller.isEditingNote
+                    ? I18n.strings.editNoteTitle
+                    : I18n.strings.newNoteTitle,
+              );
+            },
           ),
           actions: [
             AppStateBuilder(

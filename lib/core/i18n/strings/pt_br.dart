@@ -51,4 +51,10 @@ class PtBr implements Translations {
 
   @override
   String get titleError => 'Error';
+
+  @override
+  String get editNoteTitle => 'Editando nota';
+
+  @override
+  String get newNoteTitle => 'Nova nota';
 }
