@@ -17,10 +17,10 @@ void main() {
   });
 
   test('should return list of notes corretly', () async {
-    MockUser mockUser = MockUser();
-    when(mockUser.uid).thenReturn('123');
+    MockAppUser mockAppUser = MockAppUser();
+    when(mockAppUser.uid).thenReturn('123');
 
-    Injectors.registerUser(mockUser);
+    Injectors.registerUser(mockAppUser);
 
     final json = await loadJsonFile('notes.json');
 

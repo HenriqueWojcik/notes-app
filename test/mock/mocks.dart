@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_notes_app/core/data/communication_inferface.dart';
+import 'package:flutter_notes_app/core/entities/app_user.dart';
 import 'package:flutter_notes_app/core/entities/request.dart';
 import 'package:flutter_notes_app/core/navigator/app_navigator_interface.dart';
 import 'package:flutter_notes_app/features/home_page/data/datasources/home_datasource_interface.dart';
@@ -62,6 +63,7 @@ import 'package:my_foundation/main.dart';
   AppRequest,
   User,
   Note,
+  AppUser,
 ])
 
 // ErrorHandlers

@@ -1,7 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:my_foundation/main.dart';
 
 import '../../../../core/data/communication_inferface.dart';
+import '../../../../core/entities/app_user.dart';
 import '../../../../core/entities/request.dart';
 import '../../../../core/i18n/i18n.dart';
 import '../../../../injectors.dart';
@@ -13,7 +13,7 @@ class NewNoteDatasourceImpl implements NewNoteDatasourceInterface {
 
   NewNoteDatasourceImpl({required this.communication});
 
-  User get user => getIt();
+  AppUser get user => getIt();
 
   @override
   Future<NoteModel> getNoteById(String id) async {

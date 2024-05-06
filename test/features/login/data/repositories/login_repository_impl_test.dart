@@ -15,7 +15,7 @@ void main() {
   });
 
   test('should return a either with a void result when success', () async {
-    when(datasource.loginWithGoogle()).thenAnswer((_) async => MockUser());
+    when(datasource.loginWithGoogle()).thenAnswer((_) async => MockAppUser());
 
     final (Failure? failure, void _) = await sut.loginWithGoogle();
 

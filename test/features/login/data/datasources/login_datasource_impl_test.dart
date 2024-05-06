@@ -1,3 +1,4 @@
+import 'package:flutter_notes_app/core/entities/app_user.dart';
 import 'package:flutter_notes_app/features/login/data/datasources/login_datasource_impl.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
@@ -16,13 +17,24 @@ void main() {
   });
 
   test('should return user correctly', () async {
-    final user = MockUser();
+    final mockUser = MockUser();
 
-    when(firebaseHelper.loginWithGoogle()).thenAnswer((_) async => user);
+    when(firebaseHelper.loginWithGoogle()).thenAnswer((_) async => mockUser);
+
+    when(mockUser.uid).thenReturn('123');
+    when(mockUser.displayName).thenReturn('mock');
+    when(mockUser.email).thenReturn('user@mock.com');
+    when(mockUser.photoURL).thenReturn('');
 
     final result = await sut.loginWithGoogle();
 
-    expect(result, user);
+    final user = AppUser.fromFirebaseUser(mockUser);
+
+    expect(result.uid, user.uid);
+    expect(result.displayName, user.displayName);
+    expect(result.email, user.email);
+    expect(result.photoURL, user.photoURL);
+
     verify(firebaseHelper.loginWithGoogle()).called(1);
   });
 }

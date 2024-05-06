@@ -1,6 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
-
 import '../../../../core/authentication/firebase_helper.dart';
+import '../../../../core/entities/app_user.dart';
 import 'login_datasource_interface.dart';
 
 class LoginDatasourceImpl implements LoginDatasourceInterface {
@@ -11,7 +10,7 @@ class LoginDatasourceImpl implements LoginDatasourceInterface {
   });
 
   @override
-  Future<User> loginWithGoogle() async {
-    return await firebaseHelper.loginWithGoogle();
+  Future<AppUser> loginWithGoogle() async {
+    return AppUser.fromFirebaseUser(await firebaseHelper.loginWithGoogle());
   }
 }

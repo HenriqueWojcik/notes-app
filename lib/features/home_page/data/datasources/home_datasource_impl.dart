@@ -1,6 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
-
 import '../../../../core/data/communication_inferface.dart';
+import '../../../../core/entities/app_user.dart';
 import '../../../../core/entities/request.dart';
 import '../../../../injectors.dart';
 import '../models/note_model.dart';
@@ -11,7 +10,7 @@ class HomeDatasourceImpl implements HomeDatasourceInterface {
 
   HomeDatasourceImpl({required this.communication});
 
-  User get user => getIt();
+  AppUser get user => getIt();
 
   @override
   Future<List<NoteModel>> getNotes() async {

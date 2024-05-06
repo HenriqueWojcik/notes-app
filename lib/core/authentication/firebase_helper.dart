@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 import '../../injectors.dart';
+import '../entities/app_user.dart';
 
 class FirebaseHelper {
   final FirebaseAuth firebaseAuth;
@@ -49,7 +50,7 @@ class FirebaseHelper {
       return false;
     }
 
-    Injectors.registerUser(user);
+    Injectors.registerUser(AppUser.fromFirebaseUser(user));
 
     return true;
   }

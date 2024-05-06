@@ -17,7 +17,7 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: ConfigApp.onInit(Env.prod),
+      future: ConfigApp.onInit(Env.mock),
       builder: (_, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const LoadingPage();

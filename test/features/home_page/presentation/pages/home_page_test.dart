@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_notes_app/core/entities/app_user.dart';
 import 'package:flutter_notes_app/core/enums/home_view.dart';
 import 'package:flutter_notes_app/core/navigator/app_navigator_impl.dart';
 import 'package:flutter_notes_app/core/navigator/app_navigator_interface.dart';
@@ -20,18 +21,18 @@ void main() {
   late Widget sut;
   late MockHomeController controller;
   late MockAppNavigatorInterface navigator;
-  late MockUser user;
+  late MockAppUser user;
 
   setUp(() {
     TestWidgetsFlutterBinding.ensureInitialized();
 
     controller = MockHomeController();
     navigator = MockAppNavigatorInterface();
-    user = MockUser();
+    user = MockAppUser();
 
     getIt.registerFactory<HomeController>(() => controller);
     getIt.registerLazySingleton<AppNavigatorInterface>(() => navigator);
-    getIt.registerLazySingleton<User>(() => user);
+    getIt.registerLazySingleton<AppUser>(() => user);
 
     sut = MaterialApp.router(
       routerConfig: GoRouter(

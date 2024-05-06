@@ -6,6 +6,7 @@ import 'package:my_foundation/main.dart';
 
 import 'core/data/communication_impl.dart';
 import 'core/data/communication_inferface.dart';
+import 'core/entities/app_user.dart';
 import 'core/enums/env.dart';
 import 'core/navigator/app_navigator_impl.dart';
 import 'core/navigator/app_navigator_interface.dart';
@@ -47,15 +48,15 @@ class Injectors {
     getIt.registerLazySingleton<AppNavigatorInterface>(() => AppNavigator());
   }
 
-  static void registerUser(User user) {
-    if (getIt.isRegistered<User>()) {
+  static void registerUser(AppUser user) {
+    if (getIt.isRegistered<AppUser>()) {
       return;
     }
 
-    getIt.registerLazySingleton<User>(() => user);
+    getIt.registerLazySingleton<AppUser>(() => user);
   }
 
   static void unregisterUser() {
-    getIt.unregister<User>();
+    getIt.unregister<AppUser>();
   }
 }

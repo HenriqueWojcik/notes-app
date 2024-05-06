@@ -1,5 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import '../../../../core/entities/app_user.dart';
 
 abstract class LoginDatasourceInterface {
-  Future<User> loginWithGoogle();
+  Future<AppUser> loginWithGoogle();
 }

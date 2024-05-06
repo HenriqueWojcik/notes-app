@@ -1,4 +1,4 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter_notes_app/core/entities/app_user.dart';
 import 'package:flutter_notes_app/features/home_page/data/models/note_model.dart';
 import 'package:flutter_notes_app/features/new_note/data/datasources/new_note_datasource_impl.dart';
 import 'package:flutter_notes_app/injectors.dart';
@@ -12,14 +12,14 @@ import '../../../../samples/models/note_model_sample.dart';
 void main() {
   late NewNoteDatasourceImpl sut;
   late MockCommunicationInterface communication;
-  late MockUser user;
+  late MockAppUser user;
 
   setUp(() {
     communication = MockCommunicationInterface();
     sut = NewNoteDatasourceImpl(communication: communication);
-    user = MockUser();
+    user = MockAppUser();
 
-    getIt.registerLazySingleton<User>(() => user);
+    getIt.registerLazySingleton<AppUser>(() => user);
   });
 
   tearDown(() {
