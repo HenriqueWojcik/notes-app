@@ -28,14 +28,16 @@ class NewNoteController {
 
   Note? note;
 
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-
   final TextEditingController titleController = TextEditingController();
   final TextEditingController bodyController = TextEditingController();
 
+  late GlobalKey<FormState>? formKey;
+
   bool get isEditingNote => note?.id != null;
 
-  Future<void> init(String? noteId) async {
+  Future<void> init(String? noteId, GlobalKey<FormState> key) async {
+    formKey = key;
+
     if (noteId == null) {
       _createNoteIfNotExists();
       return;
@@ -134,7 +136,7 @@ class NewNoteController {
   }
 
   bool validateForm() {
-    return formKey.currentState!.validate();
+    return formKey?.currentState?.validate() ?? false;
   }
 
   void dispose() {

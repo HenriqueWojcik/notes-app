@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_notes_app/core/entities/app_user.dart';
 import 'package:flutter_notes_app/core/enums/home_view.dart';
@@ -22,6 +21,7 @@ void main() {
   late MockHomeController controller;
   late MockAppNavigatorInterface navigator;
   late MockAppUser user;
+  late MockGlobalKey<ScaffoldState> scaffoldKey;
 
   setUp(() {
     TestWidgetsFlutterBinding.ensureInitialized();
@@ -29,6 +29,7 @@ void main() {
     controller = MockHomeController();
     navigator = MockAppNavigatorInterface();
     user = MockAppUser();
+    scaffoldKey = MockGlobalKey<ScaffoldState>();
 
     getIt.registerFactory<HomeController>(() => controller);
     getIt.registerLazySingleton<AppNavigatorInterface>(() => navigator);
@@ -47,6 +48,8 @@ void main() {
   });
 
   void initStates() {
+    controller.scaffoldKey = scaffoldKey;
+
     final notes = AppState<List<Note>>();
     notes.value = [NoteSample.sample(), NoteSample.sample()];
 

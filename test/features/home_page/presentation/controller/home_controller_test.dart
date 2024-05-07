@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_notes_app/core/enums/home_view.dart';
 import 'package:flutter_notes_app/features/home_page/presentation/controller/home_controller.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -10,10 +11,12 @@ void main() {
   late HomeController sut;
   late MockGetNotesUsecase getNotes;
   late MockSearchNotesUsecase searchNotes;
+  late MockGlobalKey<ScaffoldState> key;
 
   setUp(() {
     getNotes = MockGetNotesUsecase();
     searchNotes = MockSearchNotesUsecase();
+    key = MockGlobalKey<ScaffoldState>();
 
     sut = HomeController(
       getNotes: getNotes,
@@ -31,7 +34,7 @@ void main() {
 
     when(getNotes()).thenAnswer((_) async => (null, data));
 
-    await sut.init();
+    await sut.init(key);
 
     verify(getNotes()).called(1);
     expect(sut.notes.hasData, true);

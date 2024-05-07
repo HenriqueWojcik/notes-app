@@ -22,12 +22,13 @@ class NewNotePage extends StatefulWidget {
 class _NewNotePageState extends State<NewNotePage> {
   final NewNoteController _controller = getIt<NewNoteController>();
   final AppNavigatorInterface _navigator = getIt<AppNavigatorInterface>();
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   @override
   void initState() {
     super.initState();
 
-    _controller.init(widget.noteId);
+    _controller.init(widget.noteId, formKey);
   }
 
   @override

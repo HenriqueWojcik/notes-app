@@ -22,9 +22,11 @@ class HomeController {
 
   List<Note> _notes = [];
 
-  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+  late GlobalKey<ScaffoldState> scaffoldKey;
 
-  Future<void> init() async {
+  Future<void> init(GlobalKey<ScaffoldState> key) async {
+    scaffoldKey = key;
+
     notes.update(() async {
       final (Failure? fail, List<Note>? notes) = await getNotes();
 
@@ -38,7 +40,7 @@ class HomeController {
 
   Future<void> update({bool? refresh = false}) async {
     if (refresh != null && refresh) {
-      await init();
+      await init(scaffoldKey);
     }
   }
 

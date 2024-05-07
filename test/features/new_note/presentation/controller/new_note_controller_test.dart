@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_notes_app/core/i18n/i18n.dart';
 import 'package:flutter_notes_app/features/home_page/domain/entities/note.dart';
 import 'package:flutter_notes_app/features/new_note/presentation/controller/new_note_controller.dart';
@@ -8,18 +9,22 @@ import '../../../../mock/mocks.mocks.dart';
 import '../../../../samples/entities/note_model_sample.dart';
 
 void main() {
+  TestWidgetsFlutterBinding.ensureInitialized();
+
   late NewNoteController sut;
 
   late MockGetNoteByIdUseCase getNoteById;
   late MockCreateNoteUseCase createNote;
   late MockEditNoteUsecase editNote;
   late MockDeleteNoteUseCase deleteNoteUseCase;
+  late MockGlobalKey<FormState> formKey;
 
   setUp(() {
     getNoteById = MockGetNoteByIdUseCase();
     createNote = MockCreateNoteUseCase();
     editNote = MockEditNoteUsecase();
     deleteNoteUseCase = MockDeleteNoteUseCase();
+    formKey = MockGlobalKey<FormState>();
 
     sut = NewNoteController(
       getNoteById: getNoteById,
@@ -29,8 +34,15 @@ void main() {
     );
   });
 
+  void mockFormStateValidator({bool validate = true}) {
+    sut.formKey = formKey;
+    MockFormState formState = MockFormState();
+    when(formState.validate()).thenReturn(validate);
+    when(formKey.currentState).thenAnswer((_) => formState);
+  }
+
   test('should init a note with title and body empty when noteId is null', () {
-    sut.init(null);
+    sut.init(null, formKey);
 
     expect(sut.note?.title, '');
     expect(sut.note?.body, '');
@@ -41,7 +53,7 @@ void main() {
 
     when(getNoteById(note.id)).thenAnswer((_) async => (null, note));
 
-    await sut.init(note.id);
+    await sut.init(note.id, formKey);
 
     expect(sut.note, note);
     expect(sut.titleController.text, note.title);
@@ -53,6 +65,7 @@ void main() {
   });
 
   test('should create a note correctly', () async {
+    mockFormStateValidator();
     when(createNote(any)).thenAnswer((_) async => const (null, null));
 
     final value = await sut.createOrUpdateNote();
@@ -65,15 +78,19 @@ void main() {
   });
 
   test('should update note correctly', () async {
+    mockFormStateValidator();
+
     sut.note = NoteSample.sample();
 
     when(editNote(any)).thenAnswer((_) async => const (null, null));
 
     final value = await sut.createOrUpdateNote();
+
     expect(
       sut.scaffoldState.onSuccessMessage,
       I18n.strings.noteEditedWithSuccess,
     );
+
     expect(value, true);
   });
 

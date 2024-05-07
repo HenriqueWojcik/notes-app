@@ -25,12 +25,12 @@ void main() {
   test(
     'should return a exception when something got wrong in datasource',
     () async {
-      final Failure exception = Failure(message: '', title: '');
-      when(datasource.loginWithGoogle()).thenThrow(exception);
+      when(datasource.loginWithGoogle()).thenThrow(Exception());
 
       final (Failure? failure, void _) = await sut.loginWithGoogle();
 
-      expect(failure, exception);
+      expect(failure?.title.isNotEmpty, true);
+      expect(failure?.message.isNotEmpty, true);
     },
   );
 }

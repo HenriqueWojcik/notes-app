@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_notes_app/core/data/communication_inferface.dart';
 import 'package:flutter_notes_app/core/entities/app_user.dart';
 import 'package:flutter_notes_app/core/entities/request.dart';
@@ -29,6 +30,8 @@ import 'package:my_foundation/main.dart';
 // App native classes
 @GenerateMocks([
   AppNavigatorInterface,
+  GlobalKey<FormState>,
+  FormState,
 ])
 
 // Firebase

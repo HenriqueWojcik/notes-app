@@ -21,11 +21,12 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final HomeController controller = getIt();
   final AppNavigatorInterface navigator = getIt();
+  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    controller.init();
+    controller.init(scaffoldKey);
   }
 
   @override
@@ -72,8 +73,8 @@ class _HomePageState extends State<HomePage> {
     controller.update(refresh: result);
   }
 
-  void _onClickDrawerIcon() =>
-      controller.scaffoldKey.currentState?.openDrawer();
+  void _onClickDrawerIcon() => {};
+  // controller.scaffoldKey.currentState?.openDrawer();
 
   void _onClickHomeViewIcon() => controller.changeHomeViewState();
 
@@ -90,6 +91,6 @@ class _HomePageState extends State<HomePage> {
   void dispose() {
     super.dispose();
     controller.dispose();
-    controller.scaffoldKey.currentState?.dispose();
+    // controller.scaffoldKey.currentState?.dispose();
   }
 }

@@ -33,10 +33,15 @@ void main() {
   });
 
   test('should return a Exception and a left-result from method', () async {
-    when(homeDatasource.getNotes()).thenThrow(Exception());
+    final Exception exception = Exception();
+    final Failure error = Failure(title: 'title', message: 'message');
+
+    when(homeDatasource.getNotes()).thenThrow(exception);
+    when(homeErrorHandler.handleError(exception)).thenAnswer((_) => error);
 
     final (Failure? failure, List<Note>? _) = await sut.getNotes();
 
-    expect(failure?.message.isNotEmpty, true);
+    expect(failure?.title, error.title);
+    expect(failure?.message, error.message);
   });
 }
